@@ -3,32 +3,31 @@
 #Affichage à l'écran
 IpFromUser = input("Veuillez encoder l'adresse IP\n")
 
-(IpListPerByte) = IpFromUser.split(".")
-
-print(IpListPerByte)
+#séparation en 
+IpListPerByte = IpFromUser.split(".")
 
 #conversion string à int
-fisrtOctet = int(IpListPerByte[0])
+firstByte = int(IpListPerByte[0])
 
 #Recherche de la classe 
 #mettre valeur dans db après
-if(fisrtOctet < 127):
+if(firstByte < 127):
     #classe A
-    print("classe A: \n126 réseaux de 16 777 214 machines")
-elif(fisrtOctet < 128):
+    print("Classe A: \n126 réseaux de 16 777 214 machines")
+elif(firstByte < 128):
         #classe reservées
     print("Classes réservées")
-elif(fisrtOctet < 192):
+elif(firstByte < 192):
     #classe B
-    print("classe B :\n16384 réseaux de 65534 machines")
-elif(fisrtOctet < 224):
+    print("Classe B :\n16384 réseaux de 65534 machines")
+elif(firstByte < 224):
     #classe C
-    print("classe C: \n 2 097 152 réseaux de 254 machines")
-elif(fisrtOctet < 240):
+    print("Classe C: \n 2 097 152 réseaux de 254 machines")
+elif(firstByte < 240):
     #classe D
-    print("classe D :\nadresses uniques")
+    print("Classe D :\nadresses uniques")
 else:
-    print("classe E :\nadresses uniques")
+    print("Classe E :\nadresses uniques")
 
 
     
