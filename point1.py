@@ -1,5 +1,15 @@
 #point 1
 
+#imports
+import sqlite3
+
+#récupération des données dans la base de données
+connexion = sqlite3.connect("BDDLabo")
+cursor = connexion.cursor()
+cursor.execute("SELECT * FROM class")
+result = cursor.fetchall()
+
+
 #Affichage à l'écran
 IpFromUser = input("Veuillez encoder l'adresse IP\n")
 
@@ -11,25 +21,25 @@ firstByte = int(IpListPerByte[0])
 
 #Recherche de la classe 
 #mettre valeur dans db après
-if(firstByte < 127):
+if (firstByte < 127):
     #classe A
-    print("Classe A: \n126 réseaux de 16 777 214 machines")
+    print(f'Classe {result[0][1]}: \n{result[0][2]} réseaux de {result[0][3]} machines')
 elif(firstByte < 128):
         #classe reservées
     print("Classes réservées")
 elif(firstByte < 192):
     #classe B
-    print("Classe B :\n16384 réseaux de 65534 machines")
+     print(f'Classe {result[1][1]}: \n{result[1][2]} réseaux de {result[1][3]} machines')
 elif(firstByte < 224):
     #classe C
-    print("Classe C: \n 2 097 152 réseaux de 254 machines")
+     print(f'Classe {result[2][1]}: \n{result[2][2]} réseaux de {result[2][3]} machines')
 elif(firstByte < 240):
     #classe D
     print("Classe D :\nadresses uniques")
 else:
     print("Classe E :\nadresses uniques")
 
-
+#A SUPPRIMER SI PAS UTILE
 #point 1 automatique
 """from ipaddress import IPv4Address, IPv4Network
 
