@@ -70,10 +70,13 @@ while adresse_masque_valide == False or adresse_ip_valide == False:
     # Vérification adresse masque_classe
     liste_octet_masque_int = []
     for i in liste_octet_masque:
-        if int(i) == 0 or int(i) == 128 or int(i) == 192 or int(i) == 224 or int(i) == 240 or int(i) == 248 or int(i) == 254 or int(i) == 255:
+        if int(i) == 0 or int(i) == 128 or int(i) == 192 or int(i) == 224 or int(i) == 240 or int(i) == 248 or int(i) == 252 or int(i) == 255:
             # Ajout des octets en int dans une nouvelle liste
             liste_octet_masque_int.append(int(i))
             adresse_masque_valide = True
+        else:
+            adresse_masque_valide = False
+            break
 
     # Vérification adresse ip
     liste_octet_ip_int = []
@@ -82,6 +85,9 @@ while adresse_masque_valide == False or adresse_ip_valide == False:
             # Ajout des octets en int dans une nouvelle liste
             liste_octet_ip_int.append(int(i))
             adresse_ip_valide = True
+        else:
+            adresse_ip_valide = False
+            break
 
     # On redemande l'adresse du masque_classe si elle n'est pas valide
     if adresse_masque_valide == False:
@@ -89,7 +95,7 @@ while adresse_masque_valide == False or adresse_ip_valide == False:
         masque_classe = input("Rentrez une adresse de masque valide : ")
 
     # On redemande l'adresse ip si elle n'est pas valide
-    if adresse_masque_valide == False:
+    if adresse_ip_valide == False:
         print("Adresse ip n'est pas valide.")
         ip = input("Rentrez une adresse ip valide : ")
 
