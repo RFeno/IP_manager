@@ -131,17 +131,6 @@ for i in masque_classe:
 # Calcul de l'adresse de reseau et de broadcast
 binary_reseau_adresse, binary_broadcast_adresse = calcul_sr_bc(liste_binary_ip,liste_binary_masque_classe)
 
-# Calcul de l'adresse de sous-reseau et de broadcast du sous-réseaux s'il y en a
-binary_sousreseau_adresse = []
-binary_sousreseau_broadcast_adresse = []
-if(liste_octet_masque != masque_classe):
-    # Ajout de chaque octet de l'adresse de masque en binaire dans une nouvelle liste
-    liste_binary_masque = []
-    for i in liste_octet_masque_int:
-        liste_binary_masque.append(int_to_binary(i))
-        
-    binary_sousreseau_adresse, binary_sousreseau_broadcast_adresse = calcul_sr_bc(liste_binary_ip,liste_binary_masque)
-
 # Conversion des adresse de réseau et de broadcast en entier
 liste_octet_reseau_int = []
 liste_octet_broadcast_int = []
@@ -161,8 +150,18 @@ ip_broadcast = ip_broadcast[:-1]
 print("Adresse de réseau : ",ip_reseau)
 print("Adresse de broadcast : ",ip_broadcast)
 
-# Conversion des adresse de sous-réseau et de broadcast du sous-réseau en entier s'ils existent
-if(binary_sousreseau_adresse != []):
+# Calcul de l'adresse de sous-reseau et de broadcast du sous-réseaux s'il y en a
+binary_sousreseau_adresse = []
+binary_sousreseau_broadcast_adresse = []
+if(liste_octet_masque_int != masque_classe):
+    # Ajout de chaque octet de l'adresse de masque en binaire dans une nouvelle liste
+    liste_binary_masque = []
+    for i in liste_octet_masque_int:
+        liste_binary_masque.append(int_to_binary(i))
+        
+    binary_sousreseau_adresse, binary_sousreseau_broadcast_adresse = calcul_sr_bc(liste_binary_ip,liste_binary_masque)
+
+    # Conversion des adresse de sous-réseau et de broadcast du sous-réseau en entier s'ils existent
     liste_octet_sousreseau_int = []
     liste_octet_sousreseau_broadcast_int = []
     for i in range(4):
