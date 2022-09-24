@@ -57,7 +57,7 @@ result = cursor.fetchall()
 
 # Demande des informations
 ip = input("IP : ")
-masque_classe = input("Masque : ")
+masque = input("Masque : ")
 
 adresse_masque_valide = False
 adresse_ip_valide = False
@@ -65,7 +65,7 @@ adresse_ip_valide = False
 while adresse_masque_valide == False or adresse_ip_valide == False:
     # Séparation des octets dans une liste
     liste_octet_ip = ip.split(".")
-    liste_octet_masque = masque_classe.split(".")  
+    liste_octet_masque = masque.split(".")  
 
     # Vérification adresse masque_classe
     liste_octet_masque_int = []
@@ -92,7 +92,7 @@ while adresse_masque_valide == False or adresse_ip_valide == False:
     # On redemande l'adresse du masque_classe si elle n'est pas valide
     if adresse_masque_valide == False:
         print("Adresse du masque n'est pas valide.")
-        masque_classe = input("Rentrez une adresse de masque valide : ")
+        masque = input("Rentrez une adresse de masque valide : ")
 
     # On redemande l'adresse ip si elle n'est pas valide
     if adresse_ip_valide == False:
