@@ -56,7 +56,7 @@ adresse_masque_valide = False
 adresse_ip_valide = False
 adresse_reseau_a_appartenir_valide = False
 
-while adresse_masque_valide == False or adresse_ip_valide == False and adresse_reseau_a_appartenir_valide == False:
+while adresse_masque_valide == False or adresse_ip_valide == False or adresse_reseau_a_appartenir_valide == False:
     # Séparation des octets dans une liste
     liste_octet_ip = ip.split(".")
     liste_octet_masque = masque.split(".")  
