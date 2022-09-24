@@ -1,41 +1,10 @@
-from ast import In
 from tkinter import *
 from tkinter import ttk
 from tkinter.ttk import *
-import tkinter.font as font
 
-"""Fenêtre Principale"""
-#création de la fenêtre principale
-WindowMain = Tk()
+from views.viewPoint1 import displayMenuOne
 
-#ajout du titre de la fenêtre
-WindowMain.title("Projet LABO_TCPIP - Menu d'accueil")
-
-#taille minimale de la enêtre
-WindowMain.minsize(500,500)
-
-#ajout de l'icone (iamge)
-WindowMain.iconbitmap("ressources/images/logoLabo4_1.ico")
-
-#configuration visuelle de la fenêtre
-WindowMain.config(background="#009790")
-styleMain = Style()
-styleMain.configure('My.TFrame', background="#009790", font="Impact")
-"""Fin Fenêtre Principale"""
-
-#fonctions
-
-"""Créations des composants"""
-frameMain = Frame(WindowMain, padding=30, style='My.TFrame')
-framePoint1 = Frame(WindowMain, padding=30,style='My.TFrame')
-framePoint2 = Frame(WindowMain, padding=30,style='My.TFrame')
-framePoint3 = Frame(WindowMain, padding=30,style='My.TFrame')
-framePoint4 = Frame(WindowMain, padding=30,style='My.TFrame')
-framePoint5 = Frame(WindowMain, padding=30,style='My.TFrame')
-
-"""Fin création des composants"""
-
-def HiddenAllWindow():
+def HiddenAllWindow(frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5):
     frameMain.grid_forget()
     framePoint1.grid_forget()
     framePoint2.grid_forget()
@@ -44,30 +13,26 @@ def HiddenAllWindow():
     framePoint5.grid_forget()
 
     
-def displayPoint1():
+def displayPoint1(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5):
+    #cacher les fenêtres
+    HiddenAllWindow(frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)
     
-    #cacher les fenêtre
-    HiddenAllWindow()
+    #création de menu de retour 
+    ttk.Button(framePoint1, text="Retour",command=lambda: displayMenuMain(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)).grid(column=2,row=9)
+    #créer la fenêtre du point 1
+    displayMenuOne(WindowMain,framePoint1)
     
-    #changement titre
-    WindowMain.title("Projet LABO_TCPIP - Point 1")
     
-    #ajout du conteneur
-    framePoint1.grid()
     
-    #création des composants
-    ttk.Label(framePoint1, text="1.Salut mec").grid(column=0, row=1)
-    ttk.Button(framePoint1, text="Valider (point 1)", ).grid(column=2, row=1)
-
-
+    
     
 def displayAbout():
     print("A propos")
     
-def displayMenuMain():
+def displayMenuMain(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5):
     
     #cacher les fenêtre
-    HiddenAllWindow()
+    HiddenAllWindow(frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)
     
     #changement titre
     WindowMain.title("Projet LABO_TCPIP - Menu d'accueil")
@@ -78,12 +43,11 @@ def displayMenuMain():
     frameMenuPoint3 = Frame(frameMain,style='My.TFrame')
     frameMenuPoint4 = Frame(frameMain,style='My.TFrame')
     frameMenuPoint5 = Frame(frameMain,style='My.TFrame')
-    myFont = font.Font(family='Helvetica')
     
     #Point 1 composants
     Label(frameMenuPoint1, text="1. Trouver les informations de l'adresse IP                      ",foreground="white",font=("Impact",15),background="#009790").grid(column=0, row=0)
     Label(frameMenuPoint1, text="A. Classe \nB. Nombre de réseaux \nC. Nombre de machines                                                             ",foreground="white",font=("Arial",10),background="#009790").grid(column=0, row=1)
-    Button(frameMain, text="Accéder (point 1)",command=displayPoint1).grid(column=5, row=1)
+    Button(frameMain, text="Accéder (point 1)",command=lambda: displayPoint1(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)).grid(column=5, row=1)
   
    
 
@@ -105,11 +69,10 @@ def displayMenuMain():
     Button(frameMain, text="Accéder (point 5)").grid(column=5, row=5)
 
     #import image
-    image_button_exit = PhotoImage(file="ressources/images/exit2.png")
+    image_button_exit = PhotoImage(file= "./ressources/images/exit2.png")
     #resize
-    image_button_exit_photo = image_button_exit.subsample(6,6)
+    image_button_exit_resize = image_button_exit.subsample(3,3)
 
-    Button(frameMain,text="Exit", image=image_button_exit_photo, command=WindowMain.destroy).grid(column=5, row=6)
     
     #ajout des points dans le menu principal
     frameMenuPoint1.grid(column=0, row=1)
@@ -118,31 +81,41 @@ def displayMenuMain():
     frameMenuPoint4.grid(column=0, row=4)
     frameMenuPoint5.grid(column=0, row=5)
     
+    #ajout du bouton exit
+    Button(frameMain,text="exit (temporaire)", image=image_button_exit_resize, command=WindowMain.destroy).grid(column=5, row=6)
+    
+    createMenuBar(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)
     #ajout du menu principal
     frameMain.grid()
 
 
 #création et configurationd de la menubarre
-menubar = Menu(WindowMain)
+def createMenuBar(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5):
+    
 
-menu1 = Menu(menubar, tearoff=0)
-menu1.add_command(label="Accueil", command=displayMenuMain)
-menu1.add_command(label="Point1", command=displayPoint1)
-menu1.add_command(label="Point 2", command=displayPoint1)
-menu1.add_command(label="Point 3", command=displayPoint1)
-menu1.add_command(label="Point 4", command=displayPoint1)
-menu1.add_command(label="Point 5", command=displayPoint1)
-menu1.add_separator()
-menu1.add_command(label="Quitter", command=WindowMain.quit)
-menubar.add_cascade(label="Menu", menu=menu1)
+    menubar = Menu(WindowMain)
+    
 
-menu2 = Menu(menubar, tearoff=0)
-menu2.add_command(label="A propos", command=displayAbout)
-menubar.add_cascade(label="Info", menu=menu2)
+    menu1 = Menu(menubar, tearoff=0)
+    menu2 = Menu(menubar, tearoff=0)
 
-WindowMain.config(menu=menubar)
+    menu1.add_command(label="Accueil", command=lambda: displayMenuMain(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5))
+    menu1.add_command(label="Point1", command=lambda: displayPoint1(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5))
+    menu1.add_command(label="Point 2")
+    menu1.add_command(label="Point 3")
+    menu1.add_command(label="Point 4")
+    menu1.add_command(label="Point 5")
+    menu1.add_separator()
+    menu1.add_command(label="Quitter", command=WindowMain.quit)
+    menubar.add_cascade(label="Menu", menu=menu1)
 
-displayMenuMain()
-#afficher la fenêtre 
-WindowMain.mainloop()
+
+    menu2.add_command(label="A propos", command=displayAbout)
+    menubar.add_cascade(label="Info", menu=menu2)
+
+    
+    #ajout de la barre de menu
+    WindowMain.config(menu=menubar)
+
+
 

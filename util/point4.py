@@ -14,11 +14,8 @@ def int_to_binary(nb):
         tmp = floor(tmp)
     nb_zero = 8 - len(binary)
     binary = list(reversed(binary))
-    binary_bis = []
-    for i in range(nb_zero):
-        binary_bis.append(0)
-    for i in  binary:
-        binary_bis.append(i)
+    binary_bis = [0 for _ in range(nb_zero)]
+    binary_bis.extend(iter(binary))
     return binary_bis
 
 # Fonction pour convertir un octet en integer
@@ -35,10 +32,10 @@ def octet_to_int(tab):
 def calcul_reseau_bc(binary_ip, binary_masque):
     liste_octet_SR_binary = []
     liste_octet_BC_binary = []
-    for i in range(0,4):
+    for i in range(4):
         liste_octet_SR_binary.append([])
         liste_octet_BC_binary.append([])
-        for j in range(0,8):
+        for j in range(8):
             if binary_masque[i][j] == 1:
                 liste_octet_SR_binary[i].append(binary_ip[i][j])
                 liste_octet_BC_binary[i].append(binary_ip[i][j])
@@ -175,4 +172,12 @@ else:
         print("Les 2 machines sont dans le même réseau.")
     else:
         print("Les 2 machines ne font pas partie du même réseau.")
+
+
+
+
+
+
+
+
 
