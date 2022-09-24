@@ -26,7 +26,7 @@ if (firstByte < 127):
     print(f'Classe {result[0][1]}: \n{result[0][2]} réseaux de {result[0][3]} machines')
 elif(firstByte < 128):
         #classe reservées
-    print("Classes réservées")
+    print(f'Classe {result[5][1]}')
 elif(firstByte < 192):
     #classe B
      print(f'Classe {result[1][1]}: \n{result[1][2]} réseaux de {result[1][3]} machines')
@@ -35,9 +35,9 @@ elif(firstByte < 224):
      print(f'Classe {result[2][1]}: \n{result[2][2]} réseaux de {result[2][3]} machines')
 elif(firstByte < 240):
     #classe D
-    print("Classe D :\nadresses uniques")
+    print(f'Classe {result[3][1]}: \n{result[3][2]}')
 else:
-    print("Classe E :\nadresses uniques")
+    print(f'{result[4][2]}')
 
 #A SUPPRIMER SI PAS UTILE
 #point 1 automatique
