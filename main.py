@@ -37,7 +37,7 @@ displayMenuMain(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePo
 
 #A EFFACER
 """frameMain.grid_forget()
-displayMenuThree(WindowMain,framePoint3)"""
+displayMenuFive(WindowMain,framePoint5)"""
 
 #affichage de la fenêtre principale
 WindowMain.mainloop()
