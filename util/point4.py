@@ -57,7 +57,7 @@ adresse_ip1_valide = False
 adresse_masque2_valide = False
 adresse_ip2_valide = False
 
-while adresse_masque1_valide == False or adresse_ip2_valide == False or adresse_masque2_valide == False or adresse_ip2_valide == False:
+while not adresse_masque1_valide or not adresse_ip2_valide or not adresse_masque2_valide or not adresse_ip2_valide:
     # Séparation des octets dans une liste
     liste_octet_ip1 = firstIpAddress.split(".")
     liste_octet_masque1 = firstNetworkMask.split(".")
@@ -67,7 +67,7 @@ while adresse_masque1_valide == False or adresse_ip2_valide == False or adresse_
     # Vérification adresse ip1
     liste_octet_ip1_int = []
     for i in liste_octet_ip1:
-        if int(i) in range(0,256):
+        if int(i) in range(256):
             # Ajout des octets en int dans une nouvelle liste
             liste_octet_ip1_int.append(int(i))
             adresse_ip1_valide = True
@@ -78,7 +78,7 @@ while adresse_masque1_valide == False or adresse_ip2_valide == False or adresse_
     # Vérification adresse masque1
     liste_octet_masque1_int = []
     for i in liste_octet_masque1:
-        if int(i) == 0 or int(i) == 128 or int(i) == 192 or int(i) == 224 or int(i) == 240 or int(i) == 248 or int(i) == 252 or int(i) == 255:
+        if int(i) in {0, 128, 192, 224, 240, 248, 252, 255}:
             # Ajout des octets en int dans une nouvelle liste
             liste_octet_masque1_int.append(int(i))
             adresse_masque1_valide = True
@@ -89,7 +89,7 @@ while adresse_masque1_valide == False or adresse_ip2_valide == False or adresse_
     # Vérification adresse ip2
     liste_octet_ip2_int = []
     for i in liste_octet_ip2:
-        if int(i) in range(0,256):
+        if int(i) in range(256):
             # Ajout des octets en int dans une nouvelle liste
             liste_octet_ip2_int.append(int(i))
             adresse_ip2_valide = True
@@ -100,7 +100,7 @@ while adresse_masque1_valide == False or adresse_ip2_valide == False or adresse_
     # Vérification adresse masque2
     liste_octet_masque2_int = []
     for i in liste_octet_masque2:
-        if int(i) == 0 or int(i) == 128 or int(i) == 192 or int(i) == 224 or int(i) == 240 or int(i) == 248 or int(i) == 252 or int(i) == 255:
+        if int(i) in {0, 128, 192, 224, 240, 248, 252, 255}:
             # Ajout des octets en int dans une nouvelle liste
             liste_octet_masque2_int.append(int(i))
             adresse_masque2_valide = True
@@ -128,29 +128,17 @@ while adresse_masque1_valide == False or adresse_ip2_valide == False or adresse_
         print("La deuxième adresse ip n'est pas valide.")
         secondIpAddress = input("Rentrez une adresse ip valide : ")
 
-if(liste_octet_masque1_int != liste_octet_masque2_int):
+if (liste_octet_masque1_int != liste_octet_masque2_int):
     print("Les 2 machines ne font pas partie du même réseau.")
 else:
     # Ajout de chaque octet de l'adresse ip en binaire dans une nouvelle liste
-    liste_binary_ip1 = []
-    for i in liste_octet_ip1_int:
-        liste_binary_ip1.append(int_to_binary(i))
-
+    liste_binary_ip1 = [int_to_binary(i) for i in liste_octet_ip1_int]
     # Ajout de chaque octet de l'adresse de masque en binaire dans une nouvelle liste
-    liste_binary_masque1 = []
-    for i in liste_octet_masque1_int:
-        liste_binary_masque1.append(int_to_binary(i))
-
+    liste_binary_masque1 = [int_to_binary(i) for i in liste_octet_masque1_int]
     # Ajout de chaque octet de l'adresse ip en binaire dans une nouvelle liste
-    liste_binary_ip2 = []
-    for i in liste_octet_ip2_int:
-        liste_binary_ip2.append(int_to_binary(i))
-
+    liste_binary_ip2 = [int_to_binary(i) for i in liste_octet_ip2_int]
     # Ajout de chaque octet de l'adresse de masque en binaire dans une nouvelle liste
-    liste_binary_masque2 = []
-    for i in liste_octet_masque2_int:
-        liste_binary_masque2.append(int_to_binary(i))
-    
+    liste_binary_masque2 = [int_to_binary(i) for i in liste_octet_masque2_int]
     # Calcul de l'adresse de reseau et de broadcast
     binary_reseau1_adresse, binary_broadcast1_adresse = calcul_reseau_bc(liste_binary_ip1,liste_binary_masque1)
 
