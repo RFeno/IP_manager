@@ -16,7 +16,7 @@ def checkUserPassword(username,password):
     hashed = bcrypt.hashpw(password.encode(), salt)
     
     if(bcrypt.checkpw(password.encode(),str(result[0]).encode())):
-        print("Mot de passe correct, accès autorisé")s
+        print("Mot de passe correct, accès autorisé")
         return True
     else:
         print("Mot de passe incorrect, accès refusé")

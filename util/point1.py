@@ -4,6 +4,8 @@
 import re
 import sqlite3
 
+from util.functions import verifyIsIpValid
+
 #récupération des données dans la base de données
 def genererPoint1(adresseIP):
     
@@ -73,20 +75,7 @@ def genererPoint1(adresseIP):
     """
 
 
-def verifyIsIpValid(adressIP):
-    if not re.search(r"[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}", adressIP):
-       print(f"L'adresse IP {adressIP} n'est pas valide")
-       return False
 
-    bytes = adressIP.split(".")
-  
-    for ip_byte in bytes:
-        if int(ip_byte) < 0 or int(ip_byte) > 255:
-            print(f"L'adresse IP {adressIP} n'est pas valide")
-            return False
-    print(f"L'adresse IP {adressIP} n'est pas valide")
-    return True
-    
 
   
    
