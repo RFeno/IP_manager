@@ -1,43 +1,47 @@
-#point 1
+#point 1 fonctionnement
 
 #imports
+import re
 import sqlite3
 
 #récupération des données dans la base de données
-def genererPoint1():
+def genererPoint1(adresseIP):
+    
+    if not (verifyIsIpValid(adresseIP)):
+        return "IpInvalid"
+
+    #connexion db + récupération des données
     connexion = sqlite3.connect("BDDLabo")
     cursor = connexion.cursor()
     cursor.execute("SELECT * FROM class")
     result = cursor.fetchall()
 
-    #Affichage à l'écran
-    IpFromUser = input("Veuillez encoder l'adresse IP\n")
-
     #séparation en 
-    IpListPerByte = IpFromUser.split(".")
+    IpListPerByte = adresseIP.split(".")
 
     #conversion string à int
     firstByte = int(IpListPerByte[0])
 
-    #Recherche de la classe 
+    #Recherche de la classe et retour à la vue
     if (firstByte < 127):
         #classe A
-        print(f'Classe {result[0][1]}: \n{result[0][2]} réseaux de {result[0][3]} machines')
+        return (f'Classe {result[0][1]}: \n{result[0][2]} réseaux de {result[0][3]} machines')
     elif(firstByte < 128):
             #classe reservées
-        print(f'Classe {result[5][1]}')
+        return (f'Classe {result[5][1]}')
     elif(firstByte < 192):
         #classe B
-        print(f'Classe {result[1][1]}: \n{result[1][2]} réseaux de {result[1][3]} machines')
+        return (f'Classe {result[1][1]}: \n{result[1][2]} réseaux de {result[1][3]} machines')
     elif(firstByte < 224):
         #classe C
-        print(f'Classe {result[2][1]}: \n{result[2][2]} réseaux de {result[2][3]} machines')
+        return (f'Classe {result[2][1]}: \n{result[2][2]} réseaux de {result[2][3]} machines')
     elif(firstByte < 240):
         #classe D
-        print(f'Classe {result[3][1]}: \n{result[3][2]}')
+        return (f'Classe {result[3][1]}: \n{result[3][2]}')
     else:
-        print(f'{result[4][2]}')
-
+        #classe E
+        return (f'Classe {result[4][1]}: \n{result[4][2]}')
+    
     #A SUPPRIMER SI PAS UTILE
     #point 1 automatique
     """from ipaddress import IPv4Address, IPv4Network
@@ -67,7 +71,22 @@ def genererPoint1():
     print(ip2 in classC)  # False
     print(ip3 in classC)  # True
     """
+
+
+def verifyIsIpValid(adressIP):
+    if not re.search(r"[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}", adressIP):
+       print(f"L'adresse IP {adressIP} n'est pas valide")
+       return False
+
+    bytes = adressIP.split(".")
+  
+    for ip_byte in bytes:
+        if int(ip_byte) < 0 or int(ip_byte) > 255:
+            print(f"L'adresse IP {adressIP} n'est pas valide")
+            return False
+    print(f"L'adresse IP {adressIP} n'est pas valide")
+    return True
     
 
-
-
+  
+   

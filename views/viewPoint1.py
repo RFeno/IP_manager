@@ -2,6 +2,7 @@ from ast import In
 from tkinter import *
 from tkinter import ttk
 from tkinter import font
+from tkinter import messagebox
 from tkinter.ttk import *
 
 from util.point1 import genererPoint1
@@ -31,7 +32,7 @@ def generateInformationsOne(entryIP):
 def refreshLabel(resultString):
 
     if(resultString == "IpInvalid"):
-        print("Mettre une alerte ici")
         valueLabel.set("")
+        messagebox.showerror("ERREUR", "L'adrese IP encodée n'est pas valide, merci de d'en choisir une autre !")
     else:
-        valueLabel.set(f"Resultat : {resultString}")
+        valueLabel.set(f"Resultat :\n{resultString}\n")

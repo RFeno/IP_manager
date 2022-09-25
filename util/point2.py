@@ -15,11 +15,8 @@ def int_to_binary(nb):
         tmp = floor(tmp)
     nb_zero = 8 - len(binary)
     binary = list(reversed(binary))
-    binary_bis = []
-    for i in range(nb_zero):
-        binary_bis.append(0)
-    for i in  binary:
-        binary_bis.append(i)
+    binary_bis = [0 for _ in range(nb_zero)]
+    binary_bis.extend(iter(binary))
     return binary_bis
 
 # Fonction pour convertir un octet en integer
@@ -36,10 +33,10 @@ def octet_to_int(tab):
 def calcul_sr_bc(binary_ip, binary_masque):
     liste_octet_SR_binary = []
     liste_octet_BC_binary = []
-    for i in range(0,4):
+    for i in range(4):
         liste_octet_SR_binary.append([])
         liste_octet_BC_binary.append([])
-        for j in range(0,8):
+        for j in range(8):
             if binary_masque[i][j] == 1:
                 liste_octet_SR_binary[i].append(binary_ip[i][j])
                 liste_octet_BC_binary[i].append(binary_ip[i][j])
@@ -50,6 +47,7 @@ def calcul_sr_bc(binary_ip, binary_masque):
 
 #----------------------------------------------------------------
 #récupération des données dans la base de données
+
 connexion = sqlite3.connect("BDDLabo")
 cursor = connexion.cursor()
 cursor.execute("SELECT * FROM class")
@@ -62,7 +60,7 @@ masque = input("Masque : ")
 adresse_masque_valide = False
 adresse_ip_valide = False
 
-while adresse_masque_valide == False or adresse_ip_valide == False:
+while not adresse_masque_valide or not adresse_ip_valide:
     # Séparation des octets dans une liste
     liste_octet_ip = ip.split(".")
     liste_octet_masque = masque.split(".")  
@@ -70,7 +68,7 @@ while adresse_masque_valide == False or adresse_ip_valide == False:
     # Vérification adresse masque_classe
     liste_octet_masque_int = []
     for i in liste_octet_masque:
-        if int(i) == 0 or int(i) == 128 or int(i) == 192 or int(i) == 224 or int(i) == 240 or int(i) == 248 or int(i) == 252 or int(i) == 255:
+        if int(i) in {0, 128, 192, 224, 240, 248, 252, 255}:
             # Ajout des octets en int dans une nouvelle liste
             liste_octet_masque_int.append(int(i))
             adresse_masque_valide = True
@@ -81,7 +79,7 @@ while adresse_masque_valide == False or adresse_ip_valide == False:
     # Vérification adresse ip
     liste_octet_ip_int = []
     for i in liste_octet_ip:
-        if int(i) in range(0,256):
+        if int(i) in range(256):
             # Ajout des octets en int dans une nouvelle liste
             liste_octet_ip_int.append(int(i))
             adresse_ip_valide = True
@@ -148,8 +146,8 @@ for i in range(4):
 ip_reseau = ""
 ip_broadcast = ""
 for i in range(4):
-    ip_reseau += str(liste_octet_reseau_int[i]) + "."
-    ip_broadcast += str(liste_octet_broadcast_int[i]) + "."
+    ip_reseau += f"{str(liste_octet_reseau_int[i])}."
+    ip_broadcast += f"{str(liste_octet_broadcast_int[i])}."
 ip_reseau = ip_reseau[:-1]
 ip_broadcast = ip_broadcast[:-1]
 
@@ -159,12 +157,9 @@ print("Adresse de broadcast : ",ip_broadcast)
 # Calcul de l'adresse de sous-reseau et de broadcast du sous-réseaux s'il y en a
 binary_sousreseau_adresse = []
 binary_sousreseau_broadcast_adresse = []
-if(liste_octet_masque_int != masque_classe):
+if (liste_octet_masque_int != masque_classe):
     # Ajout de chaque octet de l'adresse de masque en binaire dans une nouvelle liste
-    liste_binary_masque = []
-    for i in liste_octet_masque_int:
-        liste_binary_masque.append(int_to_binary(i))
-        
+    liste_binary_masque = [int_to_binary(i) for i in liste_octet_masque_int]
     binary_sousreseau_adresse, binary_sousreseau_broadcast_adresse = calcul_sr_bc(liste_binary_ip,liste_binary_masque)
 
     # Conversion des adresse de sous-réseau et de broadcast du sous-réseau en entier s'ils existent

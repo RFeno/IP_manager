@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import ttk
+from tkinter import messagebox
 from tkinter.ttk import *
 from PIL import ImageTk, Image
 
@@ -81,11 +82,14 @@ def displayAbout():
     
 def displayMenuMain(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5):
     
+    global windowFromMain 
+    windowFromMain = WindowMain
+    
     #cacher les fenêtre
     HiddenAllWindow(frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)
     
     #changement titre
-    WindowMain.title("Projet LABO_TCPIP - Menu d'accueil")
+    windowFromMain.title("Projet LABO_TCPIP - Menu d'accueil")
     
     #création des sections du menu
     frameMenuPoint1 = Frame(frameMain,style='My.TFrame')
@@ -116,13 +120,6 @@ def displayMenuMain(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,fra
     Label(frameMenuPoint5, text="A. Le nombre d'hôtes\nB. Découpe sur nombre de sous-réseaux \nC. Découpe par nombre d'adresse IP                                           ",foreground="white",font=("Arial",10),background="#009790").grid(column=0, row=13)
     Button(frameMain, text="Accéder (point 5)",command=lambda: displayPoint5(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)).grid(column=5, row=5)
 
-
-    myimg = ImageTk.PhotoImage(Image.open('ressources/images/exit2.png'))
-    #import image
-    image_button_exit = PhotoImage(file = r"ressources/images/exit2.png")
-    #resize
-    image_button_exit_resize = image_button_exit.subsample(9,9)
-
     #ajout des points dans le menu principal
     Label(frameMain, text="Menu principal ",foreground="white",font=("Impact",15),background="#009790").grid(column=0, row=0, pady=5)
     frameMenuPoint1.grid(column=0, row=1)
@@ -131,8 +128,9 @@ def displayMenuMain(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,fra
     frameMenuPoint4.grid(column=0, row=4)
     frameMenuPoint5.grid(column=0, row=5)
     
+      
     #ajout du bouton exit
-    Button(frameMain,text="Fermer",image=myimg, command=WindowMain.destroy).grid(column=5, row=9)
+    Button(frameMain,text="Fermer", command=ExitApp).grid(column=5, row=12)
     
     createMenuBar(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)
     
@@ -158,15 +156,17 @@ def createMenuBar(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,frame
     
     menu1.add_separator()
     
-    menu1.add_command(label="Quitter", command=WindowMain.quit)
+    menu1.add_command(label="Quitter", command=ExitApp)
     menubar.add_cascade(label="Menu", menu=menu1)
     
     menu2.add_command(label="A propos", command=displayAbout)
     menubar.add_cascade(label="Info", menu=menu2)
 
-    
     #ajout de la barre de menu
     WindowMain.config(menu=menubar)
 
 
-
+def ExitApp():
+    MsgBox = messagebox.askquestion ('Fermer','Voulez-vous vraiment quitter l\'application?',icon = 'warning')
+    if MsgBox == 'yes':
+       windowFromMain.destroy()
