@@ -6,7 +6,7 @@ from tkinter.ttk import *
 from views.menu import *
 from views.viewLogin import DisplayLogin
 
-active_login = True
+active_login = False
 #création de la fenêtre principale
 WindowMain= Tk()
 
@@ -19,14 +19,13 @@ framePoint4 = Frame(WindowMain, padding=30, style='My.TFrame')
 framePoint5 = Frame(WindowMain, padding=30, style='My.TFrame')
 frameLogin  = Frame(WindowMain, padding=30, style='My.TFrame')
 
-frameLogin.grid()
 
 #ajout du titre de la fenêtre
 WindowMain.title("Projet LABO_TCPIP - Connexion")
 
 #taille minimale de la enêtre
-WindowMain.minsize(700,550)
-WindowMain.maxsize(700,550)
+"""WindowMain.minsize(700,550)
+WindowMain.maxsize(700,550)"""
 
 #ajout de l'icone (image)
 WindowMain.iconbitmap("ressources/images/logoLabo4_1.ico")
@@ -38,16 +37,17 @@ styleMain = Style()
 styleMain.configure('My.TFrame', background="#009790", font="Impact")
 
 #création du menu principal 
+#si l'authentication est activé
 if(active_login):
     DisplayLogin(WindowMain,frameLogin,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)
-     
 else:
     displayMenuMain(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)
 
-
 #A EFFACER
 # frameMain.grid_forget()
-# DisplayLogin(WindowMain,frameLogin)
+# frameLogin.grid_forget()
+
+# displayMenuTwo(WindowMain,framePoint2)
 
 #affichage de la fenêtre principale
 WindowMain.mainloop()

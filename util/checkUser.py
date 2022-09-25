@@ -10,8 +10,6 @@ def checkUserPassword(username,password):
     cursor = connexion.cursor()
     cursor.execute(f"SELECT password FROM users WHERE username like '{username}' ;")
     result = cursor.fetchone()
-    
-    print(f"resultat de la requête : {result}")
 
     if(result is None):
         return False

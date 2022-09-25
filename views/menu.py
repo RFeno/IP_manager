@@ -37,7 +37,7 @@ def displayPoint2(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,frame
     HiddenAllWindow(frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)
     
     #création de menu de retour 
-    ttk.Button(framePoint2, text="Retour au menu",command=lambda: displayMenuMain(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)).grid(column=2,row=9)
+    ttk.Button(framePoint2, text="Retour au menu",command=lambda: displayMenuMain(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)).grid(column=2,row=11)
     
     #créer la fenêtre du point 2
     displayMenuTwo(WindowMain,framePoint2)

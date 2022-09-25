@@ -12,9 +12,9 @@ def verifyIsIpValid(adressIP):
   
     for ip_byte in bytes:
         if int(ip_byte) < 0 or int(ip_byte) > 255:
-            print(f"L'adresse de masque {adressIP} n'est pas valide")
+            print(f"L'adresse IP {adressIP} n'est pas valide")
             return False
-    print(f"L'adresse de masque {adressIP} est valide")
+    print(f"L'adresse de IP {adressIP} est valide")
     return True
     
 # Fonction pour vérifier si un masque est valide ou non
@@ -70,7 +70,7 @@ def octet_to_int(tab):
     return result
 
 # Fonction pour calculer le sr et bc en binaire grâce a une ip et le masque_classe en binaire
-def calcul_sr_bc(binary_ip, binary_masque):
+def calcul_reseau_bc(binary_ip, binary_masque):
     liste_octet_SR_binary = []
     liste_octet_BC_binary = []
     for i in range(4):
