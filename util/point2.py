@@ -1,49 +1,6 @@
-from math import floor
-from queue import Empty
 import sqlite3
 
-# Fonction pour transformer un integer en binary
-def int_to_binary(nb):
-    binary = []
-    tmp = nb
-    while tmp != 0:
-        if (tmp % 2) == 1:
-            binary.append(1)
-        else:
-            binary.append(0)
-        tmp = tmp / 2
-        tmp = floor(tmp)
-    nb_zero = 8 - len(binary)
-    binary = list(reversed(binary))
-    binary_bis = [0 for _ in range(nb_zero)]
-    binary_bis.extend(iter(binary))
-    return binary_bis
-
-# Fonction pour convertir un octet en integer
-def octet_to_int(tab):
-    result = 0
-    a = 7
-    for i in tab:
-        if i == 1:
-            result += 2**a
-        a-=1
-    return result
-
-# Fonction pour calculer le sr et bc en binaire grâce a une ip et le masque_classe en binaire
-def calcul_sr_bc(binary_ip, binary_masque):
-    liste_octet_SR_binary = []
-    liste_octet_BC_binary = []
-    for i in range(4):
-        liste_octet_SR_binary.append([])
-        liste_octet_BC_binary.append([])
-        for j in range(8):
-            if binary_masque[i][j] == 1:
-                liste_octet_SR_binary[i].append(binary_ip[i][j])
-                liste_octet_BC_binary[i].append(binary_ip[i][j])
-            else:
-                liste_octet_SR_binary[i].append(0)
-                liste_octet_BC_binary[i].append(1)
-    return (liste_octet_SR_binary,liste_octet_BC_binary)
+from functions import *
 
 #----------------------------------------------------------------
 #récupération des données dans la base de données
@@ -65,62 +22,76 @@ while not adresse_masque_valide or not adresse_ip_valide:
     liste_octet_ip = ip.split(".")
     liste_octet_masque = masque.split(".")  
 
-    # Vérification adresse masque_classe
-    liste_octet_masque_int = []
-    for i in liste_octet_masque:
-        if int(i) in {0, 128, 192, 224, 240, 248, 252, 255}:
+    # Vérification adresse ip
+    if verifyIsIpValid(ip):
+        adresse_ip_valide = True
+    else:
+        adresse_ip_valide = False
+
+    # Conversion de l'adresse ip de string en int
+    if(adresse_ip_valide == True):
+        liste_octet_ip_int = []
+        for i in liste_octet_ip:
             # Ajout des octets en int dans une nouvelle liste
-            liste_octet_masque_int.append(int(i))
+            liste_octet_ip_int.append(int(i))
+
+    if (adresse_ip_valide == True):
+        # Vérification adresse masque_classe
+        if verifyIsMaskValid(masque):
             adresse_masque_valide = True
         else:
             adresse_masque_valide = False
-            break
 
-    # Vérification adresse ip
-    liste_octet_ip_int = []
-    for i in liste_octet_ip:
-        if int(i) in range(256):
-            # Ajout des octets en int dans une nouvelle liste
-            liste_octet_ip_int.append(int(i))
-            adresse_ip_valide = True
+        # Conversion du masque de string en int
+        if(adresse_masque_valide == True):
+            liste_octet_masque_int = []
+            for i in liste_octet_masque:
+                # Ajout des octets en int dans une nouvelle liste
+                liste_octet_masque_int.append(int(i))
+
+        #récupèration du premier octet de l'ip
+        firstByte = int(liste_octet_ip_int[0])
+        #Recherche de la classe 
+        if (firstByte < 127):
+            #classe A
+            masque_classe_str = result[0][4].split('.')
+            print(f'Classe {result[0][1]}: \n{result[0][2]} réseaux de {result[0][3]} machines')
+        elif(firstByte < 128):
+            #classe reservées
+            print(f'Classe {result[5][1]}')
+        elif(firstByte < 192):
+            #classe B
+            masque_classe_str = result[1][4].split('.')
+            print(f'Classe {result[1][1]}: \n{result[1][2]} réseaux de {result[1][3]} machines')
+        elif(firstByte < 224):
+            #classe C
+            masque_classe_str = result[2][4].split('.')
+            print(f'Classe {result[2][1]}: \n{result[2][2]} réseaux de {result[2][3]} machines')
+        elif(firstByte < 240):
+            #classe D
+            print(f'Classe {result[3][1]}: \n{result[3][2]}')
         else:
-            adresse_ip_valide = False
-            break
+            #classe E
+            print(f'Classe {result[4][1]}: \n{result[4][2]}')
+
+        # Conversion du masque de classe de string en int
+        masque_classe = []
+        for i in masque_classe_str:
+            masque_classe.append(int(i))
+
+        if(masque_classe > liste_octet_masque_int):
+            adresse_masque_valide = False
+            print("l'adresse de masque ne peut pas être plus englobant que l'adresse de classe.") #255.255.255.0  255.0.0.0
 
     # On redemande l'adresse du masque_classe si elle n'est pas valide
     if adresse_masque_valide == False:
-        print("Adresse du masque n'est pas valide.")
         masque = input("Rentrez une adresse de masque valide : ")
 
     # On redemande l'adresse ip si elle n'est pas valide
     if adresse_ip_valide == False:
-        print("Adresse ip n'est pas valide.")
         ip = input("Rentrez une adresse ip valide : ")
 
-#récupèration du premier octet de l'ip
-firstByte = int(liste_octet_ip_int[0])
 
-#Recherche de la classe 
-if (firstByte < 127):
-    #classe A
-    masque_classe = [255,0,0,0]
-    print(f'Classe {result[0][1]}: \n{result[0][2]} réseaux de {result[0][3]} machines')
-elif(firstByte < 128):
-        #classe reservées
-    print("Classes réservées")
-elif(firstByte < 192):
-    #classe B
-    masque_classe = [255,255,0,0]
-    print(f'Classe {result[1][1]}: \n{result[1][2]} réseaux de {result[1][3]} machines')
-elif(firstByte < 224):
-    #classe C
-    masque_classe = [255,255,255,0]
-    print(f'Classe {result[2][1]}: \n{result[2][2]} réseaux de {result[2][3]} machines')
-elif(firstByte < 240):
-    #classe D
-    print("Classe D :\nadresses uniques")
-else:
-    print("Classe E :\nadresses uniques")
 
 # Ajout de chaque octet de l'adresse ip en binaire dans une nouvelle liste
 liste_binary_ip = []
