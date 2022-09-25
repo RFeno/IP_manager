@@ -5,9 +5,12 @@
 ### Alex
 point 3
 point 2
-interface graphique
+backend fonctions
 
 ### Saviour
 point 1
 point 4
-bdd
+bdd 
+interface graphique
+
+#### <!> Code à mettre à jour avec l'utilisation de classes <!>

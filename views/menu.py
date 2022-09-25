@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter.ttk import *
+from PIL import ImageTk, Image
 
 from views.viewPoint1 import displayMenuOne
 from views.viewPoint2 import displayMenuTwo
@@ -115,10 +116,12 @@ def displayMenuMain(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,fra
     Label(frameMenuPoint5, text="A. Le nombre d'hôtes\nB. Découpe sur nombre de sous-réseaux \nC. Découpe par nombre d'adresse IP                                           ",foreground="white",font=("Arial",10),background="#009790").grid(column=0, row=13)
     Button(frameMain, text="Accéder (point 5)",command=lambda: displayPoint5(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)).grid(column=5, row=5)
 
+
+    myimg = ImageTk.PhotoImage(Image.open('ressources/images/exit2.png'))
     #import image
-    image_button_exit = PhotoImage(file= "./ressources/images/exit2.png")
+    image_button_exit = PhotoImage(file = r"ressources/images/exit2.png")
     #resize
-    image_button_exit_resize = image_button_exit.subsample(3,3)
+    image_button_exit_resize = image_button_exit.subsample(9,9)
 
     #ajout des points dans le menu principal
     Label(frameMain, text="Menu principal ",foreground="white",font=("Impact",15),background="#009790").grid(column=0, row=0, pady=5)
@@ -129,9 +132,10 @@ def displayMenuMain(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,fra
     frameMenuPoint5.grid(column=0, row=5)
     
     #ajout du bouton exit
-    Button(frameMain,text="exit (temporaire)", image=image_button_exit_resize, command=WindowMain.destroy).grid(column=5, row=7)
+    Button(frameMain,text="Fermer",image=myimg, command=WindowMain.destroy).grid(column=5, row=9)
     
     createMenuBar(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)
+    
     #ajout du menu principal
     frameMain.grid()
 

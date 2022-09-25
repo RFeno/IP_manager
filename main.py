@@ -36,8 +36,8 @@ styleMain.configure('My.TFrame', background="#009790", font="Impact")
 displayMenuMain(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)
 
 #A EFFACER
-"""frameMain.grid_forget()
-displayMenuFive(WindowMain,framePoint5)"""
+frameMain.grid_forget()
+displayMenuOne(WindowMain,framePoint1)
 
 #affichage de la fenêtre principale
 WindowMain.mainloop()
