@@ -1,48 +1,4 @@
-from math import floor
-import sqlite3
-
-# Fonction pour transformer un integer en binary
-def int_to_binary(nb):
-    binary = []
-    tmp = nb
-    while tmp != 0:
-        if (tmp % 2) == 1:
-            binary.append(1)
-        else:
-            binary.append(0)
-        tmp = tmp / 2
-        tmp = floor(tmp)
-    nb_zero = 8 - len(binary)
-    binary = list(reversed(binary))
-    binary_bis = [0 for _ in range(nb_zero)]
-    binary_bis.extend(iter(binary))
-    return binary_bis
-
-# Fonction pour convertir un octet en integer
-def octet_to_int(tab):
-    result = 0
-    a = 7
-    for i in tab:
-        if i == 1:
-            result += 2**a
-        a-=1
-    return result
-
-# Fonction pour calculer le sr et bc en binaire grâce a une ip et le masque_classe en binaire
-def calcul_reseau_bc(binary_ip, binary_masque):
-    liste_octet_SR_binary = []
-    liste_octet_BC_binary = []
-    for i in range(4):
-        liste_octet_SR_binary.append([])
-        liste_octet_BC_binary.append([])
-        for j in range(8):
-            if binary_masque[i][j] == 1:
-                liste_octet_SR_binary[i].append(binary_ip[i][j])
-                liste_octet_BC_binary[i].append(binary_ip[i][j])
-            else:
-                liste_octet_SR_binary[i].append(0)
-                liste_octet_BC_binary[i].append(1)
-    return (liste_octet_SR_binary,liste_octet_BC_binary)
+from functions import *
 
 #----------------------------------------------------------------
 # Demande des informations
@@ -65,26 +21,30 @@ while not adresse_masque1_valide or not adresse_ip2_valide or not adresse_masque
     liste_octet_masque2 = secondNetworkMask.split(".")   
 
     # Vérification adresse ip1
-    liste_octet_ip1_int = []
-    for i in liste_octet_ip1:
-        if int(i) in range(256):
+    if verifyIsIpValid(firstIpAddress):
+        adresse_ip1_valide = True
+    else:
+        adresse_ip1_valide = False
+
+    # Conversion de l'adresse ip1 de string en int
+    if(adresse_ip1_valide == True):
+        liste_octet_ip1_int = []
+        for i in liste_octet_ip1:
             # Ajout des octets en int dans une nouvelle liste
             liste_octet_ip1_int.append(int(i))
-            adresse_ip1_valide = True
-        else:
-            adresse_ip1_valide = False
-            break
 
     # Vérification adresse masque1
-    liste_octet_masque1_int = []
-    for i in liste_octet_masque1:
-        if int(i) in {0, 128, 192, 224, 240, 248, 252, 255}:
+    if verifyIsMaskValid(firstNetworkMask):
+        adresse_masque1_valide = True
+    else:
+        adresse_masque1_valide = False
+
+    # Conversion du masque de string en int
+    if(adresse_masque1_valide == True):
+        liste_octet_masque1_int = []
+        for i in liste_octet_masque1:
             # Ajout des octets en int dans une nouvelle liste
             liste_octet_masque1_int.append(int(i))
-            adresse_masque1_valide = True
-        else:
-            adresse_masque1_valide = False
-            break
 
     # Vérification adresse ip2
     liste_octet_ip2_int = []
@@ -97,6 +57,19 @@ while not adresse_masque1_valide or not adresse_ip2_valide or not adresse_masque
             adresse_ip2_valide = False
             break
 
+    # Vérification adresse ip2
+    if verifyIsIpValid(secondIpAddress):
+        adresse_ip2_valide = True
+    else:
+        adresse_ip2_valide = False
+
+    # Conversion de l'adresse ip1 de string en int
+    if(adresse_ip2_valide == True):
+        liste_octet_ip2_int = []
+        for i in liste_octet_ip2:
+            # Ajout des octets en int dans une nouvelle liste
+            liste_octet_ip2_int.append(int(i))
+
     # Vérification adresse masque2
     liste_octet_masque2_int = []
     for i in liste_octet_masque2:
@@ -107,6 +80,19 @@ while not adresse_masque1_valide or not adresse_ip2_valide or not adresse_masque
         else:
             adresse_masque2_valide = False
             break
+
+    # Vérification adresse masque1
+    if verifyIsMaskValid(secondNetworkMask):
+        adresse_masque2_valide = True
+    else:
+        adresse_masque2_valide = False
+
+    # Conversion du masque de string en int
+    if(adresse_masque2_valide == True):
+        liste_octet_masque2_int = []
+        for i in liste_octet_masque2:
+            # Ajout des octets en int dans une nouvelle liste
+            liste_octet_masque2_int.append(int(i))
 
     # On redemande l'adresse du masque_classe si elle n'est pas valide
     if adresse_masque1_valide == False:
@@ -139,6 +125,7 @@ else:
     liste_binary_ip2 = [int_to_binary(i) for i in liste_octet_ip2_int]
     # Ajout de chaque octet de l'adresse de masque en binaire dans une nouvelle liste
     liste_binary_masque2 = [int_to_binary(i) for i in liste_octet_masque2_int]
+    
     # Calcul de l'adresse de reseau et de broadcast
     binary_reseau1_adresse, binary_broadcast1_adresse = calcul_reseau_bc(liste_binary_ip1,liste_binary_masque1)
 
