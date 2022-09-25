@@ -4,9 +4,10 @@ import sqlite3
 from tkinter import *
 from tkinter.ttk import *
 from views.menu import *
+from views.viewLogin import DisplayLogin
 
+active_login = True
 #création de la fenêtre principale
-
 WindowMain= Tk()
 
 #création des conteneurs
@@ -37,12 +38,16 @@ styleMain = Style()
 styleMain.configure('My.TFrame', background="#009790", font="Impact")
 
 #création du menu principal 
-displayMenuMain(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)
+if(active_login):
+    DisplayLogin(WindowMain,frameLogin,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)
+     
+else:
+    displayMenuMain(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)
 
 
 #A EFFACER
-#frameMain.grid_forget()
-#displayMenuTwo(WindowMain,framePoint2)
+# frameMain.grid_forget()
+# DisplayLogin(WindowMain,frameLogin)
 
 #affichage de la fenêtre principale
 WindowMain.mainloop()
