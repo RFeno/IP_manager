@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 
-from util.point2 import genererPoint2
+from model.point2 import genererPoint2
 
 
 def displayMenuTwo(WindowMain,framePoint2):

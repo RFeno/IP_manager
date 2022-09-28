@@ -5,7 +5,7 @@ from tkinter import font
 from tkinter import messagebox
 from tkinter.ttk import *
 
-from util.point1 import genererPoint1
+from model.point1 import genererPoint1
 
 
 def displayMenuOne(WindowMain,framePoint1):
