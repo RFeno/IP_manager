@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 from tkinter.ttk import *
-from PIL import ImageTk, Image
+
 
 from views.viewPoint1 import displayMenuOne
 from views.viewPoint2 import displayMenuTwo
@@ -98,30 +98,34 @@ def displayMenuMain(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,fra
     frameMenuPoint4 = Frame(frameMain,style='My.TFrame')
     frameMenuPoint5 = Frame(frameMain,style='My.TFrame')
     
+    #ajout des points dans le menu principal
+    Label(frameMain, text="Menu principal ",foreground="white",font=("Impact",20),background="#009790").grid(column=0, row=0, pady=5)
+    
     #Point 1 composants
-    Label(frameMenuPoint1, text="1. Trouver les informations de l'adresse IP                      ",foreground="white",font=("Impact",15),background="#009790").grid(column=0, row=0)
-    Label(frameMenuPoint1, text="A. Classe \nB. Nombre de réseaux \nC. Nombre d'hôtes                                                            ",foreground="white",font=("Arial",10),background="#009790").grid(column=0, row=1)
-    Button(frameMain, text="Accéder (point 1)",command=lambda: displayPoint1(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)).grid(column=5, row=1)
+    Label(frameMenuPoint1, text="1. Trouver les informations de l'adresse IP                 ",foreground="white",font=("Impact",15),background="#009790").grid(column=0, row=0,pady=5)
+    Label(frameMenuPoint1, text="A. Classe \nB. Nombre de réseaux \nC. Nombre d'hôtes",foreground="white",font=("Arial",10),background="#009790").grid(column=0, row=1,stick=W)
+    Button(frameMain, text="Accéder (point 1)",command=lambda: displayPoint1(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)).grid(column=2, row=1,padx=25)
 
     #Point 2 composants
-    Label(frameMenuPoint2, text="2. Trouver les informations de l'adresse IP                     ",foreground="white",font=("Impact",15),background="#009790").grid(column=0, row=3)
-    Label(frameMenuPoint2, text="A. Adresse de réseau\nB. Adresse de broadcast\nC. Adresse de sous-réseau                                                        ",foreground="white",font=("Arial",10),background="#009790").grid(column=0, row=4)
-    Button(frameMain, text="Accéder (point 2)",command=lambda: displayPoint2(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)).grid(column=5, row=2)
+    Label(frameMenuPoint2, text="2. Trouver les informations de l'adresse IP                  ",foreground="white",font=("Impact",15),background="#009790").grid(column=0, row=3, pady=5)
+    Label(frameMenuPoint2, text="A. Adresse de réseau\nB. Adresse de broadcast\nC. Adresse de sous-réseau",foreground="white",font=("Arial",10),background="#009790").grid(column=0, row=4,stick=W)
+    Button(frameMain, text="Accéder (point 2)",command=lambda: displayPoint2(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)).grid(column=2, row=2,padx=25)
 
     #Point 3 composants
-    Label(frameMenuPoint3, text="3. L'IP apartient-il au réseau ?                                              ",foreground="white",font="Impact",background="#009790").grid(column=0, row=6)
-    Button(frameMain, text="Accéder (point 3)",command=lambda: displayPoint3(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)).grid(column=5, row=3)
+    Label(frameMenuPoint3, text="3. L'IP apartient-il au réseau ?                                          ",foreground="white",font=("Impact",15),background="#009790").grid(column=0, row=6,stick=W,pady=5)
+    Button(frameMain, text="Accéder (point 3)",command=lambda: displayPoint3(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)).grid(column=2, row=3,padx=25)
 
     #Point 4 composants
-    Label(frameMenuPoint4, text="4. Deux adresses sont-elles dans le même réseau ?   ",foreground="white",font="Impact",background="#009790").grid(column=0, row=9)
-    Button(frameMain, text="Accéder (point 4)",command=lambda: displayPoint4(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)).grid(column=5, row=4)
+    Label(frameMenuPoint4, text="4. Deux adresses sont-elles dans le même réseau ?",foreground="white",font=("Impact",15),background="#009790").grid(column=0, row=9,stick=S,pady=5)
+    Button(frameMain, text="Accéder (point 4)",command=lambda: displayPoint4(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)).grid(column=2, row=4,padx=15)
 
-    Label(frameMenuPoint5, text="5. Déterminer les possibilités                                                ",foreground="white",font="Impact",background="#009790").grid(column=0, row=12)
-    Label(frameMenuPoint5, text="A. Le nombre d'hôtes\nB. Découpe sur nombre de sous-réseaux \nC. Découpe par nombre d'adresse IP                                           ",foreground="white",font=("Arial",10),background="#009790").grid(column=0, row=13)
-    Button(frameMain, text="Accéder (point 5)",command=lambda: displayPoint5(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)).grid(column=5, row=5)
+    Label(frameMenuPoint5, text="5. Déterminer les possibilités                                            ",foreground="white",font=("Impact",15),background="#009790").grid(column=0, row=12,stick=W,pady=5)
+    Label(frameMenuPoint5, text="A. Le nombre d'hôtes\nB. Découpe sur nombre de sous-réseaux \nC. Découpe par nombre d'adresse IP",foreground="white",font=("Arial",10),background="#009790").grid(column=0, row=13,stick=W)
+    Button(frameMain, text="Accéder (point 5)",command=lambda: displayPoint5(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)).grid(column=2, row=5,padx=25)
 
-    #ajout des points dans le menu principal
-    Label(frameMain, text="Menu principal ",foreground="white",font=("Impact",15),background="#009790").grid(column=0, row=0, pady=5)
+    
+    #placer les éléments dans le tableau
+    
     frameMenuPoint1.grid(column=0, row=1)
     frameMenuPoint2.grid(column=0, row=2)
     frameMenuPoint3.grid(column=0, row=3)
@@ -130,7 +134,7 @@ def displayMenuMain(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,fra
     
       
     #ajout du bouton exit
-    Button(frameMain,text="Fermer", command=ExitApp).grid(column=5, row=12)
+    Button(frameMain,text="Fermer", command=ExitApp).grid(column=2, row=12, padx=5)
     
     createMenuBar(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)
     

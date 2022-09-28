@@ -21,7 +21,7 @@ def DisplayLogin(WindowMain,frameLogin,frameMain,framePoint1,framePoint2,framePo
     Button(frameLogin, text="Connexion", command=lambda:connexion(usernamevalue.get(),passwordvalue.get(),WindowMain,frameMain,frameLogin,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)).grid(column=2, row=9, padx=200, pady=30, ipadx=50)
     
     #ajout du conteneur
-    frameLogin.grid()
+    frameLogin.grid(stick=E)
     
     
 def connexion(username,password,WindowMain,frameMain,frameLogin,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5):

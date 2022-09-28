@@ -23,8 +23,8 @@ frameLogin  = Frame(WindowMain, padding=30, style='My.TFrame')
 WindowMain.title("Projet LABO_TCPIP - Connexion")
 
 #taille minimale de la enêtre
-WindowMain.minsize(700,550)
-WindowMain.maxsize(700,550)
+"""WindowMain.minsize(700,550)
+WindowMain.maxsize(700,550)"""
 
 #ajout de l'icone (image)
 WindowMain.iconbitmap("ressources/images/logoLabo4_1.ico")
