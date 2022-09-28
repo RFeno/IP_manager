@@ -76,10 +76,11 @@ def genererPoint2(ip,masque):
         elif(firstByte < 128):
             #classe reservées
             print(f'Classe {result[5][1]}')
+            return 'On ne peut pas utiliser cette adresse IP car elle fait partie des adresses réservés'
         elif(firstByte < 192):
             #classe B
             masque_classe_str = result[1][4].split('.')
-            print(f'Classe {result[1][1]}: \n{result[1][2]} réseaux de {result[1][3]} machines trouvée')
+            print(f'Classe {result[1][1]}: \n{result[1][2]} réseaux de  {result[1][3]} machines trouvée')
         elif(firstByte < 224):
             #classe C
             masque_classe_str = result[2][4].split('.')
@@ -87,9 +88,11 @@ def genererPoint2(ip,masque):
         elif(firstByte < 240):
             #classe D
             print(f'Classe {result[3][1]}: \n{result[3][2]} trouvée')
+            return 'On ne peut pas utiliser cette adress ip car elle fait partie de la classe D'
         else:
             #classe E
             print(f'Classe {result[4][1]}: \n{result[4][2]} trouvée')
+            return 'On ne peut pas utiliser cette adress ip car elle fait partie de la classe E'
 
         # Conversion du masque de classe de string en int
         masque_classe = [int(i) for i in masque_classe_str]
