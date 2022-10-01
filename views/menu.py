@@ -48,7 +48,7 @@ def displayPoint3(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,frame
     HiddenAllWindow(frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)
     
     #création de menu de retour 
-    ttk.Button(framePoint3, text="Retour au menu",command=lambda: displayMenuMain(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)).grid(column=2,row=9)
+    ttk.Button(framePoint3, text="Retour au menu",command=lambda: displayMenuMain(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)).grid(column=2,row=11)
     
     #créer la fenêtre du point 2
     displayMenuThree(WindowMain,framePoint3)
@@ -59,7 +59,7 @@ def displayPoint4(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,frame
     HiddenAllWindow(frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)
     
     #création de menu de retour 
-    ttk.Button(framePoint4, text="Retour au menu",command=lambda: displayMenuMain(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)).grid(column=2,row=11)
+    ttk.Button(framePoint4, text="Retour au menu",command=lambda: displayMenuMain(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)).grid(column=2,row=13)
     
     #créer la fenêtre du point 2
     displayMenuFour(WindowMain,framePoint4)
