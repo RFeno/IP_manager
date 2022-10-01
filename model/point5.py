@@ -11,6 +11,8 @@ import copy
 
 # Vérification des adresses valides ou non
 def genererPoint5(numberOfSubNet, numberOfHosts, IpAdress, maskAdress):
+    numberOfSubNet = int(numberOfSubNet)
+    numberOfHosts = int(numberOfHosts)
     text = ""
     test = False
     while not test:
@@ -75,7 +77,7 @@ def genererPoint5(numberOfSubNet, numberOfHosts, IpAdress, maskAdress):
     nb_of_zero_in_mask = 32 - nb_of_1
     nb_total_host = (2**nb_of_zero_in_mask)-2
 
-    text += "Le nombre d'hôte total avec l'IP et le masque de départ est de",nb_total_host,"machines.\n"
+    text += "Le nombre d'hôte total avec l'IP et le masque de départ est de " + str(nb_total_host) + " machines.\n"
 
     #----------------------------------------------------------------
     # Partie 2
@@ -107,7 +109,7 @@ def genererPoint5(numberOfSubNet, numberOfHosts, IpAdress, maskAdress):
     nb_host_per_subnet = ((2**nb_of_0)-2)
 
     if(nb_of_zero_in_mask >= bit_to_back):
-        text += "La découpe classique sur base du nombre de SR est possible. \nIl y aura maximum",nb_host_per_subnet,"machines par sous-réseaux.\n"
+        text += "La découpe classique sur base du nombre de SR est possible. \nIl y aura maximum " + str(nb_host_per_subnet) + " machines par sous-réseaux.\n"
     else:
         text += "La découpe classique sur base du nombre de SR n'est pas possible.\n"
 
@@ -123,6 +125,8 @@ def genererPoint5(numberOfSubNet, numberOfHosts, IpAdress, maskAdress):
 
     if (numberOfHosts <= (2**nb_of_0_to_let)-2 ):
         nb_subnet_max = (2**(nb_of_zero_in_mask-nb_of_0_to_let))-2
-        text += "La découpe classique sur base du nombre d'IP par sous-réseaux est possible. \nIl y aura maximum",nb_subnet_max,"sous-réseaux."
+        text += "La découpe classique sur base du nombre d'IP par sous-réseaux est possible. \nIl y aura maximum " + str(nb_subnet_max) + " sous-réseaux."
     else:
         text += "La découpe classique sur base du nombre d'IP par sous-réseaux n'est pas possible."
+
+    return text

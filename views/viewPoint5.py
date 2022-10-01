@@ -29,10 +29,9 @@ def displayMenuFive(WindowMain,framePoint5):
     Label(framePoint5, text="Veuillez encoder le nombre d'hôtes", font=("Impact",15),foreground="white", background="#009790").grid(column=2, row=7)
     Entry(framePoint5, textvariable=numberOfHosts).grid(column=2, row=8, pady=15)
 
-    Label(framePoint5, textvariable=valueLabel, font=("Impact",10),foreground="white", background="#009790").grid(column=2, row=9)
+    Label(framePoint5, textvariable=valueLabel, font=("Impact",10),foreground="white", background="#009790", justify="left").grid(column=2, row=9)
     
-    Button(framePoint5, text="Générer les informations",command=lambda:genererInformationsFive(numberOfSubNet.get(),numberOfHosts.get(),IpAdress.get(),maskAdress.get()).grid(column=2, row=11, padx=200, pady=30, ipadx=50))
-    
+    Button(framePoint5, text="Générer les informations",command=lambda:genererInformationsFive(numberOfSubNet.get(),numberOfHosts.get(),IpAdress.get(),maskAdress.get())).grid(column=2, row=11, padx=200, pady=30, ipadx=50)
     
     #ajout du conteneur
     framePoint5.grid()
