@@ -45,5 +45,7 @@ def genererInformationsThree(IpAdress, MaskAdress, IpNetworkAdress):
         messagebox.showerror("ERREUR", "L'adrese IP encodée n'est pas valide\nmerci de d'en choisir une autre !")
     elif((result == "MaskInvalid")):
         messagebox.showerror("ERREUR", "L'adrese de masque encodée n'est pas valide\nmerci de d'en choisir une autre !")
+    elif((result == "IpNetworkInvalid")):
+        messagebox.showerror("ERREUR", "L'adrese IP du réseau encodée n'est pas valide\nmerci de d'en choisir une autre !")
     else:
         valueLabel.set("Resultats\n---------------------------------------------\n"+result)  
