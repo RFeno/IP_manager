@@ -98,22 +98,22 @@ def genererPoint4(IpAdress, MaskAdress, IpAdress2, MaskAdress2):
         # On redemande l'adresse du masque_classe si elle n'est pas valide
         if adresse_masque1_valide == False:
             print("Le premier masque n'est pas valide.")
-            return "MaskInvalid"
+            return "MaskInvalid1"
 
         # On redemande l'adresse ip si elle n'est pas valide
         if adresse_ip1_valide == False:
             print("La première adresse ip n'est pas valide.")
-            return "IpInvalid"
+            return "IpInvalid1"
 
         # On redemande l'adresse du masque_classe si elle n'est pas valide
         if adresse_masque2_valide == False:
             print("La deuxième masque n'est pas valide.")
-            return "MaskInvalid"
+            return "MaskInvalid2"
 
         # On redemande l'adresse ip si elle n'est pas valide
         if adresse_ip2_valide == False:
             print("La deuxième adresse ip n'est pas valide.")
-            return "IpInvalid"
+            return "IpInvalid2"
 
     if (liste_octet_masque1_int != liste_octet_masque2_int):
         print("Les 2 machines ne font pas partie du même réseau.")

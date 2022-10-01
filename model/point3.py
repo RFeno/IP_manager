@@ -71,7 +71,7 @@ def genererPoint3(IpAdress, MaskAdress, IpNetworkAdress):
         # On redemande l'adresse réseau à appartenir si elle n'est pas valide
         if adresse_reseau_a_appartenir_valide == False:
             print("Adresse réseau n'est pas valide.")
-            return "IpInvalid"
+            return "IpNetworkInvalid"
 
     # Ajout de chaque octet de l'adresse ip en binaire dans une nouvelle liste
     liste_binary_ip = [int_to_binary(i) for i in liste_octet_ip_int]
