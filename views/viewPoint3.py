@@ -27,10 +27,10 @@ def displayMenuThree(WindowMain,framePoint3):
     Label(framePoint3, text="Le réseau dont vous voulez vérifier l'appartenance ", font=("Impact",15),foreground="white", background="#009790").grid(column=2, row=5)
     Entry(framePoint3,textvariable=valueAdresseReseau).grid(column=2, row=6, pady=15)
 
-    Label(framePoint3, textvariable=valueLabel, font=("Impact",10),foreground="white", background="#009790").grid(column=2, row=5)
+    Label(framePoint3, textvariable=valueLabel, font=("Impact",10),foreground="white", background="#009790").grid(column=2, row=7)
     
     
-    Button(framePoint3, text="Vérifier la correspondance",command=lambda:genererInformationsThree(valueAdresse.get(),valueMasque.get(),valueAdresseReseau.get())).grid(column=2, row=7, padx=200, pady=30, ipadx=50)
+    Button(framePoint3, text="Vérifier la correspondance",command=lambda:genererInformationsThree(valueAdresse.get(),valueMasque.get(),valueAdresseReseau.get())).grid(column=2, row=9, padx=200, pady=30, ipadx=50)
     
     
     #ajout du conteneur
