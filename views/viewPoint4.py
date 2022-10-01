@@ -43,9 +43,9 @@ def displayMenuFour(WindowMain,framePoint4):
         result = genererPoint4(IpAdress, MaskAdress, IpAdress2, MaskAdress2)
         
         #traitement
-        if((result == "IpInvalid")):
+        if((result == "IpInvalid1")):
             messagebox.showerror("ERREUR", "L'adrese IP de la première machine encodée n'est pas valide\nmerci de d'en choisir une autre !")
-        elif((result == "MaskInvalid")):
+        elif((result == "MaskInvalid1")):
             messagebox.showerror("ERREUR", "L'adrese de masque de la première machine encodée n'est pas valide\nmerci de d'en choisir une autre !")
         elif((result == "IpInvalid2")):
             messagebox.showerror("ERREUR", "L'adrese IP de la deuxième machine encodée n'est pas valide\nmerci de d'en choisir une autre !")

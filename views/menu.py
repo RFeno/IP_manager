@@ -70,7 +70,7 @@ def displayPoint5(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,frame
     HiddenAllWindow(frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)
     
     #création de menu de retour 
-    ttk.Button(framePoint5, text="Retour au menu",command=lambda: displayMenuMain(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)).grid(column=2,row=11)
+    ttk.Button(framePoint5, text="Retour au menu",command=lambda: displayMenuMain(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)).grid(column=2,row=13)
     
     #créer la fenêtre du point 2
     displayMenuFive(WindowMain,framePoint5)
@@ -119,6 +119,7 @@ def displayMenuMain(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,fra
     Label(frameMenuPoint4, text="4. Deux adresses sont-elles dans le même réseau ?",foreground="white",font=("Impact",15),background="#009790").grid(column=0, row=9,stick=S,pady=5)
     Button(frameMain, text="Accéder (point 4)",command=lambda: displayPoint4(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)).grid(column=2, row=4,padx=15)
 
+    #Point 5 composants
     Label(frameMenuPoint5, text="5. Déterminer les possibilités                                            ",foreground="white",font=("Impact",15),background="#009790").grid(column=0, row=12,stick=W,pady=5)
     Label(frameMenuPoint5, text="A. Le nombre d'hôtes\nB. Découpe sur nombre de sous-réseaux \nC. Découpe par nombre d'adresse IP",foreground="white",font=("Arial",10),background="#009790").grid(column=0, row=13,stick=W)
     Button(frameMain, text="Accéder (point 5)",command=lambda: displayPoint5(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)).grid(column=2, row=5,padx=25)

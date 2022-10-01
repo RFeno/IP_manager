@@ -1,120 +1,128 @@
-from functions import *
+from util.functions import *
 import copy
 
 
-numberOfSubNet = int(input("Veuillez encoder le nombre de sous réseaux : \n"))
-numberOfHosts = int(input("Veuillez encoder le nombre de machines : \n"))
-IpAdress = input("Veuillez encoder l'adresse IP: \n")
-maskAdress = input("Veuillez encoder le masque de l'IP : \n")
+# numberOfSubNet = int(input("Veuillez encoder le nombre de sous réseaux : \n"))
+# numberOfHosts = int(input("Veuillez encoder le nombre de machines : \n"))
+# IpAdress = input("Veuillez encoder l'adresse IP: \n")
+# maskAdress = input("Veuillez encoder le masque de l'IP : \n")
 
 #vérifier que le système fonctionne bien
 
 # Vérification des adresses valides ou non
-test = False
-numberOfSubNet_valide = True
-while not test:
-    # Séparation des octets dans une liste
-    liste_octet_ip = IpAdress.split(".")
-    liste_octet_masque = maskAdress.split(".")  
+def genererPoint5(numberOfSubNet, numberOfHosts, IpAdress, maskAdress):
+    text = ""
+    test = False
+    while not test:
+        # Séparation des octets dans une liste
+        liste_octet_ip = IpAdress.split(".")
+        liste_octet_masque = maskAdress.split(".")  
 
-    # Vérification adresse ip
-    adresse_ip_valide = bool(verifyIsIpValid(IpAdress))
+        # Vérification adresse ip
+        adresse_ip_valide = bool(verifyIsIpValid(IpAdress))
 
-    # Conversion de l'adresse ip de string en int
-    if adresse_ip_valide:
-        liste_octet_ip_int = [int(i) for i in liste_octet_ip]
+        # Conversion de l'adresse ip de string en int
+        if adresse_ip_valide:
+            liste_octet_ip_int = [int(i) for i in liste_octet_ip]
 
-    # Vérification adresse masque
-    adresse_masque_valide = bool(verifyIsMaskValid(maskAdress))
+        # Vérification adresse masque
+        adresse_masque_valide = bool(verifyIsMaskValid(maskAdress))
 
-    # Conversion du masque de string en int
-    if adresse_masque_valide:
-        liste_octet_masque_int = [int(i) for i in liste_octet_masque]
+        # Conversion du masque de string en int
+        if adresse_masque_valide:
+            liste_octet_masque_int = [int(i) for i in liste_octet_masque]
 
-    # Vérification nombre de sous-réseaux
-    if(numberOfSubNet < 0 or numberOfSubNet > 128):
-        numberOfSubNet_valide = False
+        # Vérification nombre de sous-réseaux
+        numberOfSubNet_valide = numberOfSubNet > 0 and numberOfSubNet <= 128
+        
+        # Vérification nombre de machines
+        numberOfHosts_valide = numberOfHosts > 0
 
-    # On redemande l'adresse du masque si elle n'est pas valide
-    if not adresse_masque_valide:
-        print("Adresse du masque n'est pas valide.")
-        maskAdress = input("Rentrez une adresse de masque valide : ")
+        # On redemande l'adresse du masque si elle n'est pas valide
+        if not adresse_masque_valide:
+            print("Adresse du masque n'est pas valide.")
+            return "MaskInvalid"
 
-    # On redemande l'adresse ip si elle n'est pas valide
-    if not adresse_ip_valide:
-        print("Adresse ip n'est pas valide.")
-        IpAdress = input("Rentrez une adresse ip valide : ")
+        # On redemande l'adresse ip si elle n'est pas valide
+        if not adresse_ip_valide:
+            print("Adresse ip n'est pas valide.")
+            return "IpInvalid"
 
-    # On redemande le nombre d esous-réseaux s'il n'est pas valide
-    if not numberOfSubNet_valide:
-        print("Le nombre de sous-réseaux n'est pas valide.")
-        IpAdress = int(input("Rentrez un nombre de sous-réseaux valide : "))
+        # On redemande le nombre de sous-réseaux s'il n'est pas valide
+        if not numberOfSubNet_valide:
+            print("Le nombre de sous-réseaux n'est pas valide.")
+            return "NbSubnetsInvalid"
 
-    if adresse_ip_valide and adresse_masque_valide and numberOfSubNet_valide:
-        test = True
+        # On redemande le nombre de sous-réseaux s'il n'est pas valide
+        if not numberOfHosts_valide:
+            print("Le nombre de sous-réseaux n'est pas valide.")
+            return "NbHostsInvalid"
 
-# Ajout de chaque octet de l'adresse de masque de classe en binaire dans une nouvelle liste
-liste_binary_masque = [int_to_binary(i) for i in liste_octet_masque_int]
+        if adresse_ip_valide and adresse_masque_valide and numberOfSubNet_valide and numberOfHosts_valide:
+            test = True
 
-#----------------------------------------------------------------
-# Partie 1
-# Calcul du nombre d'hôte total possible
-nb_of_1 = 0
-for byte in liste_binary_masque:
-    for binary in byte:
-        if(binary == 1):
-            nb_of_1 += 1
-nb_of_zero_in_mask = 32 - nb_of_1
-nb_total_host = (2**nb_of_zero_in_mask)-2
+    # Ajout de chaque octet de l'adresse de masque de classe en binaire dans une nouvelle liste
+    liste_binary_masque = [int_to_binary(i) for i in liste_octet_masque_int]
 
-print("Le nombre d'hôte total avec l'IP et le masque de départ est de",nb_total_host,"machines.")
+    #----------------------------------------------------------------
+    # Partie 1
+    # Calcul du nombre d'hôte total possible
+    nb_of_1 = 0
+    for byte in liste_binary_masque:
+        for binary in byte:
+            if(binary == 1):
+                nb_of_1 += 1
+    nb_of_zero_in_mask = 32 - nb_of_1
+    nb_total_host = (2**nb_of_zero_in_mask)-2
 
-#----------------------------------------------------------------
-# Partie 2
-# Possibilié de découpe classique en fonction du nombre de SR
+    text += "Le nombre d'hôte total avec l'IP et le masque de départ est de",nb_total_host,"machines.\n"
 
-# Calcul du nombre de bits à réserver à la numérotation des SR
-for i in range(32):
-    if(numberOfSubNet <= ((2**i)-1)):
-        bit_to_back = i
-        break
+    #----------------------------------------------------------------
+    # Partie 2
+    # Possibilié de découpe classique en fonction du nombre de SR
 
-print("Le nombre de bit a reculer",bit_to_back)
+    # Calcul du nombre de bits à réserver à la numérotation des SR
+    for i in range(32):
+        if(numberOfSubNet <= ((2**i)-1)):
+            bit_to_back = i
+            break
 
-# Calcul du nouveau masque pour les SR (Masquage)
-masque_binary_sr = copy.deepcopy(liste_binary_masque)
-for byte in range(4):
-    for bit in range(8):
-        if(masque_binary_sr[byte][bit] == 0 and bit_to_back != 0):
-            masque_binary_sr[byte][bit] = 1
-            bit_to_back -= 1
+    print("Le nombre de bit a reculer",bit_to_back)
 
-# Calcul du nombre de 0 dans le masque des sous-réseaux
-nb_of_0 = 0
-for byte in masque_binary_sr:
-    for binary in byte:
-        if(binary == 0):
-            nb_of_0 += 1
+    # Calcul du nouveau masque pour les SR (Masquage)
+    masque_binary_sr = copy.deepcopy(liste_binary_masque)
+    for byte in range(4):
+        for bit in range(8):
+            if(masque_binary_sr[byte][bit] == 0 and bit_to_back != 0):
+                masque_binary_sr[byte][bit] = 1
+                bit_to_back -= 1
 
-nb_host_per_subnet = ((2**nb_of_0)-2)
+    # Calcul du nombre de 0 dans le masque des sous-réseaux
+    nb_of_0 = 0
+    for byte in masque_binary_sr:
+        for binary in byte:
+            if(binary == 0):
+                nb_of_0 += 1
 
-if(nb_of_zero_in_mask >= bit_to_back):
-    print("La découpe classique sur base du nombre de SR est possible. \nIl y aura maximum",nb_host_per_subnet,"machines par sous-réseaux.")
-else:
-    print("La découpe classique sur base du nombre de SR n'est pas possible.")
+    nb_host_per_subnet = ((2**nb_of_0)-2)
 
-#----------------------------------------------------------------
-# Partie 3
-# Possibilié de découpe classique en fonction du nombre de machines par sous-réseaux
+    if(nb_of_zero_in_mask >= bit_to_back):
+        text += "La découpe classique sur base du nombre de SR est possible. \nIl y aura maximum",nb_host_per_subnet,"machines par sous-réseaux.\n"
+    else:
+        text += "La découpe classique sur base du nombre de SR n'est pas possible.\n"
 
-nb_of_0_to_let = 0
-for i in range(nb_of_zero_in_mask):
-    if (numberOfHosts <= (2**(i+1))-2 ):
-        nb_of_0_to_let = i+1
-        break
+    #----------------------------------------------------------------
+    # Partie 3
+    # Possibilié de découpe classique en fonction du nombre de machines par sous-réseaux
 
-if (numberOfHosts <= (2**nb_of_0_to_let)-2 ):
-    nb_subnet_max = (2**(nb_of_zero_in_mask-nb_of_0_to_let))-2
-    print("La découpe classique sur base du nombre d'IP par sous-réseaux est possible. \nIl y aura maximum",nb_subnet_max,"sous-réseaux.")
-else:
-    print("La découpe classique sur base du nombre d'IP par sous-réseaux n'est pas possible.")
+    nb_of_0_to_let = 0
+    for i in range(nb_of_zero_in_mask):
+        if (numberOfHosts <= (2**(i+1))-2 ):
+            nb_of_0_to_let = i+1
+            break
+
+    if (numberOfHosts <= (2**nb_of_0_to_let)-2 ):
+        nb_subnet_max = (2**(nb_of_zero_in_mask-nb_of_0_to_let))-2
+        text += "La découpe classique sur base du nombre d'IP par sous-réseaux est possible. \nIl y aura maximum",nb_subnet_max,"sous-réseaux."
+    else:
+        text += "La découpe classique sur base du nombre d'IP par sous-réseaux n'est pas possible."
