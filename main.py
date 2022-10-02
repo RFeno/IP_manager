@@ -50,5 +50,3 @@ else:
 
 #affichage de la fenêtre principale
 WindowMain.mainloop()
-
-
