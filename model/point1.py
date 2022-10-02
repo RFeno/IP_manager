@@ -25,11 +25,14 @@ def genererPoint1(adresseIP):
     firstByte = int(IpListPerByte[0])
 
     #Recherche de la classe et retour à la vue
-    if (firstByte < 127):
+    if(firstByte == 0):
+        #classe reservées (A)
+        return (f'Classe {result[5][1]}')
+    elif(firstByte < 127):
         #classe A
         return (f'Classe {result[0][1]}: \n{result[0][2]} réseaux de {result[0][3]} machines')
     elif(firstByte < 128):
-            #classe reservées
+        #classe reservées (A)
         return (f'Classe {result[5][1]}')
     elif(firstByte < 192):
         #classe B
