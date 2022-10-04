@@ -4,7 +4,8 @@ from tkinter.ttk import *
 from views.menu import *
 from views.viewLogin import DisplayLogin
 
-active_login = False
+#active ou desactive l'accès avec mot de passe
+active_login = True
 
 #création de la fenêtre principale
 WindowMain= Tk()
@@ -23,8 +24,8 @@ frameLogin  = Frame(WindowMain, padding=30, style='My.TFrame')
 WindowMain.title("Projet LABO_TCPIP - Connexion")
 
 #taille minimale de la enêtre
-"""WindowMain.minsize(700,550)
-WindowMain.maxsize(700,550)"""
+WindowMain.minsize(700,550)
+WindowMain.maxsize(700,550)
 
 #ajout de l'icone (image)
 WindowMain.iconbitmap("ressources/images/logoLabo4_1.ico")
