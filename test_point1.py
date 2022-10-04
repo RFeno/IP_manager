@@ -50,20 +50,20 @@ class Test(unittest.TestCase):
         self.assertEqual(genererPoint1("223.23.12.71"),"Classe C: \n2097152 réseaux de 256 machines")
     
     def testClassD(self):
-        self.assertEqual(genererPoint1("224.23.12.71"),"Classe D: \nadresses uniques") 
-        self.assertEqual(genererPoint1("236.24.35.85"),"Classe D: \nadresses uniques") 
-        self.assertEqual(genererPoint1("225.23.12.71"),"Classe D: \nadresses uniques") 
-        self.assertEqual(genererPoint1("231.23.12.71"),"Classe D: \nadresses uniques") 
-        self.assertEqual(genererPoint1("235.23.12.71"),"Classe D: \nadresses uniques") 
-        self.assertEqual(genererPoint1("239.23.12.71"),"Classe D: \nadresses uniques")
+        self.assertEqual(genererPoint1("224.23.12.71"),"Classe D: \nClasse du multicast (multi-diffusion)") 
+        self.assertEqual(genererPoint1("236.24.35.85"),"Classe D: \nClasse du multicast (multi-diffusion)") 
+        self.assertEqual(genererPoint1("225.23.12.71"),"Classe D: \nClasse du multicast (multi-diffusion)") 
+        self.assertEqual(genererPoint1("231.23.12.71"),"Classe D: \nClasse du multicast (multi-diffusion)") 
+        self.assertEqual(genererPoint1("235.23.12.71"),"Classe D: \nClasse du multicast (multi-diffusion)") 
+        self.assertEqual(genererPoint1("239.23.12.71"),"Classe D: \nClasse du multicast (multi-diffusion)")
         
-    def testClassD(self):
-        self.assertEqual(genererPoint1("240.23.12.71"),"Classe E: \nadresses uniques") 
-        self.assertEqual(genererPoint1("245.24.35.85"),"Classe E: \nadresses uniques") 
-        self.assertEqual(genererPoint1("250.23.12.71"),"Classe E: \nadresses uniques") 
-        self.assertEqual(genererPoint1("255.23.12.71"),"Classe E: \nadresses uniques") 
-        self.assertEqual(genererPoint1("242.23.12.71"),"Classe E: \nadresses uniques") 
-        self.assertEqual(genererPoint1("254.23.12.71"),"Classe E: \nadresses uniques")
+    def testClassE(self):
+        self.assertEqual(genererPoint1("240.23.12.71"),"Classe E: \nClasse des expérimentations") 
+        self.assertEqual(genererPoint1("245.24.35.85"),"Classe E: \nClasse des expérimentations") 
+        self.assertEqual(genererPoint1("250.23.12.71"),"Classe E: \nClasse des expérimentations") 
+        self.assertEqual(genererPoint1("255.23.12.71"),"Classe E: \nClasse des expérimentations") 
+        self.assertEqual(genererPoint1("242.23.12.71"),"Classe E: \nClasse des expérimentations") 
+        self.assertEqual(genererPoint1("254.23.12.71"),"Classe E: \nClasse des expérimentations")
         
     
         

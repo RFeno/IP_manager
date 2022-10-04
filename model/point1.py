@@ -46,36 +46,6 @@ def genererPoint1(adresseIP):
     else:
         #classe E
         return (f'Classe {result[4][1]}: \n{result[4][2]}')
-    
-    #A SUPPRIMER SI PAS UTILE
-    #point 1 automatique
-    """from ipaddress import IPv4Address, IPv4Network
-
-
-    classA = IPv4Network(("10.0.0.0", "255.0.0.0"))  # or IPv4Network("10.0.0.0/8")
-    classB = IPv4Network(("172.16.0.0", "255.240.0.0"))  # or IPv4Network("172.16.0.0/12")
-    classC = IPv4Network(("192.168.0.0", "255.255.0.0"))  # or IPv4Network("192.168.0.0/16")
-    classD = IPv4Network(("192.168.0.0", "255.255.0.0"))  # or IPv4Network("192.168.0.0/16")
-    classE = IPv4Network(("192.168.0.0", "255.255.0.0"))  # or IPv4Network("192.168.0.0/16")
-    classReserved = IPv4Network(("192.168.0.0", "255.255.0.0"))  # or IPv4Network("192.168.0.0/16")
-
-
-    ip1 = IPv4Address("126.255.255.225")
-    ip2 = IPv4Address("172.18.76.25")
-    ip3 = IPv4Address("192.168.45.62")
-
-    print(ip1 in classA)  # True
-    print(ip2 in classA)  # False
-    print(ip3 in classA)  # False
-
-    print(ip1 in classB)  # False
-    print(ip2 in classB)  # True
-    print(ip3 in classB)  # False
-
-    print(ip1 in classC)  # False
-    print(ip2 in classC)  # False
-    print(ip3 in classC)  # True
-    """
 
 
 
