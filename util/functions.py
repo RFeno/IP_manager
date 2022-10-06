@@ -1,6 +1,7 @@
 
 from math import floor
 import re
+from pathlib import Path
 
 # Fonction pour vérifier si une adresse IP est valide ou non
 def verifyIsIpValid(adressIP):
@@ -84,3 +85,10 @@ def calcul_reseau_bc(binary_ip, binary_masque):
                 liste_octet_SR_binary[i].append(0)
                 liste_octet_BC_binary[i].append(1)
     return (liste_octet_SR_binary,liste_octet_BC_binary)
+
+#a supprimer
+"""ASSETS_PATH = Path("ressources/images/viewsIMG")
+
+
+def relative_to_assets(path: str) -> Path:
+    return ASSETS_PATH / Path(path)"""
