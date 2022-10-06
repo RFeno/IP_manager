@@ -29,3 +29,6 @@ image_button_retour = PhotoImage(
 
 image_button_verifier = PhotoImage(
     file=("ressources/images/viewsIMG/verifier.png"))
+
+image_button_verifier_petit = PhotoImage(
+    file=("ressources/images/viewsIMG/verifier_petit.png"))

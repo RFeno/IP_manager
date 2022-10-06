@@ -6,9 +6,9 @@ from images import *
 from model.point1 import genererPoint1
 from model.point2 import genererPoint2
 from model.point3 import genererPoint3
-from views.viewPoint3 import displayMenuThree
-from views.viewPoint4 import displayMenuFour
-from views.viewPoint5 import displayMenuFive
+from model.point4 import genererPoint4
+from model.point5 import genererPoint5
+
 
 def HiddenAllWindow():
 
@@ -317,6 +317,9 @@ def displayPoint2():
     
 def displayPoint3():
     
+    #changement titre
+    windowFromMain.title("Projet LABO_TCPIP - Point 3")
+    
     #cacher les fenêtres
     HiddenAllWindow()
     
@@ -504,31 +507,229 @@ def displayPoint3():
     
 def displayPoint4():
     
+    #changement titre
+    windowFromMain.title("Projet LABO_TCPIP - Point 4")
+    
     #cacher les fenêtres
-    HiddenAllWindow(frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)
+    HiddenAllWindow()
     
-    #création de menu de retour 
-    Button(framePoint4, text="Retour au menu",command=lambda: displayMenuMain(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)).grid(column=2,row=13)
+    canvas = Canvas(
+    windowFromMain,
+    bg = "#A7D7C5",
+    height = 600,
+    width = 800,
+    bd = 0,
+    highlightthickness = 0,
+    relief = "ridge"
+    )
+
+    canvas.place(x = 0, y = 0)
+    canvas.create_rectangle(
+        478.0,
+        307.00000381469727,
+        930.54833984375,
+        759.5483436584473,
+        fill="#C1E3D6",
+        outline="")
+
+    canvas.create_rectangle(
+        109.0,
+        141.0,
+        561.54833984375,
+        593.54833984375,
+        fill="#C1E3D6",
+        outline="")
+
+    canvas.create_rectangle(
+        19.0,
+        72.0,
+        400.0,
+        533.0,
+        fill="#F6FBF9",
+        outline="")
+
+    canvas.create_text(
+        143.0,
+        188.0,
+        anchor="nw",
+        text="Le masque 1",
+        fill="#000000",
+        font=("Karla Regular", 24 * -1)
+    )
+
+    canvas.create_text(
+        135.0,
+        281.0,
+        anchor="nw",
+        text="L’adresse IP 2",
+        fill="#000000",
+        font=("Karla Regular", 24 * -1)
+    )
+
+    canvas.create_text(
+        140.0,
+        374.0,
+        anchor="nw",
+        text="Le masque 2",
+        fill="#000000",
+        font=("Karla Regular", 24 * -1)
+    )
+
+    canvas.create_rectangle(
+        411.0,
+        136.0,
+        782.0,
+        464.0,
+        fill="#F6FBF9",
+        outline="")
+
+    canvas.create_text(
+        542.0,
+        165.0,
+        anchor="nw",
+        text="RÉSULTATS",
+        fill="#000000",
+        font=("Karla Regular", 24 * -1)
+    )
+
+    canvas.create_text(
+        340.0,
+        14.0,
+        anchor="nw",
+        text="Point 4",
+        fill="#F6FBF9",
+        font=("Karla Bold", 36 * -1)
+    )
     
-    #créer la fenêtre du point 2
-    displayMenuFour(WindowMain,framePoint4)
+    entry_IP1 = Entry(
+        bd=0,
+        bg="#FFFFFF",
+        highlightthickness=0
+    )
+    
+    entry_IP1.place(
+        x=38.0,
+        y=116.0,
+        width=342.0,
+        height=53.0
+    )
+
+    entry_Mask1 = Entry(
+        bd=0,
+        bg="#FFFFFF",
+        highlightthickness=0
+    )
+    
+    entry_Mask1.place(
+        x=38.0,
+        y=217.0,
+        width=342.0,
+        height=53.0
+    )
+
+
+    entry_IP2 = Entry(
+        bd=0,
+        bg="#FFFFFF",
+        highlightthickness=0
+    )
+    
+    entry_IP2.place(
+        x=38.0,
+        y=312.0,
+        width=342.0,
+        height=53.0
+    )
+
+    
+    entry_Mask2 = Entry(
+        bd=0,
+        bg="#FFFFFF",
+        highlightthickness=0
+    )
+    
+    entry_Mask2.place(
+        x=38.0,
+        y=409.0,
+        width=342.0,
+        height=53.0
+    )
+
+    canvas.create_text(
+        135.0,
+        89.0,
+        anchor="nw",
+        text=" L’adresse IP 1 ",
+        fill="#000000",
+        font=("Karla Regular", 24 * -1)
+    )
+
+    button_verifier = Button(
+        image=image_button_verifier_petit,
+        borderwidth=0,
+        highlightthickness=0,
+        command=lambda: genererFour(),
+        relief="flat"
+    )
+    
+    button_verifier.place(
+        x=82.0,
+        y=474.0,
+        width=255.0,
+        height=41.0
+    )
+
+    text_results = canvas.create_text(
+        448.0,
+        235.0,
+        anchor="nw",
+        text="",
+        fill="#000000",
+        font=("Karla Bold", 15 * -1)
+    )
+
+    button_retour = Button(
+        image=image_button_retour,
+        borderwidth=0,
+        highlightthickness=0,
+        command=lambda: displayMenuMain(windowFromMain),
+        relief="flat"
+    )
+    
+    button_retour.place(
+        x=469.0,
+        y=495.0,
+        width=255.0,
+        height=59
+    )
+    
+    text_results
+    
+    def genererFour():
+
+        result = genererPoint4(entry_IP1.get(), entry_Mask1.get(), entry_IP2.get(), entry_Mask2.get())
+        
+        #traitement
+        if((result == "IpInvalid1")):
+            messagebox.showerror("ERREUR", "L'adrese IP de la première machine encodée n'est pas valide\nmerci de d'en choisir une autre !")
+        elif((result == "MaskInvalid1")):
+            messagebox.showerror("ERREUR", "L'adrese de masque de la première machine encodée n'est pas valide\nmerci de d'en choisir une autre !")
+        elif((result == "IpInvalid2")):
+            messagebox.showerror("ERREUR", "L'adrese IP de la deuxième machine encodée n'est pas valide\nmerci de d'en choisir une autre !")
+        elif((result == "MaskInvalid2")):
+            messagebox.showerror("ERREUR", "L'adrese de masque de la deuxième machine encodée n'est pas valide\nmerci de d'en choisir une autre !")
+        else:
+            canvas.itemconfigure(text_results,text=f"------------------------------------------------------\n{result}\n",)
+
     
 def displayPoint5():
     
     #cacher les fenêtres
-    HiddenAllWindow(frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)
-    
-    #création de menu de retour 
-    Button(framePoint5, text="Retour au menu",command=lambda: displayMenuMain(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)).grid(column=2,row=13)
-    
-    #créer la fenêtre du point 2
-    displayMenuFive(WindowMain,framePoint5)
+    HiddenAllWindow()
        
-    
 def displayAbout():
     print("A propos")
 
-   
 def displayMenuMain(WindowMain):
     
     global windowFromMain 
@@ -753,7 +954,6 @@ def displayMenuMain(WindowMain):
     
     createMenuBar(WindowMain)
 
-
 #création et configurationd de la menubarre
 def createMenuBar(WindowMain):
     
@@ -783,7 +983,6 @@ def createMenuBar(WindowMain):
 
     #ajout de la barre de menu
     WindowMain.config(menu=menubar)
-
 
 def ExitApp():
     MsgBox = tkinter.messagebox.askquestion ('Fermer','Voulez-vous vraiment quitter l\'application?',icon = 'warning')
