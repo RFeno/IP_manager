@@ -46,4 +46,4 @@ def genererInformationsTwo(IpAdress, MaskAdress):
     elif((result == "MaskInvalidGlobal")):
         messagebox.showerror("ERREUR", "l'adresse de masque ne peut pas être plus englobant que l'adresse de classe\nmerci de d'en choisir une autre !")
     else:
-        valueLabel.set("Resultats\n---------------------------------------------\n"+result)   
+        valueLabel.set("Resultats\n--------------------------------------------------------\n"+result)   

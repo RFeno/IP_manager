@@ -30,16 +30,8 @@ def generateInformationsOne(entryIP):
     
     
 def refreshLabel(resultString):
-    """
-    If the resultString is equal to "IpInvalid", then set the valueLabel to an empty string and show an
-    error message. 
-    Otherwise, set the resultString to the valueLabel
-    
-    :param resultString: The string that will be displayed in the label
-    """
-
     if(resultString == "IpInvalid"):
         valueLabel.set("")
         messagebox.showerror("ERREUR", "L'adrese IP encodée n'est pas valide, merci de d'en choisir une autre !")
     else:
-        valueLabel.set(f"Resultat :\n{resultString}\n")
+        valueLabel.set(f"Resultat :\n---------------------------------------------------\n{resultString}\n")

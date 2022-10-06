@@ -1,3 +1,4 @@
+from ipaddress import ip_address
 from math import floor
 
 from util.functions import *
@@ -9,6 +10,11 @@ from util.functions import *
 # adresse_reseau_a_appartenir = input("Adresse réseau : ")
 
 def genererPoint3(IpAdress, MaskAdress, IpNetworkAdress):
+    
+    #vérification que l'adresse réseau est différente de l'adresse IP 
+    if(IpAdress==IpNetworkAdress):
+        return "MemeAdress"
+    
     adresse_masque_valide = False
     adresse_ip_valide = False
     adresse_reseau_a_appartenir_valide = False

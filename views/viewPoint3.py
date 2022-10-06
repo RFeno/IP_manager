@@ -42,10 +42,12 @@ def genererInformationsThree(IpAdress, MaskAdress, IpNetworkAdress):
     
     #traitement
     if((result == "IpInvalid")):
-        messagebox.showerror("ERREUR", "L'adrese IP encodée n'est pas valide\nmerci de d'en choisir une autre !")
+        messagebox.showerror("ERREUR", "L'adresse IP encodée n'est pas valide\nmerci de d'en choisir une autre !")
     elif((result == "MaskInvalid")):
-        messagebox.showerror("ERREUR", "L'adrese de masque encodée n'est pas valide\nmerci de d'en choisir une autre !")
+        messagebox.showerror("ERREUR", "L'adresse de masque encodée n'est pas valide\nmerci de d'en choisir une autre !")
     elif((result == "IpNetworkInvalid")):
-        messagebox.showerror("ERREUR", "L'adrese IP du réseau encodée n'est pas valide\nmerci de d'en choisir une autre !")
+        messagebox.showerror("ERREUR", "L'adresse IP du réseau encodée n'est pas valide\nmerci de d'en choisir une autre !")
+    elif((result == "MemeAdress")):
+        messagebox.showerror("ERREUR", "L'adresse IP du réseau encodée ne peut pas être égale à l'adresse IP encodée !")
     else:
         valueLabel.set("Resultats\n---------------------------------------------\n"+result)  
