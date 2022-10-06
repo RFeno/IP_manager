@@ -133,10 +133,13 @@ def displayMenuMain(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,fra
     frameMenuPoint4.grid(column=0, row=4)
     frameMenuPoint5.grid(column=0, row=5)
     
+    photo = PhotoImage(file=r'ressources/images/exit2.png')
+  
       
     #ajout du bouton exit
-    Button(frameMain,text="Fermer", command=ExitApp).grid(column=2, row=12, padx=5)
+    Button(frameMain,text="Fermer",image = photo, command=ExitApp).grid(column=2, row=12, padx=5, ipadx=13)
     
+    #ajout de la menubar
     createMenuBar(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)
     
     #ajout du menu principal
