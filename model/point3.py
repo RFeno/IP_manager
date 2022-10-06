@@ -90,6 +90,6 @@ def genererPoint3(IpAdress, MaskAdress, IpNetworkAdress):
     liste_octet_reseau_int = [octet_to_int(binary_reseau_adresse[i]) for i in range(4)]
 
     if(liste_octet_reseau_a_appartenir_int == liste_octet_reseau_int):
-        return "L'adresse IP " + IpAdress + " appartient bien au réseau " + IpNetworkAdress
+        return "L'adresse IP :" + IpAdress + "\nappartient bien au réseau :" + IpNetworkAdress
     else:
-        return "L'adresse IP " + IpAdress + " n'appartient pas au réseau " + IpNetworkAdress
+        return "L'adresse IP :" + IpAdress + "\nn'appartient pas au réseau :" + IpNetworkAdress

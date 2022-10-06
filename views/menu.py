@@ -5,6 +5,7 @@ from tkinter import messagebox
 from images import *
 from model.point1 import genererPoint1
 from model.point2 import genererPoint2
+from model.point3 import genererPoint3
 from views.viewPoint3 import displayMenuThree
 from views.viewPoint4 import displayMenuFour
 from views.viewPoint5 import displayMenuFive
@@ -314,21 +315,194 @@ def displayPoint2():
         else:
             canvas.itemconfigure(text_resultats,text=f"------------------------------------------------------\n{result}\n",)  
     
-    
-
-
-def displayPoint3(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5):
+def displayPoint3():
     
     #cacher les fenêtres
-    HiddenAllWindow(frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)
+    HiddenAllWindow()
     
-    #création de menu de retour 
-    Button(framePoint3, text="Retour au menu",command=lambda: displayMenuMain(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)).grid(column=2,row=11)
-    
-    #créer la fenêtre du point 2
-    displayMenuThree(WindowMain,framePoint3)
+    canvas = Canvas(
+    windowFromMain,
+    bg = "#A7D7C5",
+    height = 600,
+    width = 800,
+    bd = 0,
+    highlightthickness = 0,
+    relief = "ridge"
+    )
 
-def displayPoint4(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5):
+    canvas.place(x = 0, y = 0)
+    canvas.create_rectangle(
+        478.0,
+        307.00000381469727,
+        930.54833984375,
+        759.5483436584473,
+        fill="#C1E3D6",
+        outline="")
+
+    canvas.create_rectangle(
+        109.0,
+        141.0,
+        561.54833984375,
+        593.54833984375,
+        fill="#C1E3D6",
+        outline="")
+
+    canvas.create_rectangle(
+        19.0,
+        72.0,
+        400.0,
+        533.0,
+        fill="#F6FBF9",
+        outline="")
+
+    canvas.create_text(
+        150.0,
+        190.0,
+        anchor="nw",
+        text="Le masque",
+        fill="#000000",
+        font=("Karla Regular", 24 * -1)
+    )
+
+    canvas.create_text(
+        158.0,
+        303.0,
+        anchor="nw",
+        text="Le réseau",
+        fill="#000000",
+        font=("Karla Regular", 24 * -1)
+    )
+
+    canvas.create_rectangle(
+        411.0,
+        136.0,
+        782.0,
+        464.0,
+        fill="#F6FBF9",
+        outline="")
+
+    canvas.create_text(
+        542.0,
+        165.0,
+        anchor="nw",
+        text="RÉSULTATS",
+        fill="#000000",
+        font=("Karla Regular", 24 * -1)
+    )
+
+    canvas.create_text(
+        339.0,
+        14.0,
+        anchor="nw",
+        text="Point 3",
+        fill="#F6FBF9",
+        font=("Karla Bold", 36 * -1)
+    )
+    
+    entry_IP = Entry(
+        bd=0,
+        bg="#FFFFFF",
+        highlightthickness=0
+    )
+    entry_IP.place(
+        x=38.0,
+        y=116.0,
+        width=342.0,
+        height=53.0
+    )
+
+    entry_Mask = Entry(
+        bd=0,
+        bg="#FFFFFF",
+        highlightthickness=0
+    )
+    
+    entry_Mask.place(
+        x=38.0,
+        y=226.0,
+        width=342.0,
+        height=53.0
+    )
+    
+    entry_Network = Entry(
+        bd=0,
+        bg="#FFFFFF",
+        highlightthickness=0
+    )
+    
+    entry_Network.place(
+        x=38.0,
+        y=339.0,
+        width=342.0,
+        height=53.0
+    )
+
+    canvas.create_text(
+        142.0,
+        89.0,
+        anchor="nw",
+        text=" L’adresse IP ",
+        fill="#000000",
+        font=("Karla Regular", 24 * -1)
+    )
+
+
+    button_verifier = Button(
+        image=image_button_verifier,
+        borderwidth=0,
+        highlightthickness=0,
+        command=lambda: genererThree(),
+        relief="flat"
+    )
+    
+    button_verifier.place(
+        x=82.0,
+        y=427.0,
+        width=255.0,
+        height=59.0
+    )
+
+    text_resultats = canvas.create_text(
+        448.0,
+        235.0,
+        anchor="nw",
+        text="",
+        fill="#000000",
+        font=("Karla Bold", 15 * -1)
+    )
+    
+    button_retour = Button(
+        image=image_button_retour,
+        borderwidth=0,
+        highlightthickness=0,
+        command=lambda: displayMenuMain(windowFromMain),
+        relief="flat"
+    )
+    
+    button_retour.place(
+        x=469.0,
+        y=495.0,
+        width=255.0,
+        height=59.0
+    )
+    
+    def genererThree():
+    
+        result = genererPoint3(entry_IP.get(), entry_Mask.get(), entry_Network.get())
+        
+        #traitement
+        if((result == "IpInvalid")):
+            messagebox.showerror("ERREUR", "L'adresse IP encodée n'est pas valide\nmerci de d'en choisir une autre !")
+        elif((result == "MaskInvalid")):
+            messagebox.showerror("ERREUR", "L'adresse de masque encodée n'est pas valide\nmerci de d'en choisir une autre !")
+        elif((result == "IpNetworkInvalid")):
+            messagebox.showerror("ERREUR", "L'adresse IP du réseau encodée n'est pas valide\nmerci de d'en choisir une autre !")
+        elif((result == "MemeAdress")):
+            messagebox.showerror("ERREUR", "L'adresse IP du réseau encodée ne peut pas être égale à l'adresse IP encodée !")
+        else:
+            canvas.itemconfigure(text_resultats,text=f"------------------------------------------------------\n{result}\n",)  
+    
+def displayPoint4():
     
     #cacher les fenêtres
     HiddenAllWindow(frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)
@@ -339,7 +513,7 @@ def displayPoint4(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,frame
     #créer la fenêtre du point 2
     displayMenuFour(WindowMain,framePoint4)
     
-def displayPoint5(WindowMain,frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5):
+def displayPoint5():
     
     #cacher les fenêtres
     HiddenAllWindow(frameMain,framePoint1,framePoint2,framePoint3,framePoint4,framePoint5)
@@ -480,7 +654,7 @@ def displayMenuMain(WindowMain):
         image=image_button_acd3,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_3 clicked"),
+        command=lambda: displayPoint3(),
         relief="flat"
     )
     button_3.place(
@@ -494,7 +668,7 @@ def displayMenuMain(WindowMain):
         image=image_button_acd4,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_4 clicked"),
+        command=lambda: displayPoint4(),
         relief="flat"
     )
     button_4.place(
@@ -508,7 +682,7 @@ def displayMenuMain(WindowMain):
         image=image_button_acd5,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_5 clicked"),
+        command=lambda: displayPoint5(),
         relief="flat"
     )
     button_5.place(
@@ -522,7 +696,7 @@ def displayMenuMain(WindowMain):
         image=image_button_quitter,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_6 clicked"),
+        command=lambda: ExitApp(),
         relief="flat"
     )
     button_6.place(
@@ -589,15 +763,15 @@ def createMenuBar(WindowMain):
     menu1 = Menu(menubar, tearoff=0)
     menu2 = Menu(menubar, tearoff=0)
 
-    menu1.add_command(label="Accueil", command=lambda: displayMenuMain(WindowMain))
+    menu1.add_command(label="Menu", command=lambda: displayMenuMain(WindowMain))
     
     menu1.add_separator()
     
-    menu1.add_command(label="Point 1",  command=lambda: displayPoint1())
+    menu1.add_command(label="Point 1", command=lambda: displayPoint1())
     menu1.add_command(label="Point 2", command=lambda: displayPoint2())
-    menu1.add_command(label="Point 3", command=lambda: displayPoint3(WindowMain))
-    menu1.add_command(label="Point 4", command=lambda: displayPoint4(WindowMain))
-    menu1.add_command(label="Point 5", command=lambda: displayPoint5(WindowMain))
+    menu1.add_command(label="Point 3", command=lambda: displayPoint3())
+    menu1.add_command(label="Point 4", command=lambda: displayPoint4())
+    menu1.add_command(label="Point 5", command=lambda: displayPoint5())
     
     menu1.add_separator()
     

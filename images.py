@@ -26,3 +26,6 @@ image_button_generer = PhotoImage(
 
 image_button_retour = PhotoImage(
     file=("ressources/images/viewsIMG/retour_au_menu.png"))
+
+image_button_verifier = PhotoImage(
+    file=("ressources/images/viewsIMG/verifier.png"))
