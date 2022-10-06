@@ -76,7 +76,7 @@ def genererPoint2(ip,masque):
         elif(firstByte < 128):
             #classe reservées
             print(f'Classe {result[5][1]}')
-            return 'On ne peut pas utiliser cette adresse IP car elle fait partie des adresses réservés'
+            return 'On ne peut pas utiliser cette adresse IP \n car elle fait partie des adresses réservés'
         elif(firstByte < 192):
             #classe B
             masque_classe_str = result[1][4].split('.')
@@ -88,11 +88,11 @@ def genererPoint2(ip,masque):
         elif(firstByte < 240):
             #classe D
             print(f'Classe {result[3][1]}: \n{result[3][2]} trouvée')
-            return 'On ne peut pas utiliser cette adress ip car elle fait partie de la classe D'
+            return 'On ne peut pas utiliser cette adresse IP \n car elle fait partie de la classe D'
         else:
             #classe E
             print(f'Classe {result[4][1]}: \n{result[4][2]} trouvée')
-            return 'On ne peut pas utiliser cette adress ip car elle fait partie de la classe E'
+            return 'On ne peut pas utiliser cette adresse IP \n car elle fait partie de la classe E'
 
         # Conversion du masque de classe de string en int
         masque_classe = [int(i) for i in masque_classe_str]
@@ -104,7 +104,7 @@ def genererPoint2(ip,masque):
         #erreur msg box
         if(masque_classe > liste_octet_masque_int):
             adresse_masque_valide = False
-            print("l'adresse de masque ne peut pas être plus englobant que l'adresse de classe.") 
+            print("l'adresse de masque ne peut pas être plus englobante \n que l'adresse de classe.") 
             return "MaskInvalidGlobal"
         
     #
@@ -128,7 +128,7 @@ def genererPoint2(ip,masque):
     binary_sousreseau_broadcast_adresse = []"""
     # Calcul de l'adresse de sous-reseau et de broadcast du sous-réseaux s'il y en a
     if (liste_octet_masque_int != masque_classe):
-        resultGeneration+= _extracted_from_genererPointInformations2_98(liste_octet_masque_int, liste_binary_ip, "Adresse de sous-réseau : ", "Adresse de broadcast du sous-réseau : ")
+        resultGeneration+= _extracted_from_genererPointInformations2_98(liste_octet_masque_int, liste_binary_ip, "Adresse de sous-réseau : ", "Adresse de broadcast du sous-réseau : \n")
     
     
     return resultGeneration;
