@@ -985,6 +985,6 @@ def createMenuBar(WindowMain):
     WindowMain.config(menu=menubar)
 
 def ExitApp():
-    MsgBox = tkinter.messagebox.askquestion ('Fermer','Voulez-vous vraiment quitter l\'application?',icon = 'warning')
+    MsgBox = messagebox.askquestion ('Fermer','Voulez-vous vraiment quitter l\'application?',icon = 'warning')
     if MsgBox == 'yes':
        windowFromMain.destroy()
