@@ -116,7 +116,7 @@ def genererPoint4(IpAdress, MaskAdress, IpAdress2, MaskAdress2):
             return "IpInvalid2"
 
     if (liste_octet_masque1_int != liste_octet_masque2_int):
-        print("Les 2 machines ne font pas partie du même réseau.")
+        return "Les 2 machines ne font pas partie du même réseau."
     else:
         # Ajout de chaque octet de l'adresse ip en binaire dans une nouvelle liste
         liste_binary_ip1 = [int_to_binary(i) for i in liste_octet_ip1_int]
