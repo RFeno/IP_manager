@@ -1278,11 +1278,11 @@ def createMenuBar(WindowMain):
     
     menu1.add_separator()
     
-    menu1.add_command(label="Point 1", command=lambda: displayPoint1)
-    menu1.add_command(label="Point 2", command=lambda: displayPoint2)
-    menu1.add_command(label="Point 3", command=lambda: displayPoint3)
-    menu1.add_command(label="Point 4", command=lambda: displayPoint4)
-    menu1.add_command(label="Point 5", command=lambda: displayPoint5)
+    menu1.add_command(label="Point 1", command=lambda: displayPoint1())
+    menu1.add_command(label="Point 2", command=lambda: displayPoint2())
+    menu1.add_command(label="Point 3", command=lambda: displayPoint3())
+    menu1.add_command(label="Point 4", command=lambda: displayPoint4())
+    menu1.add_command(label="Point 5", command=lambda: displayPoint5())
     
     menu1.add_separator()
     
