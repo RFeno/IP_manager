@@ -685,7 +685,8 @@ def displayPoint4():
         anchor="nw",
         text="",
         fill="#000000",
-        font=("Karla Bold", 15 * -1)
+        font=("Karla Bold", 15 * -1),
+        width=300
     )
 
     button_retour = Button(
@@ -719,7 +720,7 @@ def displayPoint4():
         elif((result == "MaskInvalid2")):
             messagebox.showerror("ERREUR", "L'adrese de masque de la deuxième machine encodée n'est pas valide\nmerci de d'en choisir une autre !")
         else:
-            canvas.itemconfigure(text_results,text=f"------------------------------------------------------\n{result}\n",)
+            canvas.itemconfigure(text_results,text=f"--------------------------------------------------------\n{result}\n",)
 
     
 def displayPoint5():

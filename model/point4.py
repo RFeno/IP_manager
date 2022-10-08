@@ -137,9 +137,9 @@ def genererPoint4(IpAdress, MaskAdress, IpAdress2, MaskAdress2):
     text = ""
     binary_reseau1bis_adresse, binary_broadcast1bis_adresse = calcul_reseau_bc(liste_binary_ip1,liste_binary_masque2)
     if(binary_reseau1bis_adresse == binary_reseau2_adresse and binary_broadcast1bis_adresse == binary_broadcast2_adresse):
-        text += "La machine 2 considère la machine 1 dans son réseau.\n"
+        text += "\nLa machine 2 considère la machine 1 dans son réseau.\n\n"
     else:
-        text += "La machine 2 ne considère pas la machine 1 dans son réseau.\n"
+        text += "\nLa machine 2 ne considère pas la machine 1 dans son réseau.\n\n"
 
 
     # Calcul de l'adresse de reseau 2bis et de broadcast 2bis avec le masque 1
