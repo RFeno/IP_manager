@@ -724,9 +724,221 @@ def displayPoint4():
 
     
 def displayPoint5():
+
+    #changement titre
+    windowFromMain.title("Projet LABO_TCPIP - Point 5")
     
     #cacher les fenêtres
     HiddenAllWindow()
+    
+    canvas = Canvas(
+    windowFromMain,
+    bg = "#A7D7C5",
+    height = 600,
+    width = 800,
+    bd = 0,
+    highlightthickness = 0,
+    relief = "ridge"
+    )
+
+    canvas.place(x = 0, y = 0)
+    canvas.create_rectangle(
+        478.0,
+        307.00000381469727,
+        930.54833984375,
+        759.5483436584473,
+        fill="#C1E3D6",
+        outline="")
+
+    canvas.create_rectangle(
+        109.0,
+        141.0,
+        561.54833984375,
+        593.54833984375,
+        fill="#C1E3D6",
+        outline="")
+
+    canvas.create_rectangle(
+        19.0,
+        72.0,
+        400.0,
+        533.0,
+        fill="#F6FBF9",
+        outline="")
+        
+    canvas.create_text(
+        135.0,
+        89.0,
+        anchor="nw",
+        text=" L’adresse IP",
+        fill="#000000",
+        font=("Karla Regular", 24 * -1)
+    )
+
+    canvas.create_text(
+        143.0,
+        188.0,
+        anchor="nw",
+        text="Le masque",
+        fill="#000000",
+        font=("Karla Regular", 24 * -1)
+    )
+
+    canvas.create_text(
+        60.0,
+        281.0,
+        anchor="nw",
+        text="Le nombre de sous-réseaux",
+        fill="#000000",
+        font=("Karla Regular", 24 * -1)
+    )
+
+    canvas.create_text(
+        110.0,
+        374.0,
+        anchor="nw",
+        text="Le nombre d'hôte",
+        fill="#000000",
+        font=("Karla Regular", 24 * -1)
+    )
+
+    canvas.create_rectangle(
+        411.0,
+        136.0,
+        782.0,
+        464.0,
+        fill="#F6FBF9",
+        outline="")
+
+    canvas.create_text(
+        542.0,
+        165.0,
+        anchor="nw",
+        text="RÉSULTATS",
+        fill="#000000",
+        font=("Karla Regular", 24 * -1)
+    )
+
+    canvas.create_text(
+        340.0,
+        14.0,
+        anchor="nw",
+        text="Point 5",
+        fill="#F6FBF9",
+        font=("Karla Bold", 36 * -1)
+    )
+    
+    entry_IP = Entry(
+        bd=0,
+        bg="#FFFFFF",
+        highlightthickness=0
+    )
+    
+    entry_IP.place(
+        x=38.0,
+        y=116.0,
+        width=342.0,
+        height=53.0
+    )
+
+    entry_Mask = Entry(
+        bd=0,
+        bg="#FFFFFF",
+        highlightthickness=0
+    )
+    
+    entry_Mask.place(
+        x=38.0,
+        y=217.0,
+        width=342.0,
+        height=53.0
+    )
+
+
+    entry_NbSubnet = Entry(
+        bd=0,
+        bg="#FFFFFF",
+        highlightthickness=0
+    )
+    
+    entry_NbSubnet.place(
+        x=38.0,
+        y=312.0,
+        width=342.0,
+        height=53.0
+    )
+
+    
+    entry_NbHost = Entry(
+        bd=0,
+        bg="#FFFFFF",
+        highlightthickness=0
+    )
+    
+    entry_NbHost.place(
+        x=38.0,
+        y=409.0,
+        width=342.0,
+        height=53.0
+    )
+
+    button_verifier = Button(
+        image=image_button_verifier_petit,
+        borderwidth=0,
+        highlightthickness=0,
+        command=lambda: genererFive(),
+        relief="flat"
+    )
+    
+    button_verifier.place(
+        x=82.0,
+        y=474.0,
+        width=255.0,
+        height=41.0
+    )
+
+    text_results = canvas.create_text(
+        448.0,
+        235.0,
+        anchor="nw",
+        text="",
+        fill="#000000",
+        font=("Karla Bold", 15 * -1),
+        width=300
+    )
+
+    button_retour = Button(
+        image=image_button_retour,
+        borderwidth=0,
+        highlightthickness=0,
+        command=lambda: displayMenuMain(windowFromMain),
+        relief="flat"
+    )
+    
+    button_retour.place(
+        x=469.0,
+        y=495.0,
+        width=255.0,
+        height=59
+    )
+
+    text_results
+    
+    def genererFive():
+
+        result = genererPoint5(entry_IP.get(), entry_Mask.get(), entry_NbSubnet.get(), entry_NbHost.get())
+        
+        #traitement
+        if((result == "IpInvalid")):
+            messagebox.showerror("ERREUR", "L'adrese IP de la première machine encodée n'est pas valide\nmerci d'en choisir une autre !")
+        elif((result == "MaskInvalid")):
+            messagebox.showerror("ERREUR", "L'adrese de masque de la première machine encodée n'est pas valide\nmerci d'en choisir une autre !")
+        elif((result == "NbSubnetsInvalid")):
+            messagebox.showerror("ERREUR", "Le nombre de sous-réseaux n'est pas valide.\nmerci d'en choisir un autre !")
+        elif((result == "NbHostsInvalid")):
+            messagebox.showerror("ERREUR", "Le nombre de machines n'est pas valide.\nmerci d'en choisir un autre !")
+        else:
+            canvas.itemconfigure(text_results,text=f"--------------------------------------------------------\n{result}\n",)
        
 def displayAbout():
     print("A propos")

@@ -10,7 +10,7 @@ import copy
 #vérifier que le système fonctionne bien
 
 # Vérification des adresses valides ou non
-def genererPoint5(numberOfSubNet, numberOfHosts, IpAdress, maskAdress):
+def genererPoint5(IpAdress, maskAdress, numberOfSubNet, numberOfHosts):
     numberOfSubNet = int(numberOfSubNet)
     numberOfHosts = int(numberOfHosts)
     text = ""
@@ -57,7 +57,7 @@ def genererPoint5(numberOfSubNet, numberOfHosts, IpAdress, maskAdress):
 
         # On redemande le nombre de sous-réseaux s'il n'est pas valide
         if not numberOfHosts_valide:
-            print("Le nombre de sous-réseaux n'est pas valide.")
+            print("Le nombre de machines n'est pas valide.")
             return "NbHostsInvalid"
 
         if adresse_ip_valide and adresse_masque_valide and numberOfSubNet_valide and numberOfHosts_valide:
@@ -109,9 +109,9 @@ def genererPoint5(numberOfSubNet, numberOfHosts, IpAdress, maskAdress):
     nb_host_per_subnet = ((2**nb_of_0)-2)
 
     if(nb_of_zero_in_mask >= bit_to_back):
-        text += "La découpe classique sur base du nombre de SR est possible. \nIl y aura maximum " + str(nb_host_per_subnet) + " machines par sous-réseaux.\n"
+        text += "La découpe classique sur base du nombre de sous-réseaux est possible. \nIl y aura maximum " + str(nb_host_per_subnet) + " machines par sous-réseaux.\n"
     else:
-        text += "La découpe classique sur base du nombre de SR n'est pas possible.\n"
+        text += "La découpe classique sur base du nombre de sous-réseaux n'est pas possible.\n"
 
     #----------------------------------------------------------------
     # Partie 3
