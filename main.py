@@ -11,7 +11,6 @@ WindowMain= Tk()
 WindowMain.title("Projet LABO_TCPIP - Connexion")
 
 #taille minimale de la enêtre
-
 WindowMain.geometry("800x630")
 WindowMain.resizable(False, False)
 
@@ -22,7 +21,7 @@ WindowMain.iconbitmap("ressources/images/logoLabo4_1.ico")
 WindowMain.configure(bg = "#A7D7C5")
 
 #import ici car sinon runtime error car images crées avant le mainWindow
-from views.viewLogin import DisplayLogin
+from views.login import DisplayLogin
 from views.menu import displayMenuMain
 
 if(active_login):
