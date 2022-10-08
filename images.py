@@ -45,6 +45,9 @@ image_button_creer_compte = PhotoImage(
 image_button_pas_de_compte = PhotoImage(
     file=("ressources/images/viewsIMG/pas_de_compte.png"))
 
+image_button_deja_compte = PhotoImage(
+    file=("ressources/images/viewsIMG/deja_compte.png"))
+
 image_fleche = PhotoImage(
     file=("ressources/images/viewsIMG/fleche.png"))
 
