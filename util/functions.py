@@ -39,6 +39,10 @@ def verifyIsMaskValid(mask):
     if(int(bytes[3]) == 255):
         print(f"L'adresse de masque {mask} n'est pas valide")
         return False
+    
+    if(int(bytes[0]) != 255):
+        print(f"L'adresse de masque {mask} n'est pas valide")
+        return False
 
     print(f"L'adresse de masque {mask} est valide")
     return True
