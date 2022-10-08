@@ -8,7 +8,8 @@ from model.point2 import genererPoint2
 from model.point3 import genererPoint3
 from model.point4 import genererPoint4
 from model.point5 import genererPoint5
-
+from views.addUser import displayAddUser
+from views.delete import DisplayDelete
 
 def HiddenAllWindow():
 
@@ -78,6 +79,25 @@ def displayPoint1():
         text="Point 1",
         fill="#F6FBF9",
         font=("Karla Bold", 36 * -1)
+    )
+    
+    #ombre titre
+    canvas.create_rectangle(
+    319.0,
+    0.0,
+    484.0,
+    61.0,
+    fill="#C1E3D6",
+    outline="")
+    
+    #titr fenêtre
+    canvas.create_text(
+        341.0,
+        7.0,
+        anchor="nw",
+        text="Point 1",
+        fill="#F6FBF9",
+        font=("Karla", 36 * -1,"bold")
     )
 
     entry_1 = Entry(
@@ -218,13 +238,23 @@ def displayPoint2():
         font=("Karla Regular", 24 * -1)
     )
 
+    #ombre titre
+    canvas.create_rectangle(
+    319.0,
+    0.0,
+    484.0,
+    61.0,
+    fill="#C1E3D6",
+    outline="")
+    
+    #titr fenêtre
     canvas.create_text(
-        340.0,
-        14.0,
+        341.0,
+        7.0,
         anchor="nw",
         text="Point 2",
         fill="#F6FBF9",
-        font=("Karla Bold", 36 * -1)
+        font=("Karla", 36 * -1,"bold")
     )
 
     entry_Ip = Entry(
@@ -393,13 +423,23 @@ def displayPoint3():
         font=("Karla Regular", 24 * -1)
     )
 
+    #ombre titre
+    canvas.create_rectangle(
+    319.0,
+    0.0,
+    484.0,
+    61.0,
+    fill="#C1E3D6",
+    outline="")
+    
+    #titr fenêtre
     canvas.create_text(
-        339.0,
-        14.0,
+        341.0,
+        7.0,
         anchor="nw",
         text="Point 3",
         fill="#F6FBF9",
-        font=("Karla Bold", 36 * -1)
+        font=("Karla", 36 * -1,"bold")
     )
     
     entry_IP = Entry(
@@ -592,13 +632,23 @@ def displayPoint4():
         font=("Karla Regular", 24 * -1)
     )
 
+    #ombre titre
+    canvas.create_rectangle(
+    319.0,
+    0.0,
+    484.0,
+    61.0,
+    fill="#C1E3D6",
+    outline="")
+    
+    #titr fenêtre
     canvas.create_text(
-        340.0,
-        14.0,
+        341.0,
+        7.0,
         anchor="nw",
         text="Point 4",
         fill="#F6FBF9",
-        font=("Karla Bold", 36 * -1)
+        font=("Karla", 36 * -1,"bold")
     )
     
     entry_IP1 = Entry(
@@ -721,8 +771,7 @@ def displayPoint4():
             messagebox.showerror("ERREUR", "L'adrese de masque de la deuxième machine encodée n'est pas valide\nmerci de d'en choisir une autre !")
         else:
             canvas.itemconfigure(text_results,text=f"--------------------------------------------------------\n{result}\n",)
-
-    
+   
 def displayPoint5():
 
     #changement titre
@@ -797,7 +846,7 @@ def displayPoint5():
         110.0,
         374.0,
         anchor="nw",
-        text="Le nombre d'hôte",
+        text="Le nombre d'hôtes",
         fill="#000000",
         font=("Karla Regular", 24 * -1)
     )
@@ -819,13 +868,23 @@ def displayPoint5():
         font=("Karla Regular", 24 * -1)
     )
 
+    #ombre titre
+    canvas.create_rectangle(
+    319.0,
+    0.0,
+    484.0,
+    61.0,
+    fill="#C1E3D6",
+    outline="")
+    
+    #titr fenêtre
     canvas.create_text(
-        340.0,
-        14.0,
+        341.0,
+        7.0,
         anchor="nw",
         text="Point 5",
         fill="#F6FBF9",
-        font=("Karla Bold", 36 * -1)
+        font=("Karla", 36 * -1,"bold")
     )
     
     entry_IP = Entry(
@@ -882,15 +941,15 @@ def displayPoint5():
         height=53.0
     )
 
-    button_verifier = Button(
-        image=image_button_verifier_petit,
+    button_generer = Button(
+        image=image_button_generer_petit,
         borderwidth=0,
         highlightthickness=0,
         command=lambda: genererFive(),
         relief="flat"
     )
     
-    button_verifier.place(
+    button_generer.place(
         x=82.0,
         y=474.0,
         width=255.0,
@@ -963,7 +1022,7 @@ def displayMenuMain(WindowMain):
     )
 
     canvas.place(x = 0, y = 0)
-    canvas.create_rectangle(
+    """canvas.create_rectangle(
         478.0,
         307.00000381469727,
         930.54833984375,
@@ -977,8 +1036,15 @@ def displayMenuMain(WindowMain):
         561.54833984375,
         593.54833984375,
         fill="#C1E3D6",
-        outline="")
-
+        outline="")"""
+    canvas.create_rectangle(
+    260.0,
+    0.0,
+    539.0,
+    74.0,
+    fill="#C1E3D6",
+    outline="")
+    
     canvas.create_rectangle(
         41.0,
         85.0,
@@ -988,12 +1054,12 @@ def displayMenuMain(WindowMain):
         outline="")
 
     canvas.create_text(
-        260.0,
-        27.0,
-        anchor="nw",
-        text="Menu principal",
-        fill="#F6FBF9",
-        font=("Karla Bold", 36 * -1)
+    270.0,
+    19.0,
+    anchor="nw",
+    text="Menu principal",
+    fill="#F6FBF9",
+    font=("Karla", 36 * -1,"bold"),
     )
 
     canvas.create_rectangle(
@@ -1122,16 +1188,16 @@ def displayMenuMain(WindowMain):
 
     canvas.create_text(
         78.0,
-        142.0,
+        162.0,
         anchor="nw",
-        text="Trouver les informations de L’IP",
+        text="Trouver les informations de l’adresse IP",
         fill="#000000",
         font=("Karla Bold", 15 * -1)
     )
 
     canvas.create_text(
         78.0,
-        220.0,
+        240.0,
         anchor="nw",
         text="Trouver les informations du réseau ",
         fill="#000000",
@@ -1140,29 +1206,61 @@ def displayMenuMain(WindowMain):
 
     canvas.create_text(
         78.0,
-        296.0,
+        316.0,
         anchor="nw",
-        text="L’Ip appartient-il au réseau ?",
+        text="L’adresse IP appartient-elle au réseau ?",
         fill="#000000",
         font=("Karla Bold", 15 * -1)
     )
 
     canvas.create_text(
-        73.0,
-        369.0,
+        78.0,
+        389.0,
         anchor="nw",
-        text="Les adresses Ip sont-elles dans le même réseau ?",
+        text="Les adresses IP sont-elles dans le même réseau ?",
         fill="#000000",
         font=("Karla Bold", 15 * -1)
     )
 
     canvas.create_text(
-        73.0,
-        447.0,
+        78.0,
+        467.0,
         anchor="nw",
         text="Déterminer les découpes et le nombre d’hôtes",
         fill="#000000",
         font=("Karla Bold", 15 * -1)
+    )
+    
+    canvas.create_image(
+        470.0,
+        165.0,
+        image=image_fleche
+    )
+
+
+    canvas.create_image(
+        470.0,
+        243.0,
+        image=image_fleche
+    )
+
+  
+    canvas.create_image(
+        470.0,
+        319.0,
+        image=image_fleche
+    )
+
+    canvas.create_image(
+        470.0,
+        396.0,
+        image=image_fleche
+    )
+
+    canvas.create_image(
+        470.0,
+        474.0,
+        image=image_fleche
     )
     
     createMenuBar(WindowMain)
@@ -1180,23 +1278,26 @@ def createMenuBar(WindowMain):
     
     menu1.add_separator()
     
-    menu1.add_command(label="Point 1", command=lambda: displayPoint1())
-    menu1.add_command(label="Point 2", command=lambda: displayPoint2())
-    menu1.add_command(label="Point 3", command=lambda: displayPoint3())
-    menu1.add_command(label="Point 4", command=lambda: displayPoint4())
-    menu1.add_command(label="Point 5", command=lambda: displayPoint5())
+    menu1.add_command(label="Point 1", command=lambda: displayPoint1)
+    menu1.add_command(label="Point 2", command=lambda: displayPoint2)
+    menu1.add_command(label="Point 3", command=lambda: displayPoint3)
+    menu1.add_command(label="Point 4", command=lambda: displayPoint4)
+    menu1.add_command(label="Point 5", command=lambda: displayPoint5)
     
     menu1.add_separator()
     
-    menu1.add_command(label="Quitter", command=ExitApp)
+    menu1.add_command(label="Quitter", command=lambda:ExitApp())
     menubar.add_cascade(label="Menu", menu=menu1)
     
-    menu2.add_command(label="A propos", command=displayAbout)
-    menubar.add_cascade(label="Info", menu=menu2)
+    menu2.add_command(label="Ajout", command=lambda:displayAddUser(WindowMain))
+    menu2.add_command(label="Suprresion", command=lambda:DisplayDelete(WindowMain))
+    menubar.add_cascade(label="Admin", menu=menu2)
+
+    
 
     #ajout de la barre de menu
     WindowMain.config(menu=menubar)
-
+   
 def ExitApp():
     MsgBox = messagebox.askquestion ('Fermer','Voulez-vous vraiment quitter l\'application?',icon = 'warning')
     if MsgBox == 'yes':
