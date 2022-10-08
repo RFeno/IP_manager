@@ -115,39 +115,60 @@ def genererPoint4(IpAdress, MaskAdress, IpAdress2, MaskAdress2):
             print("La deuxième adresse ip n'est pas valide.")
             return "IpInvalid2"
 
-    if (liste_octet_masque1_int != liste_octet_masque2_int):
-        return "Les 2 machines ne font pas partie du même réseau."
+    #-------------------------------------------------------------------------------------
+
+    # Ajout de chaque octet de l'adresse ip en binaire dans une nouvelle liste
+    liste_binary_ip1 = [int_to_binary(i) for i in liste_octet_ip1_int]
+    # Ajout de chaque octet de l'adresse de masque en binaire dans une nouvelle liste
+    liste_binary_masque1 = [int_to_binary(i) for i in liste_octet_masque1_int]
+    # Ajout de chaque octet de l'adresse ip en binaire dans une nouvelle liste
+    liste_binary_ip2 = [int_to_binary(i) for i in liste_octet_ip2_int]
+    # Ajout de chaque octet de l'adresse de masque en binaire dans une nouvelle liste
+    liste_binary_masque2 = [int_to_binary(i) for i in liste_octet_masque2_int]
+    
+    # Calcul de l'adresse de reseau 1 et de broadcast 1
+    binary_reseau1_adresse, binary_broadcast1_adresse = calcul_reseau_bc(liste_binary_ip1,liste_binary_masque1)
+
+    # Calcul de l'adresse de reseau 2 et de broadcast 2
+    binary_reseau2_adresse, binary_broadcast2_adresse = calcul_reseau_bc(liste_binary_ip2,liste_binary_masque2)
+
+
+    # Calcul de l'adresse de reseau 1bis et de broadcast 1bis avec le masque 2
+    text = ""
+    binary_reseau1bis_adresse, binary_broadcast1bis_adresse = calcul_reseau_bc(liste_binary_ip1,liste_binary_masque2)
+    if(binary_reseau1bis_adresse == binary_reseau2_adresse and binary_broadcast1bis_adresse == binary_broadcast2_adresse):
+        text += "La machine 2 considère la machine 1 dans son réseau.\n"
     else:
-        # Ajout de chaque octet de l'adresse ip en binaire dans une nouvelle liste
-        liste_binary_ip1 = [int_to_binary(i) for i in liste_octet_ip1_int]
-        # Ajout de chaque octet de l'adresse de masque en binaire dans une nouvelle liste
-        liste_binary_masque1 = [int_to_binary(i) for i in liste_octet_masque1_int]
-        # Ajout de chaque octet de l'adresse ip en binaire dans une nouvelle liste
-        liste_binary_ip2 = [int_to_binary(i) for i in liste_octet_ip2_int]
-        # Ajout de chaque octet de l'adresse de masque en binaire dans une nouvelle liste
-        liste_binary_masque2 = [int_to_binary(i) for i in liste_octet_masque2_int]
-        
-        # Calcul de l'adresse de reseau et de broadcast
-        binary_reseau1_adresse, binary_broadcast1_adresse = calcul_reseau_bc(liste_binary_ip1,liste_binary_masque1)
+        text += "La machine 2 ne considère pas la machine 1 dans son réseau.\n"
 
-        # Calcul de l'adresse de reseau et de broadcast
-        binary_reseau2_adresse, binary_broadcast2_adresse = calcul_reseau_bc(liste_binary_ip2,liste_binary_masque2)
 
-        # Conversion des adresse de réseau et de broadcast en entier
-        liste_octet_reseau1_int = []
-        liste_octet_broadcast1_int = []
-        liste_octet_reseau2_int = []
-        liste_octet_broadcast2_int = []
-        for i in range(4):
-            liste_octet_reseau1_int.append(octet_to_int(binary_reseau1_adresse[i]))
-            liste_octet_broadcast1_int.append(octet_to_int(binary_broadcast1_adresse[i]))
-            liste_octet_reseau2_int.append(octet_to_int(binary_reseau2_adresse[i]))
-            liste_octet_broadcast2_int.append(octet_to_int(binary_broadcast2_adresse[i]))
+    # Calcul de l'adresse de reseau 2bis et de broadcast 2bis avec le masque 1
+    binary_reseau2bis_adresse, binary_broadcast2bis_adresse = calcul_reseau_bc(liste_binary_ip2,liste_binary_masque1)
+    if(binary_reseau2bis_adresse == binary_reseau1_adresse and binary_broadcast2bis_adresse == binary_broadcast1_adresse):
+        text += "La machine 1 considère la machine 2 dans son réseau.\n"
+    else:
+        text += "La machine 1 ne considère pas la machine 2 dans son réseau.\n"
 
-        if(liste_octet_reseau1_int == liste_octet_reseau2_int and liste_octet_broadcast1_int == liste_octet_broadcast2_int):
-            return "Les 2 machines sont dans le même réseau."
-        else:
-            return "Les 2 machines ne font pas partie du même réseau."
+    return text
+
+
+
+
+    # # Conversion des adresse de réseau et de broadcast en entier
+    # liste_octet_reseau1_int = []
+    # liste_octet_broadcast1_int = []
+    # liste_octet_reseau2_int = []
+    # liste_octet_broadcast2_int = []
+    # for i in range(4):
+    #     liste_octet_reseau1_int.append(octet_to_int(binary_reseau1_adresse[i]))
+    #     liste_octet_broadcast1_int.append(octet_to_int(binary_broadcast1_adresse[i]))
+    #     liste_octet_reseau2_int.append(octet_to_int(binary_reseau2_adresse[i]))
+    #     liste_octet_broadcast2_int.append(octet_to_int(binary_broadcast2_adresse[i]))
+
+    # if(liste_octet_reseau1_int == liste_octet_reseau2_int and liste_octet_broadcast1_int == liste_octet_broadcast2_int):
+    #     return "Les 2 machines sont dans le même réseau."
+    # else:
+    #     return "Les 2 machines ne font pas partie du même réseau."
 
 
 
