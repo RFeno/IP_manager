@@ -24,6 +24,9 @@ image_button_quitter= PhotoImage(
 image_button_generer = PhotoImage(
     file=("ressources/images/viewsIMG/generer.png"))
 
+image_button_generer_petit = PhotoImage(
+    file=("ressources/images/viewsIMG/generer_petit.png"))
+
 image_button_retour = PhotoImage(
     file=("ressources/images/viewsIMG/retour_au_menu.png"))
 
@@ -32,3 +35,16 @@ image_button_verifier = PhotoImage(
 
 image_button_verifier_petit = PhotoImage(
     file=("ressources/images/viewsIMG/verifier_petit.png"))
+
+image_button_verifier_petit = PhotoImage(
+    file=("ressources/images/viewsIMG/verifier_petit.png"))
+
+image_button_creer_compte = PhotoImage(
+    file=("ressources/images/viewsIMG/creer_compte.png"))
+
+image_button_pas_de_compte = PhotoImage(
+    file=("ressources/images/viewsIMG/pas_de_compte.png"))
+
+image_fleche = PhotoImage(
+    file=("ressources/images/viewsIMG/fleche.png"))
+
