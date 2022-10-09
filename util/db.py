@@ -108,7 +108,8 @@ def deleteUser(username):
     
     connexion = sqlite3.connect("BDDLabo")
     cursor = connexion.cursor()
-    cursor.execute("delete from users where id = ?", (username))
+    cursor.execute(f'DELETE from users where username =  "{username}" ;', )
+    
     #valider les requetes
     connexion.commit()
 

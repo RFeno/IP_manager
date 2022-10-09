@@ -1,8 +1,12 @@
-from tkinter import Button, Canvas, Entry
+from tkinter import Button, Canvas, Entry, StringVar, messagebox
 
 from images import image_button_suppression
+from util.db import deleteUser
 def DisplayDelete(WindowMain):
 
+
+    username = StringVar()
+    
     canvas = Canvas(
         WindowMain,
         bg = "#A7D7C5",
@@ -31,12 +35,14 @@ def DisplayDelete(WindowMain):
         font=("Karla Bold", 36 * -1)
     )
     
-    entry_1 = Entry(
+    entry_username = Entry(
+        textvariable=username,
         bd=0,
         bg="#FFFFFF",
         highlightthickness=0
     )
-    entry_1.place(
+    
+    entry_username.place(
         x=222.0,
         y=238.0,
         width=355.0,
@@ -52,12 +58,11 @@ def DisplayDelete(WindowMain):
         font=("Karla Regular", 15 * -1)
     )
 
-   
     button_suppression = Button(
         image=image_button_suppression,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_1 clicked"),
+        command=lambda: delete(username.get()),
         relief="flat"
     )
     
@@ -68,3 +73,22 @@ def DisplayDelete(WindowMain):
         height=59.0
     )
     
+    def delete(username):
+        
+        verification = messagebox.askquestion ('Supression',f'Voulez-vous vraiment supprimer l\'utilisateur : {username} ',icon = 'warning')
+        
+        if(verification == 'yes'):
+            #récupération du resultat de l'impression
+            result = deleteUser(username)
+            
+            #affichage à l'écran
+            if ((result == "UserDoesNotExist")):
+                messagebox.showerror("ERREUR", "Le nom d'utilisateur que vous avez encodé n'existe pas !")
+            elif((result == "UserDeleted")):
+                messagebox.showerror("ERREUR", "L'utilisateur que vous avez encodé à bien été supprimé.")
+
+
+
+
+
+   
