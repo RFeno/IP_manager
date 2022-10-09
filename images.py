@@ -1,4 +1,4 @@
-from tkinter import PhotoImage, Tk
+from tkinter import PhotoImage
 
 path = "ressources/images/viewsIMG/"
 image_button_connexion = PhotoImage(file=f"{path}connexion.png")

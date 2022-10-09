@@ -131,7 +131,7 @@ def genererPoint2(ip,masque):
         resultGeneration+= _extracted_from_genererPointInformations2_98(liste_octet_masque_int, liste_binary_ip, "Adresse de sous-réseau : ", "Adresse de broadcast du sous-réseau : \n")
     
     
-    return resultGeneration;
+    return resultGeneration
 
 
 
