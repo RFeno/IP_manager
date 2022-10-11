@@ -31,21 +31,6 @@ def displayPoint1():
     )
 
     canvas.place(x = 0, y = 0)
-    canvas.create_rectangle(
-        478.0,
-        307.00000381469727,
-        930.54833984375,
-        759.5483436584473,
-        fill="#C1E3D6",
-        outline="")
-
-    canvas.create_rectangle(
-        109.0,
-        141.0,
-        561.54833984375,
-        593.54833984375,
-        fill="#C1E3D6",
-        outline="")
 
     canvas.create_rectangle(
         19.0,
@@ -188,21 +173,6 @@ def displayPoint2():
     )
 
     canvas.place(x = 0, y = 0)
-    canvas.create_rectangle(
-        478.0,
-        307.00000381469727,
-        930.54833984375,
-        759.5483436584473,
-        fill="#C1E3D6",
-        outline="")
-
-    canvas.create_rectangle(
-        109.0,
-        141.0,
-        561.54833984375,
-        593.54833984375,
-        fill="#C1E3D6",
-        outline="")
 
     canvas.create_rectangle(
         19.0,
@@ -364,21 +334,6 @@ def displayPoint3():
     )
 
     canvas.place(x = 0, y = 0)
-    canvas.create_rectangle(
-        478.0,
-        307.00000381469727,
-        930.54833984375,
-        759.5483436584473,
-        fill="#C1E3D6",
-        outline="")
-
-    canvas.create_rectangle(
-        109.0,
-        141.0,
-        561.54833984375,
-        593.54833984375,
-        fill="#C1E3D6",
-        outline="")
 
     canvas.create_rectangle(
         19.0,
@@ -564,21 +519,6 @@ def displayPoint4():
     )
 
     canvas.place(x = 0, y = 0)
-    canvas.create_rectangle(
-        478.0,
-        307.00000381469727,
-        930.54833984375,
-        759.5483436584473,
-        fill="#C1E3D6",
-        outline="")
-
-    canvas.create_rectangle(
-        109.0,
-        141.0,
-        561.54833984375,
-        593.54833984375,
-        fill="#C1E3D6",
-        outline="")
 
     canvas.create_rectangle(
         19.0,
@@ -791,21 +731,6 @@ def displayPoint5():
     )
 
     canvas.place(x = 0, y = 0)
-    canvas.create_rectangle(
-        478.0,
-        307.00000381469727,
-        930.54833984375,
-        759.5483436584473,
-        fill="#C1E3D6",
-        outline="")
-
-    canvas.create_rectangle(
-        109.0,
-        141.0,
-        561.54833984375,
-        593.54833984375,
-        fill="#C1E3D6",
-        outline="")
 
     canvas.create_rectangle(
         19.0,
