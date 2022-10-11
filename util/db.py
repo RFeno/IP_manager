@@ -18,7 +18,8 @@ def checkUserPassword(username,password):
     cursor.execute(f"SELECT password FROM users WHERE username like '{username}' ;")
     result = cursor.fetchone()
     cursor.close()
-
+    connexion.close()
+    
     if(result is None):
         return False
     
@@ -28,6 +29,8 @@ def checkUserPassword(username,password):
     else:
         print("Mot de passe incorrect, accès refusé")
         return False
+    
+    
 
 def checkUserExists(username):
     """
@@ -42,6 +45,7 @@ def checkUserExists(username):
     cursor.execute(f"SELECT username FROM users WHERE username like '{username}' ;")
     result = cursor.fetchone()
     cursor.close()
+    connexion.close()
     return result is not None
       
 

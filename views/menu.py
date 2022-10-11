@@ -1184,7 +1184,7 @@ def createMenuBar(WindowMain):
     menu1 = Menu(menubar, tearoff=0)
     menu2 = Menu(menubar, tearoff=0)
 
-    menu1.add_command(label="Menu", command=lambda: displayMenuMain(WindowMain))
+    menu1.add_command(label="Accueil", command=lambda: displayMenuMain(WindowMain))
     
     menu1.add_separator()
     
