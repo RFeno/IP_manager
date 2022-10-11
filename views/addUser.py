@@ -14,7 +14,7 @@ def displayAddUser(WindowMain):
     windowFromMain = WindowMain
     
     #mise à jour du titre de la fenêtre
-    WindowMain.title("Projet LABO_TCPIP - Inscription")
+    WindowMain.title("Projet LABO_TCPIP - Ajout d'utilisateur")
     
     canvas = Canvas(
     WindowMain,

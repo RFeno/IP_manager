@@ -1,34 +1,20 @@
-from importlib.metadata import entry_points
-from tkinter import messagebox
+from tkinter import Canvas, Entry, Button,StringVar,messagebox
 
-from util.db import checkUserPassword, createUser
-from tkinter import *
-from tkinter.ttk import *
-from tkinter import PhotoImage, Tk
-
-from images import *
-# from tkinter import *
-# Explicit imports to satisfy Flake8
-from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 from views.addUser import displayAddUser
-
 from views.menu import displayMenuMain
+from images import *
+from util.db import checkUserPassword
 
+
+userLog= ""
 
 def DisplayLogin(WindowMain):
     #changement titre
     WindowMain.title("Projet LABO_TCPIP - Connexion")
     
-    global windowFromMain
-    windowFromMain = WindowMain
-    
     #création des composants
     usernamevalue = StringVar()
-    passwordvalue = StringVar()
-    
-    #global pour êtres appelés dans d'autres méthodes
-    global canvas
-    
+    passwordvalue = StringVar() 
     
     canvas = Canvas(
     WindowMain,
@@ -106,8 +92,7 @@ def DisplayLogin(WindowMain):
     )
 
     
-    button_Create = Button(
-        text="Créer le compte",
+    button_connexion = Button(
         image=image_button_connexion,
         borderwidth=0,
         highlightthickness=0,
@@ -115,7 +100,7 @@ def DisplayLogin(WindowMain):
         command=lambda:connexion(usernamevalue.get(),passwordvalue.get(),WindowMain)
     )
     
-    button_Create.place(
+    button_connexion.place(
         x=273.0,
         y=384.0,
         width=255.0,
@@ -130,25 +115,25 @@ def DisplayLogin(WindowMain):
         relief="flat"
     )
     
-    button_pas_de_compte.place(
-        x=294.0,
-        y=466.0,
-        width=213.0,
-        height=32.0
-    )
+    button_pas_de_compte.place(x=294.0,y=466.0,width=213.0,height=32.0)
+    
+    def connexion(username,password,WindowMain):
+        
+        #on enregistre l'utilisateur connecté
+        global userLog 
+        userLog = username
+        
+        if(checkUserPassword(username, password)):
+            print("identifiants valides")
+            
+            #suprression de l'ancienne fenêtre
+            canvas.destroy()
+            
+            displayMenuMain(WindowMain)
+        else:
+            print("identifiants invalides")
+            
+            #showing error
+            messagebox.showerror("ERREUR", "Les identifiants sont invalides")
     
     
-def connexion(username,password,WindowMain):
-    if(checkUserPassword(username, password)):
-        print("identifiants valides")
-        
-        #suprression de l'ancienne fenêtre
-        canvas.destroy()
-        
-        displayMenuMain(WindowMain)
-    else:
-        print("identifiants invalides")
-        
-        #showing error
-        messagebox.showerror("ERREUR", "Les identifiants sont invalides")
-

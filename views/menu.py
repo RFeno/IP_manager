@@ -1,18 +1,18 @@
-from tkinter import *
-from tkinter import messagebox
+
+from tkinter import Button, Canvas, Entry, Menu, messagebox
 
 
 from images import *
-from model.point1 import genererPoint1
-from model.point2 import genererPoint2
-from model.point3 import genererPoint3
-from model.point4 import genererPoint4
-from model.point5 import genererPoint5
+from model.point1  import genererPoint1
+from model.point2  import genererPoint2
+from model.point3  import genererPoint3
+from model.point4  import genererPoint4
+from model.point5  import genererPoint5
 from views.addUser import displayAddUser
-from views.delete import DisplayDelete
+from views.delete  import DisplayDelete
 
 def HiddenAllWindow():
-
+    
     canvas.destroy()
     
 def displayPoint1():
@@ -993,9 +993,9 @@ def displayPoint5():
         elif((result == "MaskInvalid")):
             messagebox.showerror("ERREUR", "L'adrese de masque de la première machine encodée n'est pas valide\nmerci d'en choisir une autre !")
         elif((result == "NbSubnetsInvalid")):
-            messagebox.showerror("ERREUR", "Le nombre de sous-réseaux n'est pas valide.\nmerci d'en choisir un autre !")
+            messagebox.showerror("ERREUR", "Le nombre de sous-réseaux n'est pas valide.\nmerci d'encoder une nouvelle valeur !")
         elif((result == "NbHostsInvalid")):
-            messagebox.showerror("ERREUR", "Le nombre de machines n'est pas valide.\nmerci d'en choisir un autre !")
+            messagebox.showerror("ERREUR", "Le nombre de machines n'est pas valide.\nmerci d'encoder une nouvelle valeur!")
         else:
             canvas.itemconfigure(text_results,text=f"--------------------------------------------------------\n{result}\n",)
        
@@ -1004,9 +1004,9 @@ def displayAbout():
 
 def displayMenuMain(WindowMain):
     
-    global windowFromMain 
+    global windowFromMain
     windowFromMain = WindowMain
-
+    
     #changement titre
     windowFromMain.title("Projet LABO_TCPIP - Menu d'accueil")
     
@@ -1022,21 +1022,7 @@ def displayMenuMain(WindowMain):
     )
 
     canvas.place(x = 0, y = 0)
-    """canvas.create_rectangle(
-        478.0,
-        307.00000381469727,
-        930.54833984375,
-        759.5483436584473,
-        fill="#C1E3D6",
-        outline="")
-
-    canvas.create_rectangle(
-        109.0,
-        141.0,
-        561.54833984375,
-        593.54833984375,
-        fill="#C1E3D6",
-        outline="")"""
+    
     canvas.create_rectangle(
     260.0,
     0.0,
@@ -1267,7 +1253,6 @@ def displayMenuMain(WindowMain):
 
 #création et configurationd de la menubarre
 def createMenuBar(WindowMain):
-    
 
     menubar = Menu(WindowMain)
 
@@ -1293,11 +1278,13 @@ def createMenuBar(WindowMain):
     menu2.add_command(label="Suprresion", command=lambda:DisplayDelete(WindowMain))
     menubar.add_cascade(label="Admin", menu=menu2)
 
-    
-
     #ajout de la barre de menu
     WindowMain.config(menu=menubar)
-   
+
+def remove_menubar():
+    emptyMenu = Menu(windowFromMain)
+    windowFromMain.config(menu=emptyMenu)
+ 
 def ExitApp():
     MsgBox = messagebox.askquestion ('Fermer','Voulez-vous vraiment quitter l\'application?',icon = 'warning')
     if MsgBox == 'yes':

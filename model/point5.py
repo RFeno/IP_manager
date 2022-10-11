@@ -3,12 +3,6 @@ import copy
 from util.functions import *
 
 
-
-# numberOfSubNet = int(input("Veuillez encoder le nombre de sous réseaux : \n"))
-# numberOfHosts = int(input("Veuillez encoder le nombre de machines : \n"))
-# IpAdress = input("Veuillez encoder l'adresse IP: \n")
-# maskAdress = input("Veuillez encoder le masque de l'IP : \n")
-
 #vérifier que le système fonctionne bien
 
 # Vérification des adresses valides ou non

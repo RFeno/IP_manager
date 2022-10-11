@@ -84,7 +84,6 @@ def insertToDB(username, hash_password):
     
     connexion = sqlite3.connect("BDDLabo")
     cursor = connexion.cursor()
-    print("INSERT INTO users (username,password) VALUES (?,?);",(username,hash_password))
     cursor.execute("INSERT INTO users (username,password) VALUES (?,?);",(username,hash_password))
     #valider les requetes
     connexion.commit()
@@ -108,7 +107,7 @@ def deleteUser(username):
     
     connexion = sqlite3.connect("BDDLabo")
     cursor = connexion.cursor()
-    cursor.execute(f'DELETE from users where username =  "{username}" ;', )
+    cursor.execute(f'DELETE from users where username like "{username}" ;', )
     
     #valider les requetes
     connexion.commit()
@@ -119,7 +118,6 @@ def deleteUser(username):
 
     if(checkUserExists(username) == False):
         return "UserDeleted"
-
 
    
    

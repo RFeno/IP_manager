@@ -2,6 +2,9 @@ from tkinter import Button, Canvas, Entry, StringVar, messagebox
 
 from images import image_button_suppression
 from util.db import deleteUser
+import views.login as lg
+import views.menu as menu
+
 def DisplayDelete(WindowMain):
 
 
@@ -83,9 +86,23 @@ def DisplayDelete(WindowMain):
             
             #affichage à l'écran
             if ((result == "UserDoesNotExist")):
-                messagebox.showerror("ERREUR", "Le nom d'utilisateur que vous avez encodé n'existe pas !")
+                messagebox.showinfo("ERREUR", "Le nom d'utilisateur que vous avez encodé n'existe pas !")
             elif((result == "UserDeleted")):
-                messagebox.showerror("ERREUR", "L'utilisateur que vous avez encodé à bien été supprimé.")
+                messagebox.showinfo("INFORMATION", "L'utilisateur que vous avez encodé à bien été supprimé.")
+                
+                #on vérifie si l'utilisateur connecté est celui qui vient d'être supprimé
+                
+                print(f"Utilisateur connecté:{lg.userLog}, utilisateur supprimé: {username}")
+                
+                if(lg.userLog==username):
+                    messagebox.showinfo("INFORMATION","Vous avez supprimé le compte avec lequel vous êtes connecté\nVous allez donc être deconnecté")
+                    
+                    lg.DisplayLogin(WindowMain)
+                    menu.remove_menubar()
+                
+            elif((result == "dbError")):
+                messagebox.showerror("ERREUR", "Une erreur s'est produite, l'utilisateur n'a pas été supprimé")
+                
 
 
 
