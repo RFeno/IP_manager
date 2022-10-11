@@ -1,5 +1,7 @@
-from util.functions import *
+
 import copy
+from util.functions import *
+
 
 
 # numberOfSubNet = int(input("Veuillez encoder le nombre de sous réseaux : \n"))
@@ -11,8 +13,31 @@ import copy
 
 # Vérification des adresses valides ou non
 def genererPoint5(IpAdress, maskAdress, numberOfSubNet, numberOfHosts):
-    numberOfSubNet = int(numberOfSubNet)
-    numberOfHosts = int(numberOfHosts)
+
+
+    #vérification des données avant traitemtn
+    if (not verifyIsMaskValid(maskAdress)):
+        print("Adresse du masque n'est pas valide.")
+        return "MaskInvalid"
+    
+    if (not verifyIsIpValid(IpAdress)):
+        print("Adresse ip n'est pas valide.")
+        return "IpInvalid"
+
+    if(not numberOfHosts.isdigit()):
+        print("Le nombre de machines n'est pas valide.")
+        return "NbHostsInvalid"
+    else:
+        numberOfHosts = int(numberOfHosts)
+        
+    if(not numberOfSubNet.isdigit()):
+        print("Le nombre de sous-réseaux n'est pas valide.")
+        return "NbSubnetsInvalid"
+    else:
+        numberOfSubNet = int(numberOfSubNet)
+   
+
+    
     text = ""
     test = False
     while not test:

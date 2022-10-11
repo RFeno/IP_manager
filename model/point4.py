@@ -1,14 +1,26 @@
 from util.functions import *
 
 #----------------------------------------------------------------
-# Demande des informations
-# firstIpAddress = input("Veuillez encoder la première adresse ip: ")
-# firstNetworkMask = input("Veuillez encoder le masque de réseau de la première adresse ip: ")
-
-# secondIpAddress = input("Veuillez encoder la deuxieme adresse ip: ")
-# secondNetworkMask = input("Veuillez encoder le masque de réseau de la deuxieme adresse ip: ")
 
 def genererPoint4(IpAdress, MaskAdress, IpAdress2, MaskAdress2):
+    
+    # verification des données avant traitement
+    if (not verifyIsMaskValid(MaskAdress)):
+        print("Le premier masque n'est pas valide.")
+        return "MaskInvalid1"
+
+    if(not verifyIsIpValid(IpAdress)):
+        print("La première adresse ip n'est pas valide.")
+        return "IpInvalid1"
+
+    if (not verifyIsMaskValid(MaskAdress2)):
+        print("La deuxième masque n'est pas valide.")
+        return "MaskInvalid2"
+
+    if (not verifyIsIpValid(IpAdress2)):
+        print("La deuxième adresse ip n'est pas valide.")
+        return "IpInvalid2"
+    
     adresse_masque1_valide = False
     adresse_ip1_valide = False
     adresse_masque2_valide = False
