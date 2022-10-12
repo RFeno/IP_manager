@@ -1,83 +1,45 @@
-from ipaddress import ip_address
-from math import floor
-
 from util.functions import *
 
-#----------------------------------------------------------------
-# Demande des informations
-# ip = input("IP : ")
-# masque = input("Masque : ")
-# adresse_reseau_a_appartenir = input("Adresse réseau : ")
-
 def genererPoint3(IpAdress, MaskAdress, IpNetworkAdress):
-    
-    #vérification que l'adresse réseau est différente de l'adresse IP 
+
+    # verification des données avant traitement
+    if(not verifyIsIpValid(IpAdress)):
+        print("La première adresse ip n'est pas valide.")
+        return "IpInvalid"
+
+    if (not verifyIsMaskValid(MaskAdress)):
+        print("Le premier masque n'est pas valide.")
+        return "MaskInvalid"
+
+    if (not verifyIsIpValid(IpNetworkAdress)):
+        print("La deuxième masque n'est pas valide.")
+        return "IpNetworkInvalid"
+
     if(IpAdress==IpNetworkAdress):
         return "MemeAdress"
+
+    # Séparation des octets dans une liste
+    liste_octet_ip = IpAdress.split(".")
+    liste_octet_masque = MaskAdress.split(".")
+    liste_octet_adresse_reseau_a_appartenir = IpNetworkAdress.split(".")
     
-    adresse_masque_valide = False
-    adresse_ip_valide = False
-    adresse_reseau_a_appartenir_valide = False
+    # Conversion de l'adresse ip de string en int
+    liste_octet_ip_int = []
+    for i in liste_octet_ip:
+        # Ajout des octets en int dans une nouvelle liste
+        liste_octet_ip_int.append(int(i))
 
-    while not adresse_masque_valide or not adresse_ip_valide or not adresse_reseau_a_appartenir_valide:
-        # Séparation des octets dans une liste
-        liste_octet_ip = IpAdress.split(".")
-        liste_octet_masque = MaskAdress.split(".")
-        liste_octet_adresse_reseau_a_appartenir = IpNetworkAdress.split(".")
-        
-        # Vérification adresse ip
-        if verifyIsIpValid(IpAdress):
-            adresse_ip_valide = True
-        else:
-            adresse_ip_valide = False
+    # Conversion du masque de string en int
+    liste_octet_masque_int = []
+    for i in liste_octet_masque:
+        # Ajout des octets en int dans une nouvelle liste
+        liste_octet_masque_int.append(int(i))
 
-        # Conversion de l'adresse ip de string en int
-        if(adresse_ip_valide == True):
-            liste_octet_ip_int = []
-            for i in liste_octet_ip:
-                # Ajout des octets en int dans une nouvelle liste
-                liste_octet_ip_int.append(int(i))
-
-        # Vérification adresse masque_classe
-        if verifyIsMaskValid(MaskAdress):
-            adresse_masque_valide = True
-        else:
-            adresse_masque_valide = False
-
-        # Conversion du masque de string en int
-        if(adresse_masque_valide == True):
-            liste_octet_masque_int = []
-            for i in liste_octet_masque:
-                # Ajout des octets en int dans une nouvelle liste
-                liste_octet_masque_int.append(int(i))
-
-        # Vérification adresse réseau à appartenir
-        if verifyIsIpValid(IpNetworkAdress):
-            adresse_reseau_a_appartenir_valide = True
-        else:
-            adresse_reseau_a_appartenir_valide = False
-
-        # Conversion de l'adresse réseau à appartenir de string en int
-        if(adresse_reseau_a_appartenir_valide == True):
-            liste_octet_reseau_a_appartenir_int = []
-            for i in liste_octet_adresse_reseau_a_appartenir:
-                # Ajout des octets en int dans une nouvelle liste
-                liste_octet_reseau_a_appartenir_int.append(int(i))
-
-        # On redemande l'adresse ip si elle n'est pas valide
-        if adresse_ip_valide == False:
-            print("Adresse ip n'est pas valide.")
-            return "IpInvalid"
-
-        # On redemande l'adresse du masque_classe si elle n'est pas valide
-        if adresse_masque_valide == False:
-            print("Adresse du masque n'est pas valide.")
-            return "MaskInvalid"
-
-        # On redemande l'adresse réseau à appartenir si elle n'est pas valide
-        if adresse_reseau_a_appartenir_valide == False:
-            print("Adresse réseau n'est pas valide.")
-            return "IpNetworkInvalid"
+    # Conversion de l'adresse réseau à appartenir de string en int
+    liste_octet_reseau_a_appartenir_int = []
+    for i in liste_octet_adresse_reseau_a_appartenir:
+        # Ajout des octets en int dans une nouvelle liste
+        liste_octet_reseau_a_appartenir_int.append(int(i))
 
     # Ajout de chaque octet de l'adresse ip en binaire dans une nouvelle liste
     liste_binary_ip = [int_to_binary(i) for i in liste_octet_ip_int]
