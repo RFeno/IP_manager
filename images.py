@@ -34,4 +34,3 @@ image_button_deja_compte = PhotoImage(file=f"{path}deja_compte.png")
 image_button_suppression = PhotoImage(file=f"{path}suppression.png")
 
 image_fleche = PhotoImage(file=f"{path}fleche.png")
-

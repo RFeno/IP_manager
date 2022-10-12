@@ -135,5 +135,3 @@ def DisplayLogin(WindowMain):
             
             #showing error
             messagebox.showerror("ERREUR", "Les identifiants sont invalides")
-    
-    

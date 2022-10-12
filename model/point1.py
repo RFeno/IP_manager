@@ -43,4 +43,3 @@ def genererPoint1(adresseIP):
     else:
         #classe E
         return (f'Classe {result[4][1]}: \n\n{result[4][2]}')
-   
