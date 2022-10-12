@@ -31,7 +31,6 @@ def checkUserPassword(username,password):
         return False
     
     
-
 def checkUserExists(username):
     """
     It connects to the database, executes a query, and returns the result
@@ -48,7 +47,6 @@ def checkUserExists(username):
     connexion.close()
     return result is not None
       
-
 def createUser(username,password):
     """
     It creates a user with the username and password provided.
@@ -123,8 +121,10 @@ def deleteUser(username):
     if(checkUserExists(username) == False):
         return "UserDeleted"
 
-   
 def findClassesInfo():
+    """
+    return a result of query
+    """
     
     #connexion db + récupération des données
     connexion = sqlite3.connect("BDDLabo")
@@ -138,4 +138,3 @@ def findClassesInfo():
     connexion.close()
     
     return result
-    

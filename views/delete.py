@@ -102,10 +102,3 @@ def DisplayDelete(WindowMain):
                 
             elif((result == "dbError")):
                 messagebox.showerror("ERREUR", "Une erreur s'est produite, l'utilisateur n'a pas été supprimé")
-                
-
-
-
-
-
-   
