@@ -1,9 +1,3 @@
-#point 1 fonctionnement
-
-#imports
-import re
-import sqlite3
-
 from util.functions import verifyIsIpValid
 from util.db import findClassesInfo
 
@@ -43,9 +37,4 @@ def genererPoint1(adresseIP):
     else:
         #classe E
         return (f'Classe {result[4][1]}: \n\n{result[4][2]}')
-
-
-
-
-  
    

@@ -51,7 +51,7 @@ class Test(unittest.TestCase):
 
     def testSucces(self):
         self.assertEqual(genererPoint2("192.168.1.65","255.255.255.0"),"Adresse de réseau : 192.168.1.0\nAdresse de broadcast : 192.168.1.255\n")
-        self.assertEqual(genererPoint2("192.168.1.65","255.255.255.128"),"Adresse de réseau : 192.168.1.0\nAdresse de broadcast : 192.168.1.255\nAdresse de sous-réseau : 192.168.1.0\nAdresse de broadcast du sous-réseau : 192.168.1.127\n")
+        self.assertEqual(genererPoint2("192.168.1.65","255.255.255.128"),"Adresse de réseau : 192.168.1.0\nAdresse de broadcast : 192.168.1.255\nAdresse de sous-réseau : 192.168.1.0\nAdresse de broadcast du sous-réseau : \n192.168.1.127\n")
         
         
 if __name__ == '__main__':
