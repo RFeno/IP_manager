@@ -5,7 +5,7 @@ from pathlib import Path
 
 # Fonction pour vérifier si une adresse IP est valide ou non
 def verifyIsIpValid(adressIP):
-    if not re.search(r"[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}", adressIP):
+    if not re.search(r"^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$", adressIP):
        print(f"L'adresse IP {adressIP} n'est pas valide")
        return False
 
@@ -15,12 +15,13 @@ def verifyIsIpValid(adressIP):
         if int(ip_byte) < 0 or int(ip_byte) > 255:
             print(f"L'adresse IP {adressIP} n'est pas valide")
             return False
+
     print(f"L'adresse de IP {adressIP} est valide")
     return True
     
 # Fonction pour vérifier si un masque est valide ou non
 def verifyIsMaskValid(mask):
-    if not re.search(r"[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}", mask):
+    if not re.search(r"^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$", mask):
        print(f"L'adresse de masque {mask} n'est pas valide")
        return False
 
