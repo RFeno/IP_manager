@@ -124,5 +124,18 @@ def deleteUser(username):
         return "UserDeleted"
 
    
-   
+def findClassesInfo():
+    
+    #connexion db + récupération des données
+    connexion = sqlite3.connect("BDDLabo")
+    cursor = connexion.cursor()
+    
+    cursor.execute("SELECT * FROM class")
+    result = cursor.fetchall()
+    
+    #fermeture de la connexion à la base de données
+    cursor.close()
+    connexion.close()
+    
+    return result
     

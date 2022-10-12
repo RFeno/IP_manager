@@ -5,6 +5,7 @@ import re
 import sqlite3
 
 from util.functions import verifyIsIpValid
+from util.db import findClassesInfo
 
 #récupération des données dans la base de données
 def genererPoint1(adresseIP):
@@ -12,12 +13,8 @@ def genererPoint1(adresseIP):
     if not (verifyIsIpValid(adresseIP)):
         return "IpInvalid"
 
-    #connexion db + récupération des données
-    connexion = sqlite3.connect("BDDLabo")
-    cursor = connexion.cursor()
-    cursor.execute("SELECT * FROM class")
-    result = cursor.fetchall()
-
+    result = findClassesInfo()
+    
     #séparation en 
     IpListPerByte = adresseIP.split(".")
 

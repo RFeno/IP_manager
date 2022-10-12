@@ -2,8 +2,7 @@ import sqlite3
 from unittest import result
 
 from util.functions import calcul_reseau_bc, int_to_binary, octet_to_int, verifyIsIpValid, verifyIsMaskValid
-
-# TODO Rename this  
+ 
 def CalculAdresseReseauBcString(arg0, liste_binary_ip, titre, titrevar):
     
     resultGeneration = ""
