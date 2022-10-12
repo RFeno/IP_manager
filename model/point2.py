@@ -37,6 +37,14 @@ def CalculAdresseReseauBcString(arg0, liste_binary_ip, titre, titrevar):
     return resultGeneration
 
 def genererPoint2(ip,masque):
+    """
+    It takes an IP address and a mask, and returns the network address and broadcast address for
+    the network 
+    
+    :param ip: the ip address
+    :param masque: the mask of if
+    :return: a string.
+    """
     
     #utilitaires
     resultGeneration = ""

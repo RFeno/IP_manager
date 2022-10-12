@@ -3,6 +3,12 @@ from util.db import findClassesInfo
 
 #récupération des données dans la base de données
 def genererPoint1(adresseIP):
+    """
+    It takes an IP address as a string, and returns a string that describes the class of the IP address
+    
+    :param adresseIP: the IP address to be analyzed
+    :return: a string 
+    """
     
     if not (verifyIsIpValid(adresseIP)):
         return "IpInvalid"

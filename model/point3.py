@@ -1,6 +1,15 @@
 from util.functions import *
 
 def genererPoint3(IpAdress, MaskAdress, IpNetworkAdress):
+    """
+    It takes IP adress, mask adress and network adress, and returns a string that says whether the IP address
+    belongs to the network
+    
+    :param IpAdress: The IP address you want to check
+    :param MaskAdress: The mask from IP address
+    :param IpNetworkAdress: The IP address of the network you want to check if the IP address belongs to
+    :return: The result of the search.
+    """
 
     # verification des données avant traitement
     if(not verifyIsIpValid(IpAdress)):

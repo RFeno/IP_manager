@@ -3,6 +3,16 @@ from util.functions import *
 #----------------------------------------------------------------
 
 def genererPoint4(IpAdress, MaskAdress, IpAdress2, MaskAdress2):
+    """
+    It takes two IP addresses and two masks, and returns a string that says whether the two IP addresses
+    are in the same network or not
+    
+    :param IpAdress 
+    :param MaskAdress
+    :param IpAdress2
+    :param MaskAdress2
+    :return: a string
+    """
     
     # verification des données avant traitement
     if (not verifyIsMaskValid(MaskAdress)):
