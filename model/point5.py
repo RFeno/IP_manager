@@ -8,8 +8,9 @@ from util.functions import *
 # Vérification des adresses valides ou non
 def genererPoint5(IpAdress, maskAdress, numberOfSubNet, numberOfHosts):
 
+    text = ""
 
-    #vérification des données avant traitemtn
+    #vérification des données avant traitement
     if (not verifyIsMaskValid(maskAdress)):
         print("Adresse du masque n'est pas valide.")
         return "MaskInvalid"
@@ -29,58 +30,22 @@ def genererPoint5(IpAdress, maskAdress, numberOfSubNet, numberOfHosts):
         return "NbSubnetsInvalid"
     else:
         numberOfSubNet = int(numberOfSubNet)
-   
 
+    # Séparation des octets dans une liste
+    liste_octet_masque = maskAdress.split(".")  
+
+    # Conversion du masque de string en int
+    liste_octet_masque_int = [int(i) for i in liste_octet_masque]
+
+    # Vérification nombre de sous-réseaux
+    if numberOfSubNet < 1:
+        print("Le nombre de sous-réseaux n'est pas valide.")
+        return "NbSubnetsInvalid"
     
-    text = ""
-    test = False
-    while not test:
-        # Séparation des octets dans une liste
-        liste_octet_ip = IpAdress.split(".")
-        liste_octet_masque = maskAdress.split(".")  
-
-        # Vérification adresse ip
-        adresse_ip_valide = bool(verifyIsIpValid(IpAdress))
-
-        # Conversion de l'adresse ip de string en int
-        if adresse_ip_valide:
-            liste_octet_ip_int = [int(i) for i in liste_octet_ip]
-
-        # Vérification adresse masque
-        adresse_masque_valide = bool(verifyIsMaskValid(maskAdress))
-
-        # Conversion du masque de string en int
-        if adresse_masque_valide:
-            liste_octet_masque_int = [int(i) for i in liste_octet_masque]
-
-        # Vérification nombre de sous-réseaux
-        numberOfSubNet_valide = numberOfSubNet > 1
-        
-        # Vérification nombre de machines
-        numberOfHosts_valide = numberOfHosts > 0
-
-        # On redemande l'adresse du masque si elle n'est pas valide
-        if not adresse_masque_valide:
-            print("Adresse du masque n'est pas valide.")
-            return "MaskInvalid"
-
-        # On redemande l'adresse ip si elle n'est pas valide
-        if not adresse_ip_valide:
-            print("Adresse ip n'est pas valide.")
-            return "IpInvalid"
-
-        # On redemande le nombre de sous-réseaux s'il n'est pas valide
-        if not numberOfSubNet_valide:
-            print("Le nombre de sous-réseaux n'est pas valide.")
-            return "NbSubnetsInvalid"
-
-        # On redemande le nombre de sous-réseaux s'il n'est pas valide
-        if not numberOfHosts_valide:
-            print("Le nombre de machines n'est pas valide.")
-            return "NbHostsInvalid"
-
-        if adresse_ip_valide and adresse_masque_valide and numberOfSubNet_valide and numberOfHosts_valide:
-            test = True
+    # Vérification nombre de machines
+    if numberOfHosts < 0:
+        print("Le nombre de machines n'est pas valide.")
+        return "NbHostsInvalid"
 
     # Ajout de chaque octet de l'adresse de masque de classe en binaire dans une nouvelle liste
     liste_binary_masque = [int_to_binary(i) for i in liste_octet_masque_int]
