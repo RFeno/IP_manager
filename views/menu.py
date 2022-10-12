@@ -492,7 +492,7 @@ def displayPoint3():
         if((result == "IpInvalid")):
             messagebox.showerror("ERREUR", "L'adresse IP encodée n'est pas valide.\nMerci d'en choisir une autre !")
         elif((result == "MaskInvalid")):
-            messagebox.showerror("ERREUR", "Le masque encodée n'est pas valide.\nMerci d'en choisir un autre !")
+            messagebox.showerror("ERREUR", "Le masque encodé n'est pas valide.\nMerci d'en choisir un autre !")
         elif((result == "IpNetworkInvalid")):
             messagebox.showerror("ERREUR", "L'adresse IP du réseau encodée n'est pas valide.\nMerci d'en choisir une autre !")
         elif((result == "MemeAdress")):
@@ -704,11 +704,11 @@ def displayPoint4():
         if((result == "IpInvalid1")):
             messagebox.showerror("ERREUR", "L'adresse IP de la première machine encodée n'est pas valide.\nMerci d'en choisir une autre !")
         elif((result == "MaskInvalid1")):
-            messagebox.showerror("ERREUR", "Le masque de la première machine encodée n'est pas valide.\nMerci d'en choisir un autre !")
+            messagebox.showerror("ERREUR", "Le masque de la première machine encodé n'est pas valide.\nMerci d'en choisir un autre !")
         elif((result == "IpInvalid2")):
             messagebox.showerror("ERREUR", "L'adresse IP de la deuxième machine encodée n'est pas valide.\nMerci d'en choisir une autre !")
         elif((result == "MaskInvalid2")):
-            messagebox.showerror("ERREUR", "Le masque de la deuxième machine encodée n'est pas valide.\nMerci d'en choisir un autre !")
+            messagebox.showerror("ERREUR", "Le masque de la deuxième machine encodé n'est pas valide.\nMerci d'en choisir un autre !")
         else:
             canvas.itemconfigure(text_results,text=f"--------------------------------------------------------\n{result}\n",)
    
@@ -915,7 +915,7 @@ def displayPoint5():
         if((result == "IpInvalid")):
             messagebox.showerror("ERREUR", "L'adresse IP encodée n'est pas valide.\nMerci d'en choisir une autre !")
         elif((result == "MaskInvalid")):
-            messagebox.showerror("ERREUR", "Le masque encodée n'est pas valide.\nMerci d'en choisir un autre !")
+            messagebox.showerror("ERREUR", "Le masque encodé n'est pas valide.\nMerci d'en choisir un autre !")
         elif((result == "NbSubnetsInvalid")):
             messagebox.showerror("ERREUR", "Le nombre de sous-réseaux n'est pas valide.\nMerci d'encoder une nouvelle valeur !")
         elif((result == "NbHostsInvalid")):
