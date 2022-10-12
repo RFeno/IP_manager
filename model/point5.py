@@ -54,7 +54,7 @@ def genererPoint5(IpAdress, maskAdress, numberOfSubNet, numberOfHosts):
             liste_octet_masque_int = [int(i) for i in liste_octet_masque]
 
         # Vérification nombre de sous-réseaux
-        numberOfSubNet_valide = numberOfSubNet > 0 and numberOfSubNet <= 128
+        numberOfSubNet_valide = numberOfSubNet > 0
         
         # Vérification nombre de machines
         numberOfHosts_valide = numberOfHosts > 0
@@ -104,7 +104,7 @@ def genererPoint5(IpAdress, maskAdress, numberOfSubNet, numberOfHosts):
 
     # Calcul du nombre de bits à réserver à la numérotation des SR
     for i in range(32):
-        if(numberOfSubNet <= ((2**i)-1)):
+        if(numberOfSubNet <= ((2**i))):
             bit_to_back = i
             break
 
@@ -127,7 +127,7 @@ def genererPoint5(IpAdress, maskAdress, numberOfSubNet, numberOfHosts):
 
     nb_host_per_subnet = ((2**nb_of_0)-2)
 
-    if(nb_of_zero_in_mask >= bit_to_back):
+    if(nb_host_per_subnet > 0):
         text += "La découpe classique sur base du nombre de sous-réseaux est possible. \nIl y aura maximum " + str(nb_host_per_subnet) + " machines par sous-réseaux.\n"
     else:
         text += "La découpe classique sur base du nombre de sous-réseaux n'est pas possible.\n"
@@ -142,8 +142,9 @@ def genererPoint5(IpAdress, maskAdress, numberOfSubNet, numberOfHosts):
             nb_of_0_to_let = i+1
             break
 
-    if (numberOfHosts <= (2**nb_of_0_to_let)-2 ):
-        nb_subnet_max = (2**(nb_of_zero_in_mask-nb_of_0_to_let))-2
+    nb_subnet_max = (2**(nb_of_zero_in_mask-nb_of_0_to_let))
+    
+    if (nb_subnet_max > 1):
         text += "La découpe classique sur base du nombre d'IP par sous-réseaux est possible. \nIl y aura maximum " + str(nb_subnet_max) + " sous-réseaux."
     else:
         text += "La découpe classique sur base du nombre d'IP par sous-réseaux n'est pas possible."
