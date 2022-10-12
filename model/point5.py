@@ -30,22 +30,20 @@ def genererPoint5(IpAdress, maskAdress, numberOfSubNet, numberOfHosts):
         return "NbSubnetsInvalid"
     else:
         numberOfSubNet = int(numberOfSubNet)
-
+    
+    if numberOfSubNet < 1:
+        print("Le nombre de sous-réseaux n'est pas valide.")
+        return "NbSubnetsInvalid"
+    
+    if numberOfHosts < 0:
+        print("Le nombre de machines n'est pas valide.")
+        return "NbHostsInvalid"
+        
     # Séparation des octets dans une liste
     liste_octet_masque = maskAdress.split(".")  
 
     # Conversion du masque de string en int
     liste_octet_masque_int = [int(i) for i in liste_octet_masque]
-
-    # Vérification nombre de sous-réseaux
-    if numberOfSubNet < 1:
-        print("Le nombre de sous-réseaux n'est pas valide.")
-        return "NbSubnetsInvalid"
-    
-    # Vérification nombre de machines
-    if numberOfHosts < 0:
-        print("Le nombre de machines n'est pas valide.")
-        return "NbHostsInvalid"
 
     # Ajout de chaque octet de l'adresse de masque de classe en binaire dans une nouvelle liste
     liste_binary_masque = [int_to_binary(i) for i in liste_octet_masque_int]
