@@ -1,13 +1,19 @@
-
 import copy
 from util.functions import *
-
-
-#vérifier que le système fonctionne bien
 
 # Vérification des adresses valides ou non
 def genererPoint5(IpAdress, maskAdress, numberOfSubNet, numberOfHosts):
 
+    """
+    It takes an IP address, a mask, a number of subnets, and a number of hosts, and returns a string
+    containing the results of the calculations
+    
+    :param IpAdress: The IP address of the network
+    :param maskAdress: The mask of the network
+    :param numberOfSubNet: The number of subnets you want to create
+    :param numberOfHosts: The number of hosts you want in each subnet
+    :return: a string.
+    """
     text = ""
 
     #vérification des données avant traitement

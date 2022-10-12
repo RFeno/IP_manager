@@ -1,23 +1,20 @@
-#point 1 fonctionnement
-
-#imports
-import re
-import sqlite3
-
 from util.functions import verifyIsIpValid
+from util.db import findClassesInfo
 
 #récupération des données dans la base de données
 def genererPoint1(adresseIP):
+    """
+    It takes an IP address as a string, and returns a string that describes the class of the IP address
+    
+    :param adresseIP: the IP address to be analyzed
+    :return: a string 
+    """
     
     if not (verifyIsIpValid(adresseIP)):
         return "IpInvalid"
 
-    #connexion db + récupération des données
-    connexion = sqlite3.connect("BDDLabo")
-    cursor = connexion.cursor()
-    cursor.execute("SELECT * FROM class")
-    result = cursor.fetchall()
-
+    result = findClassesInfo()
+    
     #séparation en 
     IpListPerByte = adresseIP.split(".")
 
@@ -46,9 +43,4 @@ def genererPoint1(adresseIP):
     else:
         #classe E
         return (f'Classe {result[4][1]}: \n\n{result[4][2]}')
-
-
-
-
-  
    

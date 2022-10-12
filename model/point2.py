@@ -1,9 +1,6 @@
-import sqlite3
-from unittest import result
-
+from util.db import findClassesInfo
 from util.functions import calcul_reseau_bc, int_to_binary, octet_to_int, verifyIsIpValid, verifyIsMaskValid
-
-# TODO Rename this  
+ 
 def CalculAdresseReseauBcString(arg0, liste_binary_ip, titre, titrevar):
     
     resultGeneration = ""
@@ -40,17 +37,21 @@ def CalculAdresseReseauBcString(arg0, liste_binary_ip, titre, titrevar):
     return resultGeneration
 
 def genererPoint2(ip,masque):
+    """
+    It takes an IP address and a mask, and returns the network address and broadcast address for
+    the network 
+    
+    :param ip: the ip address
+    :param masque: the mask of if
+    :return: a string.
+    """
     
     #utilitaires
     resultGeneration = ""
     adresse_masque_valide = False
     adresse_ip_valide = False
     
-    #récupération des données dans la base de données
-    connexion = sqlite3.connect("BDDLabo")
-    cursor = connexion.cursor()
-    cursor.execute("SELECT * FROM class")
-    result = cursor.fetchall()
+    result = findClassesInfo()
 
     # Séparation des octets dans une liste
     liste_octet_ip = ip.split(".")
@@ -123,6 +124,6 @@ def genererPoint2(ip,masque):
 
     # Calcul de l'adresse de sous-reseau et de broadcast du sous-réseaux s'il y en a
     if (liste_octet_masque_int != masque_classe):
-        resultGeneration+= CalculAdresseReseauBcString(liste_octet_masque_int, liste_binary_ip, "Adresse de sous-réseau : ", "Adresse de broadcast du sous-réseau : ")
+        resultGeneration+= CalculAdresseReseauBcString(liste_octet_masque_int, liste_binary_ip, "Adresse de sous-réseau : ", "Adresse de broadcast du sous-réseau : \n")
     
     return resultGeneration
