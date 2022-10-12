@@ -150,7 +150,7 @@ def displayPoint1():
     def refreshLabel(resultString):
         
         if(resultString == "IpInvalid"):
-            messagebox.showerror("ERREUR", "L'adrese IP encodée n'est pas valide, merci de d'en choisir une autre !")
+            messagebox.showerror("ERREUR", "L'adrese IP encodée n'est pas valide.\n Merci d'en choisir une autre !")
         else:
             canvas.itemconfigure(text_resultats,text=f"------------------------------------------------------\n{resultString}\n",)
     
@@ -307,11 +307,11 @@ def displayPoint2():
         
         #traitement
         if((result == "IpInvalid")):
-            messagebox.showerror("ERREUR", "L'adresse IP encodée n'est pas valide\nmerci de d'en choisir une autre !")
+            messagebox.showerror("ERREUR", "L'adresse IP encodée n'est pas valide.\nMerci d'en choisir une autre !")
         elif((result == "MaskInvalid")):
-            messagebox.showerror("ERREUR", "L'adresse de masque encodée n'est pas valide\nmerci de d'en choisir une autre !")
+            messagebox.showerror("ERREUR", "Le masque encodé n'est pas valide.\nMerci d'en choisir un autre !")
         elif((result == "MaskInvalidGlobal")):
-            messagebox.showerror("ERREUR", "l'adresse de masque ne peut pas être plus englobante que l'adresse de classe\nmerci de d'en choisir une autre !")
+            messagebox.showerror("ERREUR", "le masque ne peut pas être plus englobant que le masque de classe.\nMerci d'en choisir un autre !")
         else:
             canvas.itemconfigure(text_resultats,text=f"------------------------------------------------------\n{result}\n",)  
     
@@ -490,13 +490,13 @@ def displayPoint3():
         
         #traitement
         if((result == "IpInvalid")):
-            messagebox.showerror("ERREUR", "L'adresse IP encodée n'est pas valide\nmerci de d'en choisir une autre !")
+            messagebox.showerror("ERREUR", "L'adresse IP encodée n'est pas valide.\nMerci d'en choisir une autre !")
         elif((result == "MaskInvalid")):
-            messagebox.showerror("ERREUR", "L'adresse de masque encodée n'est pas valide\nmerci de d'en choisir une autre !")
+            messagebox.showerror("ERREUR", "Le masque encodée n'est pas valide.\nMerci d'en choisir un autre !")
         elif((result == "IpNetworkInvalid")):
-            messagebox.showerror("ERREUR", "L'adresse IP du réseau encodée n'est pas valide\nmerci de d'en choisir une autre !")
+            messagebox.showerror("ERREUR", "L'adresse IP du réseau encodée n'est pas valide.\nMerci d'en choisir une autre !")
         elif((result == "MemeAdress")):
-            messagebox.showerror("ERREUR", "L'adresse IP du réseau encodée ne peut pas être égale à l'adresse IP encodée !")
+            messagebox.showerror("ERREUR", "L'adresse IP du réseau ne peut pas être égale à l'adresse IP.\nMerci d'en choisir une autre !")
         else:
             canvas.itemconfigure(text_resultats,text=f"------------------------------------------------------\n{result}\n",)  
     
@@ -702,13 +702,13 @@ def displayPoint4():
         
         #traitement
         if((result == "IpInvalid1")):
-            messagebox.showerror("ERREUR", "L'adresse IP de la première machine encodée n'est pas valide\nmerci de d'en choisir une autre !")
+            messagebox.showerror("ERREUR", "L'adresse IP de la première machine encodée n'est pas valide.\nMerci d'en choisir une autre !")
         elif((result == "MaskInvalid1")):
-            messagebox.showerror("ERREUR", "L'adresse de masque de la première machine encodée n'est pas valide\nmerci de d'en choisir une autre !")
+            messagebox.showerror("ERREUR", "Le masque de la première machine encodée n'est pas valide.\nMerci d'en choisir un autre !")
         elif((result == "IpInvalid2")):
-            messagebox.showerror("ERREUR", "L'adresse IP de la deuxième machine encodée n'est pas valide\nmerci de d'en choisir une autre !")
+            messagebox.showerror("ERREUR", "L'adresse IP de la deuxième machine encodée n'est pas valide.\nMerci d'en choisir une autre !")
         elif((result == "MaskInvalid2")):
-            messagebox.showerror("ERREUR", "L'adresse de masque de la deuxième machine encodée n'est pas valide\nmerci de d'en choisir une autre !")
+            messagebox.showerror("ERREUR", "Le masque de la deuxième machine encodée n'est pas valide.\nMerci d'en choisir un autre !")
         else:
             canvas.itemconfigure(text_results,text=f"--------------------------------------------------------\n{result}\n",)
    
@@ -913,13 +913,13 @@ def displayPoint5():
         
         #traitement
         if((result == "IpInvalid")):
-            messagebox.showerror("ERREUR", "L'adresse IP de la première machine encodée n'est pas valide\nmerci d'en choisir une autre !")
+            messagebox.showerror("ERREUR", "L'adresse IP encodée n'est pas valide.\nMerci d'en choisir une autre !")
         elif((result == "MaskInvalid")):
-            messagebox.showerror("ERREUR", "L'adresse de masque de la première machine encodée n'est pas valide\nmerci d'en choisir une autre !")
+            messagebox.showerror("ERREUR", "Le masque encodée n'est pas valide.\nMerci d'en choisir un autre !")
         elif((result == "NbSubnetsInvalid")):
-            messagebox.showerror("ERREUR", "Le nombre de sous-réseaux n'est pas valide.\nmerci d'encoder une nouvelle valeur !")
+            messagebox.showerror("ERREUR", "Le nombre de sous-réseaux n'est pas valide.\nMerci d'encoder une nouvelle valeur !")
         elif((result == "NbHostsInvalid")):
-            messagebox.showerror("ERREUR", "Le nombre de machines n'est pas valide.\nmerci d'encoder une nouvelle valeur!")
+            messagebox.showerror("ERREUR", "Le nombre de machines n'est pas valide.\nMerci d'encoder une nouvelle valeur !")
         else:
             canvas.itemconfigure(text_results,text=f"--------------------------------------------------------\n{result}\n",)
        
