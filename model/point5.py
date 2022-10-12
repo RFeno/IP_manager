@@ -31,11 +31,11 @@ def genererPoint5(IpAdress, maskAdress, numberOfSubNet, numberOfHosts):
     else:
         numberOfSubNet = int(numberOfSubNet)
     
-    if numberOfSubNet < 1:
+    if numberOfSubNet < 2:
         print("Le nombre de sous-réseaux n'est pas valide.")
         return "NbSubnetsInvalid"
     
-    if numberOfHosts < 0:
+    if numberOfHosts < 1:
         print("Le nombre de machines n'est pas valide.")
         return "NbHostsInvalid"
         
