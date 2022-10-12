@@ -69,30 +69,34 @@ def genererPoint2(ip,masque):
         firstByte = int(liste_octet_ip_int[0])
 
         #Recherche de la classe 
-        if (firstByte < 127):
+        if(firstByte == 0):
+            #classe reservées (A)
+            print(f'Classe {result[5][1]}')
+            return 'On ne peut pas utiliser cette adresse IP \ncar elle fait partie des adresses réservés'
+        elif(firstByte < 127):
             #classe A
             masque_classe_str = result[0][4].split('.')
-            print(f'Classe {result[0][1]}: \n{result[0][2]} réseaux de {result[0][3]} machines trouvée')
+            print(f'Classe {result[0][1]}: \n\n{result[0][2]} réseaux de {result[0][3]} machines')
         elif(firstByte < 128):
-            #classe reservées
+            #classe reservées (A)
             print(f'Classe {result[5][1]}')
-            return 'On ne peut pas utiliser cette adresse IP \n car elle fait partie des adresses réservés'
+            'On ne peut pas utiliser cette adresse IP \ncar elle fait partie des adresses réservés'
         elif(firstByte < 192):
             #classe B
             masque_classe_str = result[1][4].split('.')
-            print(f'Classe {result[1][1]}: \n{result[1][2]} réseaux de  {result[1][3]} machines trouvée')
+            print(f'Classe {result[1][1]}: \n\n{result[1][2]} réseaux de {result[1][3]} machines')
         elif(firstByte < 224):
             #classe C
             masque_classe_str = result[2][4].split('.')
-            print(f'Classe {result[2][1]}: \n{result[2][2]} réseaux de {result[2][3]} machines trouvée')
+            print(f'Classe {result[2][1]}: \n\n{result[2][2]} réseaux de {result[2][3]} machines')
         elif(firstByte < 240):
             #classe D
-            print(f'Classe {result[3][1]}: \n{result[3][2]} trouvée')
-            return 'On ne peut pas utiliser cette adresse IP \n car elle fait partie de la classe D'
+            print(f'Classe {result[3][1]}: \n\n{result[3][2]}')
+            return 'On ne peut pas utiliser cette adresse IP \ncar elle fait partie de la classe D'
         else:
             #classe E
-            print(f'Classe {result[4][1]}: \n{result[4][2]} trouvée')
-            return 'On ne peut pas utiliser cette adresse IP \n car elle fait partie de la classe E'
+            print(f'Classe {result[4][1]}: \n\n{result[4][2]}')
+            return 'On ne peut pas utiliser cette adresse IP \ncar elle fait partie de la classe E'
 
         # Conversion du masque de classe de string en int
         masque_classe = [int(i) for i in masque_classe_str]
@@ -103,7 +107,6 @@ def genererPoint2(ip,masque):
         
         #erreur msg box
         if(masque_classe > liste_octet_masque_int):
-            adresse_masque_valide = False
             print("l'adresse de masque ne peut pas être plus englobante \n que l'adresse de classe.") 
             return "MaskInvalidGlobal"
         
