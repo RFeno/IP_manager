@@ -6,7 +6,7 @@ from images import *
 from util.db import checkUserPassword
 
 
-userLog= ""
+userLog = None
 
 def DisplayLogin(WindowMain):
     #changement titre

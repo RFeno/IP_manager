@@ -110,20 +110,21 @@ def displayAddUser(WindowMain):
         height=59.0
     )
     
-    button_deja_compte = Button(
-        image=image_button_deja_compte,
-        borderwidth=0,
-        highlightthickness=0,
-        command=lambda: lg.DisplayLogin(windowFromMain),
-        relief="flat"
-    )
-    
-    button_deja_compte.place(
-        x=294.0,
-        y=466.0,
-        width=213.0,
-        height=32.0
-    )
+    if(lg.userLog is None):
+        button_deja_compte = Button(
+            image=image_button_deja_compte,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: lg.DisplayLogin(windowFromMain),
+            relief="flat"
+        )
+        
+        button_deja_compte.place(
+            x=294.0,
+            y=466.0,
+            width=213.0,
+            height=32.0
+        )
     
 
 def addUser(username,password):

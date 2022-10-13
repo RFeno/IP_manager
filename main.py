@@ -2,7 +2,7 @@
 from tkinter import *
 
 #active ou desactive l'accès avec mot de passe
-active_login = False
+active_login = True
 
 #création de la fenêtre principale
 WindowMain= Tk()

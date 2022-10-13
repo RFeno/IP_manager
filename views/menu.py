@@ -1136,7 +1136,7 @@ def displayMenuMain(WindowMain):
         78.0,
         467.0,
         anchor="nw",
-        text="Déterminer les découpes et le nombre d’hôtes",
+        text="Vérifier la possibilité d'une découpe",
         fill="#000000",
         font=("Karla Bold", 15 * -1)
     )
