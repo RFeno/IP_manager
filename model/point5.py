@@ -96,11 +96,6 @@ def genererPoint5(IpAdress, maskAdress, numberOfSubNet, numberOfHosts):
 
     nb_host_per_subnet = ((2**nb_of_0)-2)
 
-    if(nb_host_per_subnet > 0):
-        text += "La découpe classique sur base du nombre de sous-réseaux est possible. \nIl y aura maximum " + str(nb_host_per_subnet) + " machines par sous-réseaux.\n\n"
-    else:
-        text += "La découpe classique sur base du nombre de sous-réseaux n'est pas possible.\n\n"
-
     #----------------------------------------------------------------
     # Partie 3
     # Possibilié de découpe classique en fonction du nombre de machines par sous-réseaux
@@ -111,11 +106,25 @@ def genererPoint5(IpAdress, maskAdress, numberOfSubNet, numberOfHosts):
             nb_of_0_to_let = i+1
             break
 
+    print("nb zero a laisser :",nb_of_0_to_let)
+
+    print("nb zero dans masque :",nb_of_zero_in_mask)
+
     nb_subnet_max = (2**(nb_of_zero_in_mask-nb_of_0_to_let))
-    
-    if (nb_subnet_max > 1):
-        text += "La découpe classique sur base du nombre d'IP par sous-réseaux est possible. \nIl y aura maximum " + str(nb_subnet_max) + " sous-réseaux."
+
+    if(nb_host_per_subnet < numberOfHosts or nb_subnet_max < numberOfSubNet):
+        text += "La découpe classique n'est pas possible car :\n\n"
     else:
-        text += "La découpe classique sur base du nombre d'IP par sous-réseaux n'est pas possible."
+        text += "La découpe classique est possible car :\n\n"
+
+    if(nb_host_per_subnet > 0):
+        text += "Il peut y avoir maximum " + str(nb_host_per_subnet) + " machines par sous-réseaux sur base du nombre de sous-réseaux.\n\n"
+    else:
+        text += "La découpe classique n'est pas possible sur base du nombre de sous-réseaux.\n\n"
+    
+    if (nb_subnet_max > 1 and nb_of_0_to_let != 0):
+        text += "Il peut y avoir maximum " + str(nb_subnet_max) + " sous-réseaux sur base du nombre d'hôtes par sous-réseaux.\n\n"
+    else:
+        text += "La découpe classique n'est pas possible sur base du nombre d'hôtes par sous-réseaux.\n\n"
 
     return text

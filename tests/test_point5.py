@@ -34,17 +34,25 @@ class Test(unittest.TestCase):
 
     def test(self):
         self.assertEqual(genererPoint5("192.168.1.65","255.255.255.0","2","5"), "Le nombre d'hôte total avec l'IP et le masque de départ est de 254 machines.\n\n" +
-        "La découpe classique sur base du nombre de sous-réseaux est possible. \nIl y aura maximum 126 machines par sous-réseaux.\n\n" +
-        "La découpe classique sur base du nombre d'IP par sous-réseaux est possible. \nIl y aura maximum 32 sous-réseaux.")
+        "La découpe classique est possible car :\n\n" +
+        "Il peut y avoir maximum 126 machines par sous-réseaux sur base du nombre de sous-réseaux.\n\n" +
+        "Il peut y avoir maximum 32 sous-réseaux sur base du nombre d'hôtes par sous-réseaux.\n\n")
+        self.assertEqual(genererPoint5("192.168.1.65","255.255.255.0","5","31"), "Le nombre d'hôte total avec l'IP et le masque de départ est de 254 machines.\n\n" +
+        "La découpe classique n'est pas possible car :\n\n" +
+        "Il peut y avoir maximum 30 machines par sous-réseaux sur base du nombre de sous-réseaux.\n\n" +
+        "Il peut y avoir maximum 4 sous-réseaux sur base du nombre d'hôtes par sous-réseaux.\n\n")
         self.assertEqual(genererPoint5("192.168.1.65","255.255.255.0","130","5"), "Le nombre d'hôte total avec l'IP et le masque de départ est de 254 machines.\n\n" +
-        "La découpe classique sur base du nombre de sous-réseaux n'est pas possible.\n\n" +
-        "La découpe classique sur base du nombre d'IP par sous-réseaux est possible. \nIl y aura maximum 32 sous-réseaux.")
+        "La découpe classique n'est pas possible car :\n\n" +
+        "La découpe classique n'est pas possible sur base du nombre de sous-réseaux.\n\n" +
+        "Il peut y avoir maximum 32 sous-réseaux sur base du nombre d'hôtes par sous-réseaux.\n\n")
         self.assertEqual(genererPoint5("192.168.1.65","255.255.255.0","2","130"), "Le nombre d'hôte total avec l'IP et le masque de départ est de 254 machines.\n\n" +
-        "La découpe classique sur base du nombre de sous-réseaux est possible. \nIl y aura maximum 126 machines par sous-réseaux.\n\n" +
-        "La découpe classique sur base du nombre d'IP par sous-réseaux n'est pas possible.")
+        "La découpe classique n'est pas possible car :\n\n" +
+        "Il peut y avoir maximum 126 machines par sous-réseaux sur base du nombre de sous-réseaux.\n\n" +
+        "La découpe classique n'est pas possible sur base du nombre d'hôtes par sous-réseaux.\n\n")
         self.assertEqual(genererPoint5("192.168.1.65","255.255.255.0","130","130"), "Le nombre d'hôte total avec l'IP et le masque de départ est de 254 machines.\n\n" +
-        "La découpe classique sur base du nombre de sous-réseaux n'est pas possible.\n\n" +
-        "La découpe classique sur base du nombre d'IP par sous-réseaux n'est pas possible.")
+        "La découpe classique n'est pas possible car :\n\n" +
+        "La découpe classique n'est pas possible sur base du nombre de sous-réseaux.\n\n" +
+        "La découpe classique n'est pas possible sur base du nombre d'hôtes par sous-réseaux.\n\n")
         
 if __name__ == '__main__':
     unittest.main()
